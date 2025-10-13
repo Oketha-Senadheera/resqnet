@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ResQnet Donation Request</title>
+    <link rel="stylesheet" href="./styles/core.css" />
+    <link rel="stylesheet" href="./styles/dashboard.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <style>
+      .donation-form { max-width:1150px; }
+      .donation-form h1 { margin:0 0 2rem; }
+      .form-field { margin-bottom:1.75rem; }
+      .items-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:2.5rem 3rem; margin-top:1rem; }
+      .category h3 { font-size:0.8rem; margin:0 0 .75rem; font-weight:600; letter-spacing:.25px; }
+      .item-row { display:flex; align-items:center; gap:.6rem; font-size:0.7rem; padding:.25rem 0; }
+      .item-row input[type=checkbox] { width:14px; height:14px; accent-color: var(--color-accent); }
+      .qty { width:54px; padding:4px 6px; font-size:0.65rem; border:1px solid var(--color-border); border-radius:var(--radius-sm); background:#fff; }
+      .qty:disabled { opacity:.35; }
+      textarea.input { min-height:170px; resize:vertical; }
+      .actions { display:flex; justify-content:space-between; align-items:center; margin-top:1rem; }
+      .actions-right { margin-left:auto; display:flex; gap:1rem; }
+      .btn-cancel { background:#eee; border-color:#e2e2e2; }
+      .btn-cancel:hover { background:#e4e4e4; }
+      @media (max-width:760px){ .actions { flex-direction:column-reverse; align-items:stretch; gap:1rem; } .actions-right { width:100%; justify-content:stretch; } .actions-right .btn { flex:1; } }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <!-- Sidebar copy -->
+      <aside class="sidebar" aria-label="Primary">
+        <div class="brand">
+          <img class="logo-img" src="./assets/img/logo.svg" alt="ResQnet Logo" width="120" height="32" />
+          <span class="brand-name sr-only">ResQnet</span>
+        </div>
+        <nav class="nav">
+          <button class="nav-item" data-section="overview"><span class="icon" data-lucide="home"></span><span>Overview</span></button>
+          <button class="nav-item" data-section="forecast"><span class="icon" data-lucide="line-chart"></span><span>Forecast Dashboard</span></button>
+          <button class="nav-item" data-section="make-donation"><span class="icon" data-lucide="gift"></span><span>Make a Donation</span></button>
+          <button class="nav-item active" data-section="request-donation"><span class="icon" data-lucide="package"></span><span>Request a Donation</span></button>
+          <button class="nav-item" data-section="report-disaster"><span class="icon" data-lucide="alert-triangle"></span><span>Report a Disaster</span></button>
+          <button class="nav-item" data-section="be-volunteer"><span class="icon" data-lucide="user-plus"></span><span>Be a Volunteer</span></button>
+          <button class="nav-item" data-section="forum"><span class="icon" data-lucide="message-circle"></span><span>Forum</span></button>
+          <button class="nav-item" data-section="profile-settings"><span class="icon" data-lucide="user"></span><span>Profile Settings</span></button>
+        </nav>
+        <div class="sidebar-footer">
+          <button class="logout" aria-label="Logout">↩ Logout</button>
+        </div>
+      </aside>
+
+      <!-- Topbar copy -->
+      <header class="topbar">
+        <div class="breadcrumb">General Public Dashboard / <span>Donation Request</span></div>
+        <div class="topbar-right">
+          <div class="hotline" role="button" tabindex="0" aria-label="Hotline 117">
+            <span class="hotline-icon" data-lucide="phone"></span>Hotline: <strong>117</strong>
+          </div>
+          <div class="user-avatar" aria-label="User Menu" role="button">
+            <img src="https://via.placeholder.com/40x40.png?text=U" alt="User Avatar" />
+          </div>
+            <button class="menu-toggle" aria-label="Open Menu"><span data-lucide="menu"></span></button>
+        </div>
+      </header>
+
+      <main class="content" id="mainContent" tabindex="-1">
+        <form id="donationForm" class="donation-form" novalidate>
+          <h1>Donation Request Form</h1>
+          <div class="form-field" style="max-width:380px;">
+            <label for="reliefCenter">Relief Center Name</label>
+            <input class="input" id="reliefCenter" name="reliefCenter" placeholder="Enter center name" required />
+          </div>
+
+          <h2 style="font-size:0.95rem;margin:0 0 1rem;">Items Needed</h2>
+          <div class="items-grid">
+            <!-- Medicine -->
+            <div class="category" aria-labelledby="catMedicine">
+              <h3 id="catMedicine">Medicine</h3>
+              <div class="item-row"><input type="checkbox" data-item="amoxicillin" /> <span>Amoxicillin</span><select class="qty" disabled><option>1</option><option>5</option><option>10</option><option>20</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="antiseptic_solution" /> <span>Antiseptic solution</span><select class="qty" disabled><option>1</option><option>5</option><option>10</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="bandages" /> <span>Bandages</span><select class="qty" disabled><option>1</option><option>10</option><option>25</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="paracetamol" /> <span>Paracetamol</span><select class="qty" disabled><option>1</option><option>10</option><option>20</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="aspirin" /> <span>Aspirin</span><select class="qty" disabled><option>1</option><option>10</option><option>20</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="antifungal_powder" /> <span>Antifungal powder</span><select class="qty" disabled><option>1</option><option>5</option><option>10</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="mosquito_repellent" /> <span>Mosquito repellent</span><select class="qty" disabled><option>1</option><option>5</option><option>10</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="diabetes_tablets" /> <span>Diabetes tablets</span><select class="qty" disabled><option>1</option><option>5</option><option>10</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="sanitary_pads" /> <span>Sanitary pads</span><select class="qty" disabled><option>1</option><option>5</option><option>10</option><option>20</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="cotton_wool" /> <span>Cotton wool</span><select class="qty" disabled><option>1</option><option>5</option><option>10</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="alcohol_swabs" /> <span>Alcohol swabs</span><select class="qty" disabled><option>1</option><option>5</option><option>10</option></select></div>
+            </div>
+            <!-- Food -->
+            <div class="category" aria-labelledby="catFood">
+              <h3 id="catFood">Food</h3>
+              <div class="item-row"><input type="checkbox" data-item="rice" /> <span>Rice</span><select class="qty" disabled><option>1</option><option>25kg</option><option>50kg</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="dhal" /> <span>Dhal</span><select class="qty" disabled><option>1</option><option>5kg</option><option>10kg</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="canned_fish" /> <span>Canned fish</span><select class="qty" disabled><option>1</option><option>5</option><option>10</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="infant_formula" /> <span>Infant formula</span><select class="qty" disabled><option>1</option><option>5</option><option>10</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="baby_food" /> <span>Baby food jars or sachets</span><select class="qty" disabled><option>1</option><option>5</option><option>10</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="drinking_water" /> <span>Drinking water</span><select class="qty" disabled><option>1</option><option>10L</option><option>50L</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="instant_noodles" /> <span>Instant noodles</span><select class="qty" disabled><option>1</option><option>5</option><option>10</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="biscuits" /> <span>Biscuits</span><select class="qty" disabled><option>1</option><option>5</option><option>10</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="canned_meat" /> <span>Canned meat</span><select class="qty" disabled><option>1</option><option>5</option><option>10</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="milk_powder" /> <span>Milk powder</span><select class="qty" disabled><option>1</option><option>5</option><option>10</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="cooking_oil" /> <span>Cooking oil</span><select class="qty" disabled><option>1</option><option>5L</option><option>10L</option></select></div>
+            </div>
+            <!-- Shelter -->
+            <div class="category" aria-labelledby="catShelter">
+              <h3 id="catShelter">Shelter</h3>
+              <div class="item-row"><input type="checkbox" data-item="sleeping_mats" /> <span>Sleeping mats</span><select class="qty" disabled><option>1</option><option>10</option><option>20</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="blankets" /> <span>Blankets</span><select class="qty" disabled><option>1</option><option>5</option><option>10</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="towels" /> <span>Towels</span><select class="qty" disabled><option>1</option><option>5</option><option>10</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="toothbrush" /> <span>Toothbrush</span><select class="qty" disabled><option>1</option><option>10</option><option>20</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="soap" /> <span>Soap</span><select class="qty" disabled><option>1</option><option>10</option><option>20</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="basic_clothing" /> <span>Basic clothing</span><select class="qty" disabled><option>1</option><option>10</option><option>20</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="candles" /> <span>Candles</span><select class="qty" disabled><option>1</option><option>5</option><option>10</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="plates_cups" /> <span>Plates, cups</span><select class="qty" disabled><option>1</option><option>5</option><option>10</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="baby_diapers" /> <span>Baby diapers</span><select class="qty" disabled><option>1</option><option>5</option><option>10</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="baby_clothes" /> <span>Baby clothes</span><select class="qty" disabled><option>1</option><option>5</option><option>10</option></select></div>
+              <div class="item-row"><input type="checkbox" data-item="disinfectant" /> <span>Disinfectant</span><select class="qty" disabled><option>1</option><option>5</option><option>10</option></select></div>
+            </div>
+          </div>
+
+          <div class="form-field" style="margin-top:2rem;">
+            <label for="notes">Special Notes</label>
+            <textarea class="input" id="notes" name="notes" placeholder="Add any special requirements or context..."></textarea>
+          </div>
+
+          <div class="actions">
+            <div class="actions-right">
+              <button type="reset" class="btn btn-cancel">Cancel</button>
+              <button type="submit" class="btn btn-primary">Submit Request</button>
+            </div>
+          </div>
+        </form>
+      </main>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        if (window.lucide) lucide.createIcons();
+        const form = document.getElementById('donationForm');
+        // Enable/disable quantity selects
+        form.querySelectorAll('.item-row input[type=checkbox]').forEach(cb => {
+          cb.addEventListener('change', () => {
+            const select = cb.parentElement.querySelector('.qty');
+            select.disabled = !cb.checked;
+          });
+        });
+
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          if (!form.reportValidity()) return;
+          const items = [];
+          form.querySelectorAll('.item-row input[type=checkbox]:checked').forEach(cb => {
+            const qty = cb.parentElement.querySelector('.qty').value;
+            items.push({ id: cb.dataset.item, qty });
+          });
+          const payload = {
+            reliefCenter: form.reliefCenter.value.trim(),
+            notes: form.notes.value.trim(),
+            items
+          };
+          console.log('Donation request submitted', payload);
+          alert('Donation request submitted! (See console for payload)');
+          form.reset();
+          // Reset selects disabled state
+          form.querySelectorAll('.qty').forEach(sel => sel.disabled = true);
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Choose Your Role – ResQnet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/core.css" />
+    <link rel="stylesheet" href="./styles/roles.css" />
+    <link rel="icon" type="image/svg+xml" href="./assets/img/logo.svg" />
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+  </head>
+  <body>
+    <main class="role-layout" id="mainContent" tabindex="-1">
+      <header class="role-heading-wrap">
+        <h1>Choose your role</h1>
+        <p>Select the role that best describes you to get started.</p>
+      </header>
+
+      <section class="choice-grid" aria-label="Available roles">
+        <article class="choice-card" data-role="user">
+          <div class="choice-icon"><i data-lucide="user"></i></div>
+          <div class="choice-body">
+            <h2>General User</h2>
+            <p>
+              Individuals seeking assistance or resources during a disaster.
+            </p>
+          </div>
+          <div class="choice-actions">
+            <button class="btn btn-primary" data-signup="user">Sign Up</button>
+          </div>
+        </article>
+        <article class="choice-card" data-role="ngo">
+          <div class="choice-icon"><i data-lucide="building"></i></div>
+          <div class="choice-body">
+            <h2>NGO</h2>
+            <p>
+              Organizations providing aid and support to affected communities.
+            </p>
+          </div>
+          <div class="choice-actions">
+            <button class="btn btn-primary" data-signup="ngo">Sign Up</button>
+          </div>
+        </article>
+        <article class="choice-card" data-role="volunteer">
+          <div class="choice-icon"><i data-lucide="users"></i></div>
+          <div class="choice-body">
+            <h2>Volunteer</h2>
+            <p>
+              Individuals offering their time and skills to support relief
+              efforts.
+            </p>
+          </div>
+          <div class="choice-actions">
+            <button class="btn btn-primary" data-signup="volunteer">
+              Sign Up
+            </button>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        if (window.lucide) {
+          window.lucide.createIcons();
+        }
+        document.querySelectorAll("[data-signup]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const role = btn.getAttribute("data-signup");
+            // Navigate to signup with role query param (placeholder logic)
+            window.location.href = `signup.html?role=${encodeURIComponent(
+              role
+            )}`;
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

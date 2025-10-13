@@ -23,7 +23,7 @@ import java.util.Properties;
  */
 public class DBConnection {
     // Hardcoded DigitalOcean Managed MySQL credentials (requested). WARNING: Don't commit real secrets in production.
-    private static final String HOST = "resqnet-mysql-cluster-do-user-25057272-0.j.db.ondigitalocean.com";
+    private static final String HOST = "uninest-mysql-cluster-do-user-25057272-0.j.db.ondigitalocean.com";
     private static final String PORT = "25060";
     private static final String DB = "defaultdb";
     private static final String SSL_MODE = "REQUIRED"; // DigitalOcean requires SSL

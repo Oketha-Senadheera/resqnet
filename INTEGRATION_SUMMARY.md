@@ -17,7 +17,7 @@ Created a tag-based component library that allows developers to build consistent
 - Clean, centered design (no navigation clutter)
 - Professional typography (Inter font family)
 - Smooth animations and transitions
-- Responsive design for all devices
+- Responsive design for `all devices
 
 ### ✅ Dark Mode Support
 - Automatic system preference detection

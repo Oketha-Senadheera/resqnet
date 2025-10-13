@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ResQnet Volunteer Dashboard</title>
+    <link rel="stylesheet" href="./styles/core.css" />
+    <link rel="stylesheet" href="./styles/dashboard.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar" aria-label="Primary">
+        <div class="brand">
+          <img
+            class="logo-img"
+            src="./assets/img/logo.svg"
+            alt="ResQnet Logo"
+            width="120"
+            height="32"
+          />
+          <span class="brand-name sr-only">ResQnet</span>
+        </div>
+        <nav class="nav">
+          <button class="nav-item active" data-section="overview">
+            <span class="icon" data-lucide="home"></span><span>Overview</span>
+          </button>
+          <button class="nav-item" data-section="forecast">
+            <span class="icon" data-lucide="line-chart"></span
+            ><span>Forecast Dashboard</span>
+          </button>
+          <button class="nav-item" data-section="safe-locations">
+            <span class="icon" data-lucide="map-pin"></span
+            ><span>Safe Locations</span>
+          </button>
+          <button class="nav-item" data-section="make-donation">
+            <span class="icon" data-lucide="gift"></span
+            ><span>Make a Donation</span>
+          </button>
+          <button class="nav-item" data-section="request-donation">
+            <span class="icon" data-lucide="package"></span
+            ><span>Request a Donation</span>
+          </button>
+          <button class="nav-item" data-section="report-disaster">
+            <span class="icon" data-lucide="alert-triangle"></span
+            ><span>Report a Disaster</span>
+          </button>
+          <button class="nav-item" data-section="forum">
+            <span class="icon" data-lucide="message-circle"></span
+            ><span>Forum</span>
+          </button>
+          <button class="nav-item" data-section="profile-settings">
+            <span class="icon" data-lucide="user"></span
+            ><span>Profile Settings</span>
+          </button>
+        </nav>
+        <div class="sidebar-footer">
+          <button class="logout" aria-label="Logout">↩ Logout</button>
+        </div>
+      </aside>
+
+      <header class="topbar">
+        <div class="breadcrumb">
+          Volunteer Dashboard / <span>Overview</span>
+        </div>
+        <div class="topbar-right">
+          <div
+            class="hotline"
+            role="button"
+            tabindex="0"
+            aria-label="Hotline 117"
+          >
+            <span class="hotline-icon" data-lucide="phone"></span>Hotline:
+            <strong>117</strong>
+          </div>
+          <div class="user-avatar" aria-label="User Menu" role="button">
+            <img
+              src="https://via.placeholder.com/40x40.png?text=U"
+              alt="User Avatar"
+            />
+          </div>
+          <button class="menu-toggle" aria-label="Open Menu">
+            <span data-lucide="menu"></span>
+          </button>
+        </div>
+      </header>
+
+      <main class="content" id="mainContent" tabindex="-1">
+        <section class="welcome">
+          <h1>Welcome Volunteer!</h1>
+          <div class="alert info">
+            <span class="alert-icon" data-lucide="alert-triangle"></span>
+            <p>Heavy Rainfall Warning in Gampaha District – Next 48 Hours</p>
+          </div>
+        </section>
+
+        <section class="quick-actions" aria-label="Quick Actions">
+          <div class="action-grid">
+            <button class="action-card" data-section="make-donation">
+              <div class="action-icon"><i data-lucide="gift"></i></div>
+              <span>Make a Donation</span>
+            </button>
+            <button class="action-card" data-section="request-donation">
+              <div class="action-icon"><i data-lucide="package"></i></div>
+              <span>Request a Donation</span>
+            </button>
+            <button class="action-card" data-section="report-disaster">
+              <div class="action-icon">
+                <i data-lucide="alert-triangle"></i>
+              </div>
+              <span>Report a Disaster</span>
+            </button>
+            <button class="action-card" data-section="safe-locations">
+              <div class="action-icon"><i data-lucide="map-pin"></i></div>
+              <span>Safe Locations</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="reports" aria-labelledby="reportsHeading">
+          <h2 id="reportsHeading">Verified Disaster Reports</h2>
+          <ul class="report-list" id="reportList">
+            <!-- Reports populated via JS for reusability -->
+          </ul>
+        </section>
+      </main>
+    </div>
+
+    <template id="report-item-template">
+      <li class="report-item">
+        <div class="report-icon"><i data-lucide="newspaper"></i></div>
+        <div class="report-details">
+          <h3 class="report-title"></h3>
+          <p class="report-desc"></p>
+          <p class="report-meta"></p>
+        </div>
+        <button class="assist-btn">I will assist</button>
+      </li>
+    </template>
+
+    <script src="./scripts/dashboard.js" defer></script>
+  </body>
+</html>
