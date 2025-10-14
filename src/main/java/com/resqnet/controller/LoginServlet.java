@@ -1,5 +1,6 @@
 package com.resqnet.controller;
 
+import com.resqnet.model.Role;
 import com.resqnet.model.User;
 import com.resqnet.model.dao.UserDAO;
 import jakarta.servlet.ServletException;
@@ -39,12 +40,16 @@ public class LoginServlet extends HttpServlet {
         User user = userOpt.get();
         req.getSession(true).setAttribute("authUser", user);
         // Redirect by role
-        if (user.isAdmin()) {
-            resp.sendRedirect(req.getContextPath() + "/admin/dashboard");
-        } else if (user.isManager()) {
-            resp.sendRedirect(req.getContextPath() + "/manager/dashboard");
+        if (user.hasRole(Role.DMC)) {
+            resp.sendRedirect(req.getContextPath() + "/dmc/dashboard");
+        } else if (user.hasRole(Role.GRAMA_NILADHARI)) {
+            resp.sendRedirect(req.getContextPath() + "/gn/dashboard");
+        } else if (user.hasRole(Role.VOLUNTEER)) {
+            resp.sendRedirect(req.getContextPath() + "/volunteer/dashboard");
+        } else if (user.hasRole(Role.NGO)) {
+            resp.sendRedirect(req.getContextPath() + "/ngo/dashboard");
         } else {
-            resp.sendRedirect(req.getContextPath() + "/staff/dashboard");
+            resp.sendRedirect(req.getContextPath() + "/dashboard");
         }
     }
 }

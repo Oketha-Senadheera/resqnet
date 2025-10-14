@@ -38,7 +38,7 @@ public class ForgotPasswordRequestServlet extends HttpServlet {
             return;
         }
 
-        String token = userDAO.createResetToken(userOpt.get().getId(), 30); // 30 min
+        String token = userDAO.createResetToken(userOpt.get().getUserId(), 30); // 30 min
         String resetLink = req.getRequestURL().toString().replace("forgot-password", "reset-password") + "?token=" + token;
         try {
             MailUtil.send(email, "Password Reset", "<p>Click the link to reset your password:</p><p><a href='" + resetLink + "'>" + resetLink + "</a></p><p>If you did not request this, ignore this email.</p>");

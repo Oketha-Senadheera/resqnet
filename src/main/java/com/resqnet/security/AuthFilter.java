@@ -11,13 +11,12 @@ import java.util.*;
 
 public class AuthFilter implements Filter {
 
-    private static final List<String> PUBLIC_PATHS = List.of("/login", "/", "/register");
+    private static final List<String> PUBLIC_PATHS = List.of("/login", "/", "/register", "/signup", "/signup-general", "/signup-volunteer", "/signup-ngo", "/forgot-password", "/reset-password");
     private static final List<String> STATIC_PREFIXES = List.of("/static/");
 
     private final Map<String, Set<Role>> roleRules = Map.of(
-        "/admin/", Set.of(Role.ADMIN),
-        "/manager/", Set.of(Role.ADMIN, Role.MANAGER),
-        "/staff/", Set.of(Role.ADMIN, Role.MANAGER, Role.STAFF)
+        "/dmc/", Set.of(Role.DMC),
+        "/gn/", Set.of(Role.GRAMA_NILADHARI)
     );
 
     @Override
