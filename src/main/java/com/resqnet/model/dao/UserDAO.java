@@ -9,8 +9,7 @@ import java.util.Optional;
 public class UserDAO {
 
     public Optional<User> findByEmail(String email) {
-        String sql = "SELECT u.id, u.email, u.password_hash, r.name AS role_name " +
-                "FROM users u JOIN roles r ON u.role_id = r.id WHERE u.email = ?";
+        String sql = "SELECT user_id, username, email, password_hash, role FROM users WHERE email = ?";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, email);
@@ -24,25 +23,63 @@ public class UserDAO {
         }
         return Optional.empty();
     }
+    
+    public Optional<User> findByUsername(String username) {
+        String sql = "SELECT user_id, username, email, password_hash, role FROM users WHERE username = ?";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, username);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return Optional.of(map(rs));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error fetching user", e);
+        }
+        return Optional.empty();
+    }
+    
+    public Optional<User> findById(int userId) {
+        String sql = "SELECT user_id, username, email, password_hash, role FROM users WHERE user_id = ?";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, userId);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return Optional.of(map(rs));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error fetching user", e);
+        }
+        return Optional.empty();
+    }
 
-    public void create(User user) {
-        String sql = "INSERT INTO users(email, password_hash, role_id) VALUES(?,?,(SELECT id FROM roles WHERE name = ?))";
+    public int create(User user) {
+        String sql = "INSERT INTO users(username, email, password_hash, role) VALUES(?,?,?,?)";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setString(1, user.getEmail());
-            ps.setString(2, user.getPasswordHash());
-            ps.setString(3, user.getRole().name());
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getEmail());
+            ps.setString(3, user.getPasswordHash());
+            ps.setString(4, user.getRole().name().toLowerCase());
             ps.executeUpdate();
             try (ResultSet keys = ps.getGeneratedKeys()) {
-                if (keys.next()) user.setId(keys.getInt(1));
+                if (keys.next()) {
+                    int id = keys.getInt(1);
+                    user.setId(id);
+                    return id;
+                }
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error creating user", e);
         }
+        return 0;
     }
 
     public boolean updatePassword(int userId, String newHash) {
-        String sql = "UPDATE users SET password_hash=? WHERE id=?";
+        String sql = "UPDATE users SET password_hash=? WHERE user_id=?";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, newHash);
@@ -95,10 +132,11 @@ public class UserDAO {
 
     private User map(ResultSet rs) throws SQLException {
         return new User(
-                rs.getInt("id"),
+                rs.getInt("user_id"),
+                rs.getString("username"),
                 rs.getString("email"),
                 rs.getString("password_hash"),
-                rs.getString("role_name")
+                rs.getString("role")
         );
     }
 }

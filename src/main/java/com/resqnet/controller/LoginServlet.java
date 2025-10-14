@@ -39,12 +39,17 @@ public class LoginServlet extends HttpServlet {
         User user = userOpt.get();
         req.getSession(true).setAttribute("authUser", user);
         // Redirect by role
-        if (user.isAdmin()) {
-            resp.sendRedirect(req.getContextPath() + "/admin/dashboard");
-        } else if (user.isManager()) {
-            resp.sendRedirect(req.getContextPath() + "/manager/dashboard");
+        if (user.isGramaNiladhari()) {
+            resp.sendRedirect(req.getContextPath() + "/gn/dashboard");
+        } else if (user.isDMC()) {
+            resp.sendRedirect(req.getContextPath() + "/dmc/dashboard");
+        } else if (user.isNGO()) {
+            resp.sendRedirect(req.getContextPath() + "/ngo/dashboard");
+        } else if (user.isVolunteer()) {
+            resp.sendRedirect(req.getContextPath() + "/volunteer/dashboard");
         } else {
-            resp.sendRedirect(req.getContextPath() + "/staff/dashboard");
+            // General user
+            resp.sendRedirect(req.getContextPath() + "/user/dashboard");
         }
     }
 }

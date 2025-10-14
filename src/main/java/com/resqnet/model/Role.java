@@ -1,7 +1,9 @@
 package com.resqnet.model;
 
 public enum Role {
-    ADMIN,
-    MANAGER,
-    STAFF;
+    GENERAL,
+    VOLUNTEER,
+    NGO,
+    GRAMA_NILADHARI,
+    DMC;
 }

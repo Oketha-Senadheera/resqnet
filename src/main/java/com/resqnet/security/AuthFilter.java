@@ -11,13 +11,15 @@ import java.util.*;
 
 public class AuthFilter implements Filter {
 
-    private static final List<String> PUBLIC_PATHS = List.of("/login", "/", "/register");
+    private static final List<String> PUBLIC_PATHS = List.of("/login", "/", "/signup", "/signup/general", "/signup/volunteer", "/signup/ngo", "/forgot-password", "/reset-password");
     private static final List<String> STATIC_PREFIXES = List.of("/static/");
 
     private final Map<String, Set<Role>> roleRules = Map.of(
-        "/admin/", Set.of(Role.ADMIN),
-        "/manager/", Set.of(Role.ADMIN, Role.MANAGER),
-        "/staff/", Set.of(Role.ADMIN, Role.MANAGER, Role.STAFF)
+        "/gn/", Set.of(Role.GRAMA_NILADHARI),
+        "/dmc/", Set.of(Role.DMC),
+        "/ngo/", Set.of(Role.NGO),
+        "/volunteer/", Set.of(Role.VOLUNTEER),
+        "/user/", Set.of(Role.GENERAL)
     );
 
     @Override
@@ -42,7 +44,7 @@ public class AuthFilter implements Filter {
         }
 
         // Check authorization
-    for (Map.Entry<String, Set<Role>> entry : roleRules.entrySet()) {
+        for (Map.Entry<String, Set<Role>> entry : roleRules.entrySet()) {
             if (path.startsWith(entry.getKey()) && entry.getValue().stream().noneMatch(user::hasRole)) {
                 resp.sendError(HttpServletResponse.SC_FORBIDDEN);
                 return;
