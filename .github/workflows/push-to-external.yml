@@ -3,14 +3,23 @@ on:
   push:
     branches:
       - main
+
 jobs:
   push-to-external-repo:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: push to external repository
+      - name: Extract clean commit message
+        id: msg
+        run: |
+          RAW_MSG="${{ github.event.head_commit.message }}"
+          # Remove everything starting from first space followed by repo@hash pattern
+          CLEAN_MSG=$(echo "$RAW_MSG" | sed 's/ [^ ]*\/[^ ]*@[a-f0-9]\{7,\}//')
+          echo "clean_msg=$CLEAN_MSG" >> $GITHUB_OUTPUT
+
+      - name: Push to external repository
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.SSH_DEPLOY_KEY_1 }}
@@ -18,4 +27,4 @@ jobs:
           external_repository: Oketha-Senadheera/resqnet-21
           publish_branch: main
           allow_empty_commit: true
-          commit_message: "${{ github.event.head_commit.message }}"
+          commit_message: "Sync: ${{ steps.msg.outputs.clean_msg }}"
