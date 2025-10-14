@@ -3,7 +3,7 @@
 <%@ taglib prefix="layout" tagdir="/WEB-INF/tags/layouts" %>
 <%@ taglib prefix="auth" tagdir="/WEB-INF/tags/auth" %>
 <layout:auth title="Login">
-  <h1 class="c-auth__title" id="auth-title">Welcome back1</h1>
+  <h1 class="c-auth__title" id="auth-title">Welcome back</h1>
   <c:if test="${not empty error}">
     <div class="c-field__error" style="text-align: center; font-size: var(--fs-sm); margin-bottom: var(--space-4);">${error}</div>
   </c:if>
