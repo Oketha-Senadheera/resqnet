@@ -5,22 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-/**
- * Database connection helper.
- * Priority of configuration:
- * 1. Explicit DB_URL env var (full JDBC URL)
- * 2. Build from individual vars: DB_HOST, DB_PORT, DB_NAME, DB_SSL_MODE
- *    with defaults targeting the provided DigitalOcean Managed MySQL values.
- * Credentials via DB_USER / DB_PASS.
- *
- * Example DigitalOcean exports (DO NOT commit real password):
- * export DB_HOST="uninest-mysql-cluster-do-user-25057272-0.j.db.ondigitalocean.com"
- * export DB_PORT="25060"
- * export DB_NAME="defaultdb"
- * export DB_SSL_MODE="REQUIRED"
- * export DB_USER="doadmin"
- * export DB_PASS="<your-password>"
- */
+
 public class DBConnection {
     // Hardcoded DigitalOcean Managed MySQL credentials (requested). WARNING: Don't commit real secrets in production.
     private static final String HOST = Env.get("DB_HOST");
