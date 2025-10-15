@@ -7,28 +7,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>${title} • resqnet</title>
+  <title>${title} • ResQnet</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   />
   <link rel="stylesheet" href="${pageContext.request.contextPath}/static/auth.css" />
+  <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/static/assets/img/logo.svg" />
   <script src="${pageContext.request.contextPath}/static/vendor/lucide.js"></script>
 </head>
 <body class="u-bg-surface">
-  <button
-    type="button"
-    class="c-theme-toggle js-theme-toggle"
-    aria-pressed="false"
-    aria-label="Toggle dark mode"
-  >
-    <span class="c-theme-toggle__icon" aria-hidden="true"><i data-lucide="moon"></i></span>
-    <span class="c-theme-toggle__label">Dark</span>
-  </button>
   <main class="o-center">
     <section class="c-auth" aria-labelledby="auth-title">
+      <div class="c-auth__brand">
+        <img src="${pageContext.request.contextPath}/static/assets/img/logo.svg" alt="ResQnet Logo" height="36" />
+        <span class="u-sr-only">ResQnet</span>
+      </div>
       <jsp:doBody />
     </section>
   </main>

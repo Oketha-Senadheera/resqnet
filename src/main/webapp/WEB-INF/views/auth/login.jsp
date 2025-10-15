@@ -33,11 +33,10 @@
     </div>
     <auth:button text="Login" />
   </form>
-  <footer class="c-auth__legal">
-    <auth:link href="#" text="Terms of Service" muted="true" />
-    <span aria-hidden="true">·</span>
-    <auth:link href="#" text="Privacy Policy" muted="true" />
-  </footer>
+  <div class="c-auth__switch">
+    <span>Don't have an account? </span>
+    <a href="${pageContext.request.contextPath}/signup">Sign up</a>
+  </div>
     <script>
       document.querySelector(".js-auth-form").classList.add("js-validate");
     </script>
