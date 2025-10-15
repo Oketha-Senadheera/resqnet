@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
             return;
         }
         Optional<User> userOpt = userDAO.findByEmail(email);
-        if (!userOpt.isPresent() || !BCrypt.checkpw(password, userOpt.get().getPasswordHash())) {
+        if (userOpt.isEmpty() || !BCrypt.checkpw(password, userOpt.get().getPasswordHash())) {
             req.setAttribute("error", "Invalid credentials");
             req.getRequestDispatcher("/WEB-INF/views/auth/login.jsp").forward(req, resp);
             return;

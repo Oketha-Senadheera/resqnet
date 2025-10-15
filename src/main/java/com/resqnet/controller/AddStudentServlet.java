@@ -20,7 +20,7 @@ public class AddStudentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
         String email = req.getParameter("email");
-        if (name == null || name.trim().isEmpty() || email == null || email.trim().isEmpty()) {
+        if (name == null || name.isBlank() || email == null || email.isBlank()) {
             req.setAttribute("message", "Name and Email are required");
             req.getRequestDispatcher("/WEB-INF/views/error.jsp").forward(req, resp);
             return;
