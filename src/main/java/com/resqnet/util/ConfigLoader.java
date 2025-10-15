@@ -22,10 +22,10 @@ public class ConfigLoader {
     private static synchronized void loadIfNeeded() {
         if (loaded) return;
         String explicit = System.getProperty("secrets.path");
-        if (explicit == null || explicit.trim().isEmpty()) {
+        if (explicit == null || explicit.isBlank()) {
             explicit = System.getenv("SECRETS_PATH");
         }
-        if (explicit == null || explicit.trim().isEmpty()) {
+        if (explicit == null || explicit.isBlank()) {
             explicit = "config/secrets.properties"; // default
         }
         Path p = Paths.get(explicit);

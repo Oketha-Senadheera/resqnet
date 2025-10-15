@@ -11,18 +11,14 @@ import java.util.*;
 
 public class AuthFilter implements Filter {
 
-    private static final List<String> PUBLIC_PATHS = Arrays.asList("/login", "/", "/register");
-    private static final List<String> STATIC_PREFIXES = Arrays.asList("/static/");
+    private static final List<String> PUBLIC_PATHS = List.of("/login", "/", "/register");
+    private static final List<String> STATIC_PREFIXES = List.of("/static/");
 
-    private final Map<String, Set<Role>> roleRules;
-    
-    public AuthFilter() {
-        Map<String, Set<Role>> rules = new HashMap<>();
-        rules.put("/admin/", new HashSet<>(Arrays.asList(Role.ADMIN)));
-        rules.put("/manager/", new HashSet<>(Arrays.asList(Role.ADMIN, Role.MANAGER)));
-        rules.put("/staff/", new HashSet<>(Arrays.asList(Role.ADMIN, Role.MANAGER, Role.STAFF)));
-        roleRules = Collections.unmodifiableMap(rules);
-    }
+    private final Map<String, Set<Role>> roleRules = Map.of(
+        "/admin/", Set.of(Role.ADMIN),
+        "/manager/", Set.of(Role.ADMIN, Role.MANAGER),
+        "/staff/", Set.of(Role.ADMIN, Role.MANAGER, Role.STAFF)
+    );
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {

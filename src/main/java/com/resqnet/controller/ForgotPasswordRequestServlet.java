@@ -24,14 +24,14 @@ public class ForgotPasswordRequestServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
-        if (email == null || email.trim().isEmpty()) {
+        if (email == null || email.isBlank()) {
             req.setAttribute("error", "Email is required");
             req.getRequestDispatcher("/WEB-INF/views/auth/forgot-password.jsp").forward(req, resp);
             return;
         }
 
         Optional<User> userOpt = userDAO.findByEmail(email); // validate existence
-        if (!userOpt.isPresent()) {
+        if (userOpt.isEmpty()) {
             req.setAttribute("error", "No account found for that email.");
             req.setAttribute("emailValue", email);
             req.getRequestDispatcher("/WEB-INF/views/auth/forgot-password.jsp").forward(req, resp);
