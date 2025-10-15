@@ -11,16 +11,20 @@ import java.util.*;
 
 public class AuthFilter implements Filter {
 
-    private static final List<String> PUBLIC_PATHS = List.of("/login", "/", "/signup", "/signup/general", "/signup/volunteer", "/signup/ngo", "/forgot-password", "/reset-password");
-    private static final List<String> STATIC_PREFIXES = List.of("/static/");
+    private static final List<String> PUBLIC_PATHS = Arrays.asList("/login", "/", "/signup", "/signup/general", "/signup/volunteer", "/signup/ngo", "/forgot-password", "/reset-password");
+    private static final List<String> STATIC_PREFIXES = Arrays.asList("/static/");
 
-    private final Map<String, Set<Role>> roleRules = Map.of(
-        "/gn/", Set.of(Role.GRAMA_NILADHARI),
-        "/dmc/", Set.of(Role.DMC),
-        "/ngo/", Set.of(Role.NGO),
-        "/volunteer/", Set.of(Role.VOLUNTEER),
-        "/user/", Set.of(Role.GENERAL)
-    );
+    private final Map<String, Set<Role>> roleRules = createRoleRules();
+
+    private Map<String, Set<Role>> createRoleRules() {
+        Map<String, Set<Role>> rules = new HashMap<>();
+        rules.put("/gn/", Collections.singleton(Role.GRAMA_NILADHARI));
+        rules.put("/dmc/", Collections.singleton(Role.DMC));
+        rules.put("/ngo/", Collections.singleton(Role.NGO));
+        rules.put("/volunteer/", Collections.singleton(Role.VOLUNTEER));
+        rules.put("/user/", Collections.singleton(Role.GENERAL));
+        return rules;
+    }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
