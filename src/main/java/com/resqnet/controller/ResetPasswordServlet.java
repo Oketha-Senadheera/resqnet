@@ -17,12 +17,12 @@ public class ResetPasswordServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String token = req.getParameter("token");
-        if (token == null || token.isBlank()) {
+        if (token == null || token.trim().isEmpty()) {
             resp.sendError(400, "Missing token");
             return;
         }
         Optional<Integer> userId = userDAO.validateResetToken(token);
-        if (userId.isEmpty()) {
+        if (!userId.isPresent()) {
             resp.sendError(410, "Token invalid or expired");
             return;
         }
@@ -46,7 +46,7 @@ public class ResetPasswordServlet extends HttpServlet {
             return;
         }
         Optional<Integer> userId = userDAO.validateResetToken(token);
-        if (userId.isEmpty()) {
+        if (!userId.isPresent()) {
             resp.sendError(410, "Token invalid or expired");
             return;
         }
