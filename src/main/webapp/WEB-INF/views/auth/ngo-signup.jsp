@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="layout" tagdir="/WEB-INF/tags/layouts" %>
-<layout:signup title="NGO Sign Up">
+<layout:auth title="NGO Sign Up">
   <jsp:attribute name="styles">
     <style>
       body { background:#fff; }
@@ -123,4 +123,4 @@
       });
     </script>
   </jsp:body>
-</layout:signup>
+</layout:auth>

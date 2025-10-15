@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="layout" tagdir="/WEB-INF/tags/layouts" %>
-<layout:signup title="Choose Your Role">
+<layout:auth title="Choose Your Role">
   <jsp:attribute name="styles">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/roles.css" />
   </jsp:attribute>
@@ -65,4 +65,4 @@
       });
     </script>
   </jsp:body>
-</layout:signup>
+</layout:auth>
