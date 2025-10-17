@@ -1,17 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ResQnet - Grama Niladari Dashboard</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/core.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/dashboard.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <script src="https://unpkg.com/lucide@latest" defer></script>
+<%@ taglib prefix="layout" tagdir="/WEB-INF/tags/layouts" %>
+<layout:grama-niladhari-dashboard pageTitle="ResQnet - Grama Niladari Dashboard" activePage="overview">
+  <jsp:attribute name="styles">
     <style>
       .stats-grid {
         display: grid;
@@ -167,71 +158,21 @@
         }
       }
     </style>
-  </head>
-  <body>
-    <div class="layout">
-      <aside class="sidebar" aria-label="Primary Navigation">
-        <div class="brand">
-          <img class="logo-img" src="${pageContext.request.contextPath}/static/assets/img/logo.svg" alt="ResQnet Logo" width="120" height="32" />
-          <span class="brand-name sr-only">ResQnet</span>
-        </div>
-        <nav class="nav">
-          <button class="nav-item active" data-section="overview">
-            <span class="icon" data-lucide="home"></span>
-            <span>Overview</span>
-          </button>
-          <button class="nav-item" data-section="forecast">
-            <span class="icon" data-lucide="line-chart"></span>
-            <span>Forecast Dashboard</span>
-          </button>
-          <button class="nav-item" data-section="donation-requests">
-            <span class="icon" data-lucide="gift"></span>
-            <span>Donation Requests</span>
-          </button>
-          <button class="nav-item" data-section="disaster-reports">
-            <span class="icon" data-lucide="alert-triangle"></span>
-            <span>Disaster Reports</span>
-          </button>
-          <button class="nav-item" data-section="safe-locations">
-            <span class="icon" data-lucide="map-pin"></span>
-            <span>Safe Locations</span>
-          </button>
-          <button class="nav-item" data-section="forum">
-            <span class="icon" data-lucide="message-circle"></span>
-            <span>Forum</span>
-          </button>
-          <button class="nav-item" data-section="profile-settings">
-            <span class="icon" data-lucide="user"></span>
-            <span>Profile Settings</span>
-          </button>
-        </nav>
-        <div class="sidebar-footer">
-          <form method="post" action="${pageContext.request.contextPath}/logout" style="margin:0;">
-            <button type="submit" class="logout" aria-label="Logout">↩ Logout</button>
-          </form>
-        </div>
-      </aside>
-
-      <header class="topbar">
-        <div class="breadcrumb">GN Dashboard / <span>Overview</span></div>
-        <div class="topbar-right">
-          <div class="hotline" role="button" tabindex="0" aria-label="Hotline 117">
-            <span class="hotline-icon" data-lucide="phone"></span>
-            Hotline: <strong>117</strong>
-          </div>
-          <div class="user-avatar" aria-label="User Menu" role="button">
-            <img src="https://via.placeholder.com/40x40.png?text=GN" alt="User Avatar" />
-          </div>
-          <button class="menu-toggle" aria-label="Open Menu">
-            <span data-lucide="menu"></span>
-          </button>
-        </div>
-      </header>
-
-      <main class="content" id="mainContent" tabindex="-1">
-        <section class="welcome">
-          <h1>Welcome ${sessionScope.authUser.email}!</h1>
-        </section>
+  </jsp:attribute>
+  <jsp:attribute name="scripts">
+    <script>
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', function() {
+          document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+    </script>
+  </jsp:attribute>
+  <jsp:body>
+    <section class="welcome">
+      <h1>Welcome ${sessionScope.authUser.email}!</h1>
+    </section>
 
         <section class="stats-grid" aria-label="Dashboard Statistics">
           <div class="stat-card">
@@ -320,20 +261,5 @@
             </tbody>
           </table>
         </section>
-      </main>
-    </div>
-
-    <script>
-      if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-      }
-
-      document.querySelectorAll('.nav-item').forEach(item => {
-        item.addEventListener('click', function() {
-          document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
-          this.classList.add('active');
-        });
-      });
-    </script>
-  </body>
-</html>
+  </jsp:body>
+</layout:grama-niladhari-dashboard>
