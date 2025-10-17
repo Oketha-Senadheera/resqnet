@@ -1,7 +1,6 @@
 package com.resqnet.controller.dmc;
 
 import com.resqnet.model.User;
-import com.resqnet.model.dao.UserDAO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,7 +13,6 @@ import java.io.IOException;
 
 @WebServlet("/dmc/gn-registry/delete")
 public class GNDeleteServlet extends HttpServlet {
-    private final UserDAO userDAO = new UserDAO();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

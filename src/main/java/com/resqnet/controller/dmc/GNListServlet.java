@@ -2,7 +2,6 @@ package com.resqnet.controller.dmc;
 
 import com.resqnet.model.GramaNiladhari;
 import com.resqnet.model.GramaNiladhariWithUser;
-import com.resqnet.model.Role;
 import com.resqnet.model.User;
 import com.resqnet.model.dao.GramaNiladhariDAO;
 import com.resqnet.model.dao.UserDAO;
