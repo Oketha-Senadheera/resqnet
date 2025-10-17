@@ -132,7 +132,7 @@
       </c:if>
 
       <div class="actions">
-        <a href="${pageContext.request.contextPath}/admin/gn-registry" class="btn btn-muted">Cancel</a>
+        <a href="${pageContext.request.contextPath}/dmc/gn-registry" class="btn btn-muted">Cancel</a>
         <div class="actions-right">
           <button type="submit" class="btn btn-primary">${isEdit ? 'Update GN' : 'Register GN'}</button>
         </div>

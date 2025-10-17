@@ -1,4 +1,4 @@
-package com.resqnet.controller.admin;
+package com.resqnet.controller.dmc;
 
 import com.resqnet.model.GramaNiladhari;
 import com.resqnet.model.Role;
@@ -18,7 +18,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import java.io.IOException;
 import java.util.Optional;
 
-@WebServlet("/admin/gn-registry/add")
+@WebServlet("/dmc/gn-registry/add")
 public class GNAddServlet extends HttpServlet {
     private final UserDAO userDAO = new UserDAO();
     private final GramaNiladhariDAO gnDAO = new GramaNiladhariDAO();
@@ -76,7 +76,7 @@ public class GNAddServlet extends HttpServlet {
                 username == null || username.trim().isEmpty() ||
                 password == null || password.trim().isEmpty()) {
                 req.setAttribute("error", "Required fields are missing");
-                req.getRequestDispatcher("/WEB-INF/views/admin/gn/form.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/views/dmc/gn/form.jsp").forward(req, resp);
                 return;
             }
 
@@ -84,14 +84,14 @@ public class GNAddServlet extends HttpServlet {
             Optional<User> existingByUsername = userDAO.findByUsername(username);
             if (existingByUsername.isPresent()) {
                 req.setAttribute("error", "Username already exists");
-                req.getRequestDispatcher("/WEB-INF/views/admin/gn/form.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/views/dmc/gn/form.jsp").forward(req, resp);
                 return;
             }
 
             Optional<User> existingByEmail = userDAO.findByEmail(email);
             if (existingByEmail.isPresent()) {
                 req.setAttribute("error", "Email already exists");
-                req.getRequestDispatcher("/WEB-INF/views/admin/gn/form.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/views/dmc/gn/form.jsp").forward(req, resp);
                 return;
             }
 
@@ -117,12 +117,12 @@ public class GNAddServlet extends HttpServlet {
             gnDAO.create(gn);
 
             // Redirect to list page with success message
-            resp.sendRedirect(req.getContextPath() + "/admin/gn-registry?success=added");
+            resp.sendRedirect(req.getContextPath() + "/dmc/gn-registry?success=added");
 
         } catch (Exception e) {
             e.printStackTrace();
             req.setAttribute("error", "Error creating Grama Niladhari: " + e.getMessage());
-            req.getRequestDispatcher("/WEB-INF/views/admin/gn/form.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/dmc/gn/form.jsp").forward(req, resp);
         }
     }
 }

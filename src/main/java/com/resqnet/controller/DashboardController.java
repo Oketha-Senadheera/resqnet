@@ -34,60 +34,8 @@ public class DashboardController extends HttpServlet {
         User user = (User) session.getAttribute("authUser");
         Role role = user.getRole();
         
-        String path = req.getServletPath();
-        
-        // Handle /dashboard - redirect to role-specific dashboard
-        if ("/dashboard".equals(path)) {
-            redirectToRoleDashboard(req, resp, role);
-            return;
-        }
-        
-        // Handle specific dashboard routes
-        switch (path) {
-            case "/dashboard/general":
-                if (role == Role.GENERAL) {
-                    req.getRequestDispatcher("/WEB-INF/views/general-user/dashboard.jsp").forward(req, resp);
-                } else {
-                    resp.sendError(HttpServletResponse.SC_FORBIDDEN, "Access denied");
-                }
-                break;
-                
-            case "/dashboard/volunteer":
-                if (role == Role.VOLUNTEER) {
-                    req.getRequestDispatcher("/WEB-INF/views/volunteer/dashboard.jsp").forward(req, resp);
-                } else {
-                    resp.sendError(HttpServletResponse.SC_FORBIDDEN, "Access denied");
-                }
-                break;
-                
-            case "/dashboard/ngo":
-                if (role == Role.NGO) {
-                    req.getRequestDispatcher("/WEB-INF/views/ngo/dashboard.jsp").forward(req, resp);
-                } else {
-                    resp.sendError(HttpServletResponse.SC_FORBIDDEN, "Access denied");
-                }
-                break;
-                
-            case "/dashboard/gn":
-                if (role == Role.GRAMA_NILADHARI) {
-                    req.getRequestDispatcher("/WEB-INF/views/grama-niladhari/dashboard.jsp").forward(req, resp);
-                } else {
-                    resp.sendError(HttpServletResponse.SC_FORBIDDEN, "Access denied");
-                }
-                break;
-                
-            case "/dashboard/dmc":
-                if (role == Role.DMC) {
-                    req.getRequestDispatcher("/WEB-INF/views/dmc/dashboard.jsp").forward(req, resp);
-                } else {
-                    resp.sendError(HttpServletResponse.SC_FORBIDDEN, "Access denied");
-                }
-                break;
-                
-            default:
-                resp.sendError(HttpServletResponse.SC_NOT_FOUND);
-                break;
-        }
+        // Redirect all old dashboard URLs to new role-based URLs
+        redirectToRoleDashboard(req, resp, role);
     }
     
     private void redirectToRoleDashboard(HttpServletRequest req, HttpServletResponse resp, Role role) throws IOException {
@@ -95,19 +43,19 @@ public class DashboardController extends HttpServlet {
         
         switch (role) {
             case GENERAL:
-                resp.sendRedirect(contextPath + "/dashboard/general");
+                resp.sendRedirect(contextPath + "/general/dashboard");
                 break;
             case VOLUNTEER:
-                resp.sendRedirect(contextPath + "/dashboard/volunteer");
+                resp.sendRedirect(contextPath + "/volunteer/dashboard");
                 break;
             case NGO:
-                resp.sendRedirect(contextPath + "/dashboard/ngo");
+                resp.sendRedirect(contextPath + "/ngo/dashboard");
                 break;
             case GRAMA_NILADHARI:
-                resp.sendRedirect(contextPath + "/dashboard/gn");
+                resp.sendRedirect(contextPath + "/gn/dashboard");
                 break;
             case DMC:
-                resp.sendRedirect(contextPath + "/dashboard/dmc");
+                resp.sendRedirect(contextPath + "/dmc/dashboard");
                 break;
             default:
                 resp.sendRedirect(contextPath + "/login");

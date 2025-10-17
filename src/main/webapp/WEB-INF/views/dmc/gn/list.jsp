@@ -38,7 +38,7 @@
         if (confirm('Are you sure you want to delete Grama Niladhari "' + name + '"? This action cannot be undone.')) {
           const form = document.createElement('form');
           form.method = 'POST';
-          form.action = '${pageContext.request.contextPath}/admin/gn-registry/delete';
+          form.action = '${pageContext.request.contextPath}/dmc/gn-registry/delete';
           const input = document.createElement('input');
           input.type = 'hidden';
           input.name = 'id';
@@ -71,7 +71,7 @@
 
     <div class="top-actions">
       <div></div>
-      <a href="${pageContext.request.contextPath}/admin/gn-registry/add" class="add-btn">Add new GN</a>
+      <a href="${pageContext.request.contextPath}/dmc/gn-registry/add" class="add-btn">Add new GN</a>
     </div>
 
     <div class="table-shell">
@@ -101,7 +101,7 @@
                   <td data-label="Username">${gnWithUser.user.username}</td>
                   <td data-label="Actions">
                     <div class="actions-cell">
-                      <a href="${pageContext.request.contextPath}/admin/gn-registry/edit?id=${gnWithUser.user.id}" class="pill">
+                      <a href="${pageContext.request.contextPath}/dmc/gn-registry/edit?id=${gnWithUser.user.id}" class="pill">
                         <span data-lucide="edit"></span>Edit
                       </a>
                       <button type="button" class="pill pill-danger" onclick="confirmDelete('${gnWithUser.gramaNiladhari.name}', ${gnWithUser.user.id})">

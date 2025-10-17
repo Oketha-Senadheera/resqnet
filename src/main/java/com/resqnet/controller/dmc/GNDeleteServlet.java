@@ -1,7 +1,6 @@
-package com.resqnet.controller.admin;
+package com.resqnet.controller.dmc;
 
 import com.resqnet.model.User;
-import com.resqnet.model.dao.UserDAO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,9 +11,8 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebServlet("/admin/gn-registry/delete")
+@WebServlet("/dmc/gn-registry/delete")
 public class GNDeleteServlet extends HttpServlet {
-    private final UserDAO userDAO = new UserDAO();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,7 +31,7 @@ public class GNDeleteServlet extends HttpServlet {
 
         String userIdParam = req.getParameter("id");
         if (userIdParam == null) {
-            resp.sendRedirect(req.getContextPath() + "/admin/gn-registry?error=invalid");
+            resp.sendRedirect(req.getContextPath() + "/dmc/gn-registry?error=invalid");
             return;
         }
 
@@ -50,11 +48,11 @@ public class GNDeleteServlet extends HttpServlet {
             ps.close();
             con.close();
 
-            resp.sendRedirect(req.getContextPath() + "/admin/gn-registry?success=deleted");
+            resp.sendRedirect(req.getContextPath() + "/dmc/gn-registry?success=deleted");
 
         } catch (Exception e) {
             e.printStackTrace();
-            resp.sendRedirect(req.getContextPath() + "/admin/gn-registry?error=delete");
+            resp.sendRedirect(req.getContextPath() + "/dmc/gn-registry?error=delete");
         }
     }
 }

@@ -22,7 +22,7 @@ public class AuthFilter implements Filter {
         rules.put("/dmc/", Collections.singleton(Role.DMC));
         rules.put("/ngo/", Collections.singleton(Role.NGO));
         rules.put("/volunteer/", Collections.singleton(Role.VOLUNTEER));
-        rules.put("/user/", Collections.singleton(Role.GENERAL));
+        rules.put("/general/", Collections.singleton(Role.GENERAL));
         return rules;
     }
 

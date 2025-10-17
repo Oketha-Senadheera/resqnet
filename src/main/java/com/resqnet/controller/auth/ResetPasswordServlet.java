@@ -1,4 +1,4 @@
-package com.resqnet.controller;
+package com.resqnet.controller.auth;
 
 import com.resqnet.model.dao.UserDAO;
 import jakarta.servlet.ServletException;
