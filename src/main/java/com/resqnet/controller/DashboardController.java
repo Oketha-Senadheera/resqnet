@@ -46,7 +46,7 @@ public class DashboardController extends HttpServlet {
         switch (path) {
             case "/dashboard/general":
                 if (role == Role.GENERAL) {
-                    req.getRequestDispatcher("/WEB-INF/views/dashboard/general-dashboard.jsp").forward(req, resp);
+                    req.getRequestDispatcher("/WEB-INF/views/general-user/dashboard.jsp").forward(req, resp);
                 } else {
                     resp.sendError(HttpServletResponse.SC_FORBIDDEN, "Access denied");
                 }
@@ -54,7 +54,7 @@ public class DashboardController extends HttpServlet {
                 
             case "/dashboard/volunteer":
                 if (role == Role.VOLUNTEER) {
-                    req.getRequestDispatcher("/WEB-INF/views/dashboard/volunteer-dashboard.jsp").forward(req, resp);
+                    req.getRequestDispatcher("/WEB-INF/views/volunteer/dashboard.jsp").forward(req, resp);
                 } else {
                     resp.sendError(HttpServletResponse.SC_FORBIDDEN, "Access denied");
                 }
@@ -62,7 +62,7 @@ public class DashboardController extends HttpServlet {
                 
             case "/dashboard/ngo":
                 if (role == Role.NGO) {
-                    req.getRequestDispatcher("/WEB-INF/views/dashboard/ngo-dashboard.jsp").forward(req, resp);
+                    req.getRequestDispatcher("/WEB-INF/views/ngo/dashboard.jsp").forward(req, resp);
                 } else {
                     resp.sendError(HttpServletResponse.SC_FORBIDDEN, "Access denied");
                 }
@@ -70,7 +70,7 @@ public class DashboardController extends HttpServlet {
                 
             case "/dashboard/gn":
                 if (role == Role.GRAMA_NILADHARI) {
-                    req.getRequestDispatcher("/WEB-INF/views/dashboard/gn-dashboard.jsp").forward(req, resp);
+                    req.getRequestDispatcher("/WEB-INF/views/grama-niladhari/dashboard.jsp").forward(req, resp);
                 } else {
                     resp.sendError(HttpServletResponse.SC_FORBIDDEN, "Access denied");
                 }
@@ -78,7 +78,7 @@ public class DashboardController extends HttpServlet {
                 
             case "/dashboard/dmc":
                 if (role == Role.DMC) {
-                    req.getRequestDispatcher("/WEB-INF/views/dashboard/dmc-dashboard.jsp").forward(req, resp);
+                    req.getRequestDispatcher("/WEB-INF/views/dmc/dashboard.jsp").forward(req, resp);
                 } else {
                     resp.sendError(HttpServletResponse.SC_FORBIDDEN, "Access denied");
                 }
