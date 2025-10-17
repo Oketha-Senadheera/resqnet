@@ -21,7 +21,7 @@ public class NGOSignupServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/auth/ngo-signup.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/ngo/signup.jsp").forward(req, resp);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class NGOSignupServlet extends HttpServlet {
                 orgName == null || orgName.trim().isEmpty() ||
                 regNo == null || regNo.trim().isEmpty()) {
                 req.setAttribute("error", "Required fields are missing");
-                req.getRequestDispatcher("/WEB-INF/views/auth/ngo-signup.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/views/ngo/signup.jsp").forward(req, resp);
                 return;
             }
 
@@ -84,7 +84,7 @@ public class NGOSignupServlet extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/login?registered=1");
         } catch (Exception e) {
             req.setAttribute("error", "An error occurred during registration: " + e.getMessage());
-            req.getRequestDispatcher("/WEB-INF/views/auth/ngo-signup.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/ngo/signup.jsp").forward(req, resp);
         }
     }
 }
