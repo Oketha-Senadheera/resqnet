@@ -31,10 +31,10 @@
         </div>
         <nav class="nav">
           <c:forEach items="${navItems}" var="item">
-            <button class="nav-item ${item.active ? 'active' : ''}" data-section="${item.section}">
+            <a class="nav-item ${item.active ? 'active' : ''}" href="${pageContext.request.contextPath}/${item.section}" data-section="${item.section}">
               <span class="icon" data-lucide="${item.icon}"></span>
               <span>${item.label}</span>
-            </button>
+            </a>
           </c:forEach>
         </nav>
         <div class="sidebar-footer">
