@@ -1,17 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ResQnet NGO Dashboard</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/core.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/dashboard.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <script src="https://unpkg.com/lucide@latest" defer></script>
+<%@ taglib prefix="layout" tagdir="/WEB-INF/tags/layouts" %>
+<layout:ngo-dashboard pageTitle="ResQnet NGO Dashboard" activePage="overview">
+  <jsp:attribute name="styles">
     <style>
       .dashboard-section h2 { margin:0 0 1rem; font-size:1rem; }
       .quick-actions-ngo { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem; }
@@ -33,103 +24,8 @@
       .col-section { margin-top:2.5rem; }
       @media (max-width:640px){ .request-card { grid-template-columns:1fr; } .status-btn { justify-self:start; } }
     </style>
-  </head>
-  <body>
-    <div class="layout">
-      <aside class="sidebar" aria-label="Primary">
-        <div class="brand">
-          <img class="logo-img" src="${pageContext.request.contextPath}/static/assets/img/logo.svg" alt="ResQnet Logo" width="120" height="32" />
-          <span class="brand-name sr-only">ResQnet</span>
-        </div>
-        <nav class="nav">
-          <button class="nav-item active" data-section="overview"><span class="icon" data-lucide="home"></span><span>Overview</span></button>
-          <button class="nav-item" data-section="forecast"><span class="icon" data-lucide="line-chart"></span><span>Forecast Dashboard</span></button>
-          <button class="nav-item" data-section="safe-locations"><span class="icon" data-lucide="map-pin"></span><span>Safe Locations</span></button>
-          <button class="nav-item" data-section="donation-requests"><span class="icon" data-lucide="gift"></span><span>Donation Requests</span></button>
-          <button class="nav-item" data-section="manage-inventory"><span class="icon" data-lucide="boxes"></span><span>Manage Inventory</span></button>
-          <button class="nav-item" data-section="manage-collection"><span class="icon" data-lucide="map"></span><span>Manage Collection Points</span></button>
-          <button class="nav-item" data-section="forum"><span class="icon" data-lucide="message-circle"></span><span>Forum</span></button>
-          <button class="nav-item" data-section="profile-settings"><span class="icon" data-lucide="user"></span><span>Profile Settings</span></button>
-        </nav>
-        <div class="sidebar-footer">
-          <form method="post" action="${pageContext.request.contextPath}/logout" style="margin:0;">
-            <button type="submit" class="logout" aria-label="Logout">↩ Logout</button>
-          </form>
-        </div>
-      </aside>
-
-      <header class="topbar">
-        <div class="breadcrumb">NGO Dashboard / <span>Overview</span></div>
-        <div class="topbar-right">
-          <div class="hotline" role="button" tabindex="0" aria-label="Hotline 117"><span class="hotline-icon" data-lucide="phone"></span>Hotline: <strong>117</strong></div>
-          <div class="user-avatar" aria-label="User Menu" role="button"><img src="https://via.placeholder.com/40x40.png?text=U" alt="User Avatar" /></div>
-          <button class="menu-toggle" aria-label="Open Menu"><span data-lucide="menu"></span></button>
-        </div>
-      </header>
-
-      <main class="content" id="mainContent" tabindex="-1">
-        <section class="welcome">
-          <h1>Welcome ${sessionScope.authUser.email}!</h1>
-          <div class="alert info" style="background:#fff9e6;border-color:#f5e3a3;">
-            <span class="alert-icon" data-lucide="alert-triangle"></span>
-            <p>Heavy Rainfall Warning in Gampaha District – Next 48 Hours</p>
-          </div>
-        </section>
-
-        <section aria-label="Primary Actions">
-          <div class="quick-actions-ngo">
-            <button class="action-card large" data-section="donation-requests">
-              <div class="action-icon"><i data-lucide="gift"></i></div>
-              <span>Donation Requests</span>
-            </button>
-            <button class="action-card large" data-section="manage-inventory">
-              <div class="action-icon"><i data-lucide="boxes"></i></div>
-              <span>Manage Inventory</span>
-            </button>
-            <button class="action-card large" data-section="manage-collection">
-              <div class="action-icon"><i data-lucide="map"></i></div>
-              <span>Collection Points</span>
-            </button>
-            <button class="action-card large" data-section="safe-locations">
-              <div class="action-icon"><i data-lucide="map-pin"></i></div>
-              <span>Safe Locations</span>
-            </button>
-          </div>
-        </section>
-
-        <section class="req-section" aria-labelledby="donationRequestsHeading">
-          <h2 id="donationRequestsHeading">Donation Requests</h2>
-          <ul class="requests-list" id="requestsList"></ul>
-        </section>
-
-        <section class="col-section" aria-labelledby="collectionPointsHeading">
-          <h2 id="collectionPointsHeading">Collection Points</h2>
-          <div class="collection-points" id="collectionPoints"></div>
-        </section>
-      </main>
-    </div>
-
-    <template id="request-card-template">
-      <li class="request-card">
-        <div class="req-meta">
-          <div class="req-location"><i data-lucide="map-pin" style="width:14px;height:14px;"></i><span class="loc-text"></span></div>
-          <div><i data-lucide="calendar" style="width:12px;height:12px;vertical-align:middle;"></i> <span class="date-text"></span></div>
-          <div class="item-tags"></div>
-        </div>
-        <button class="status-btn">Fulfill</button>
-      </li>
-    </template>
-
-    <template id="collection-point-template">
-      <div class="point-card">
-        <h3 class="point-name"></h3>
-        <div class="small-meta">
-          <div class="city"></div>
-          <div><i data-lucide="map-pin" style="width:12px;height:12px;vertical-align:middle;"></i> <span class="address"></span></div>
-        </div>
-      </div>
-    </template>
-
+  </jsp:attribute>
+  <jsp:attribute name="scripts">
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         if (window.lucide) lucide.createIcons();
@@ -172,5 +68,66 @@
         });
       });
     </script>
-  </body>
-</html>
+  </jsp:attribute>
+  <jsp:body>
+    <section class="welcome">
+      <h1>Welcome ${sessionScope.authUser.email}!</h1>
+      <div class="alert info" style="background:#fff9e6;border-color:#f5e3a3;">
+        <span class="alert-icon" data-lucide="alert-triangle"></span>
+        <p>Heavy Rainfall Warning in Gampaha District – Next 48 Hours</p>
+      </div>
+    </section>
+
+        <section aria-label="Primary Actions">
+          <div class="quick-actions-ngo">
+            <button class="action-card large" data-section="donation-requests">
+              <div class="action-icon"><i data-lucide="gift"></i></div>
+              <span>Donation Requests</span>
+            </button>
+            <button class="action-card large" data-section="manage-inventory">
+              <div class="action-icon"><i data-lucide="boxes"></i></div>
+              <span>Manage Inventory</span>
+            </button>
+            <button class="action-card large" data-section="manage-collection">
+              <div class="action-icon"><i data-lucide="map"></i></div>
+              <span>Collection Points</span>
+            </button>
+            <button class="action-card large" data-section="safe-locations">
+              <div class="action-icon"><i data-lucide="map-pin"></i></div>
+              <span>Safe Locations</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="req-section" aria-labelledby="donationRequestsHeading">
+          <h2 id="donationRequestsHeading">Donation Requests</h2>
+          <ul class="requests-list" id="requestsList"></ul>
+        </section>
+
+        <section class="col-section" aria-labelledby="collectionPointsHeading">
+          <h2 id="collectionPointsHeading">Collection Points</h2>
+          <div class="collection-points" id="collectionPoints"></div>
+        </section>
+
+    <template id="request-card-template">
+      <li class="request-card">
+        <div class="req-meta">
+          <div class="req-location"><i data-lucide="map-pin" style="width:14px;height:14px;"></i><span class="loc-text"></span></div>
+          <div><i data-lucide="calendar" style="width:12px;height:12px;vertical-align:middle;"></i> <span class="date-text"></span></div>
+          <div class="item-tags"></div>
+        </div>
+        <button class="status-btn">Fulfill</button>
+      </li>
+    </template>
+
+    <template id="collection-point-template">
+      <div class="point-card">
+        <h3 class="point-name"></h3>
+        <div class="small-meta">
+          <div class="city"></div>
+          <div><i data-lucide="map-pin" style="width:12px;height:12px;vertical-align:middle;"></i> <span class="address"></span></div>
+        </div>
+      </div>
+    </template>
+  </jsp:body>
+</layout:ngo-dashboard>

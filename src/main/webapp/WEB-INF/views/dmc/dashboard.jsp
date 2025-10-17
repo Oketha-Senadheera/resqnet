@@ -1,17 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ResQnet - DMC Overview</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/core.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/dashboard.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <script src="https://unpkg.com/lucide@latest" defer></script>
+<%@ taglib prefix="layout" tagdir="/WEB-INF/tags/layouts" %>
+<layout:dmc-dashboard pageTitle="ResQnet - DMC Overview" activePage="overview">
+  <jsp:attribute name="styles">
     <style>
       .page-title { margin: 0.25rem 0 1.5rem; font-size: 1.65rem; }
       .stats-grid { display:grid; grid-template-columns:repeat(4, minmax(160px, 1fr)); gap:1.25rem; margin: 0 0 2.25rem; }
@@ -47,43 +38,40 @@
       @media (max-width: 980px) { .stats-grid { grid-template-columns:repeat(2, 1fr); } .safe-grid { grid-template-columns:1fr; } }
       @media (max-width: 560px) { .stats-grid { grid-template-columns:1fr; } }
     </style>
-  </head>
-  <body>
-    <div class="layout">
-      <aside class="sidebar" aria-label="Primary">
-        <div class="brand">
-          <img class="logo-img" src="${pageContext.request.contextPath}/static/assets/img/logo.svg" alt="ResQnet Logo" width="120" height="32" />
-          <span class="brand-name sr-only">ResQnet</span>
-        </div>
-        <nav class="nav">
-          <button class="nav-item active" data-section="overview"><span class="icon" data-lucide="home"></span><span>Overview</span></button>
-          <button class="nav-item" data-section="forecast"><span class="icon" data-lucide="line-chart"></span><span>Forecast Dashboard</span></button>
-          <button class="nav-item" data-section="disaster-reports"><span class="icon" data-lucide="file-text"></span><span>Disaster Reports</span></button>
-          <button class="nav-item" data-section="volunteer-apps"><span class="icon" data-lucide="users"></span><span>Volunteer Applications</span></button>
-          <button class="nav-item" data-section="delivery-confirmations"><span class="icon" data-lucide="check-square"></span><span>Delivery Confirmations</span></button>
-          <button class="nav-item" data-section="safe-locations"><span class="icon" data-lucide="map-pin"></span><span>Safe Locations</span></button>
-          <button class="nav-item" data-section="gn-registry"><span class="icon" data-lucide="list"></span><span>GN Registry</span></button>
-          <button class="nav-item" data-section="forum"><span class="icon" data-lucide="message-circle"></span><span>Forum</span></button>
-          <button class="nav-item" data-section="profile-settings"><span class="icon" data-lucide="user"></span><span>Profile Settings</span></button>
-        </nav>
-        <div class="sidebar-footer">
-          <form method="post" action="${pageContext.request.contextPath}/logout" style="margin:0;">
-            <button type="submit" class="logout" aria-label="Logout">↩ Logout</button>
-          </form>
-        </div>
-      </aside>
+  </jsp:attribute>
+  <jsp:attribute name="scripts">
+    <script>
+      document.querySelectorAll('.nav-item').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+          btn.classList.add('active');
+        });
+      });
 
-      <header class="topbar">
-        <div class="breadcrumb">DMC Dashboard / <span>Overview</span></div>
-        <div class="topbar-right">
-          <div class="hotline" role="button" tabindex="0" aria-label="Hotline 117"><span class="hotline-icon" data-lucide="phone"></span>Hotline: <strong>117</strong></div>
-          <div class="user-avatar" aria-label="User Menu" role="button"><img src="https://via.placeholder.com/40x40.png?text=U" alt="User Avatar" /></div>
-          <button class="menu-toggle" aria-label="Open Menu"><span data-lucide="menu"></span></button>
-        </div>
-      </header>
+      document.getElementById('reportsBody').addEventListener('click', (e) => {
+        const btn = e.target.closest('button.pill');
+        if (!btn) return;
+        const row = btn.closest('tr');
+        const statusCell = row.querySelector('.status');
+        if (btn.dataset.action === 'verify') {
+          statusCell.innerHTML = '<span class="status-verified">Verified</span>';
+        } else if (btn.dataset.action === 'reject') {
+          row.remove();
+        }
+        if (window.lucide) lucide.createIcons();
+      });
 
-      <main class="content" id="mainContent" tabindex="-1">
-        <h1 class="page-title">Welcome ${sessionScope.authUser.email}!</h1>
+      document.getElementById('deliveriesBody').addEventListener('click', (e) => {
+        const btn = e.target.closest('button.pill-confirm');
+        if (!btn) return;
+        const row = btn.closest('tr');
+        row.cells[3].innerHTML = '<span class="status-verified">Confirmed</span>';
+        btn.remove();
+      });
+    </script>
+  </jsp:attribute>
+  <jsp:body>
+    <h1 class="page-title">Welcome ${sessionScope.authUser.email}!</h1>
 
         <section class="stats-grid" aria-label="Key Metrics">
           <article class="stat-card" aria-label="Disaster Reports"><div class="label">Disaster Reports</div><div class="value">12</div></article>
@@ -188,39 +176,5 @@
             </table>
           </div>
         </section>
-      </main>
-    </div>
-
-    <script>
-      if (window.lucide) lucide.createIcons();
-
-      document.querySelectorAll('.nav-item').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
-          btn.classList.add('active');
-        });
-      });
-
-      document.getElementById('reportsBody').addEventListener('click', (e) => {
-        const btn = e.target.closest('button.pill');
-        if (!btn) return;
-        const row = btn.closest('tr');
-        const statusCell = row.querySelector('.status');
-        if (btn.dataset.action === 'verify') {
-          statusCell.innerHTML = '<span class="status-verified">Verified</span>';
-        } else if (btn.dataset.action === 'reject') {
-          row.remove();
-        }
-        if (window.lucide) lucide.createIcons();
-      });
-
-      document.getElementById('deliveriesBody').addEventListener('click', (e) => {
-        const btn = e.target.closest('button.pill-confirm');
-        if (!btn) return;
-        const row = btn.closest('tr');
-        row.cells[3].innerHTML = '<span class="status-verified">Confirmed</span>';
-        btn.remove();
-      });
-    </script>
-  </body>
-</html>
+  </jsp:body>
+</layout:dmc-dashboard>

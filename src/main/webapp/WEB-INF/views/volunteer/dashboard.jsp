@@ -1,17 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>ResQnet - Volunteer Overview</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/core.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/dashboard.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <script src="https://unpkg.com/lucide@latest" defer></script>
+<%@ taglib prefix="layout" tagdir="/WEB-INF/tags/layouts" %>
+<layout:volunteer-dashboard pageTitle="ResQnet - Volunteer Overview" activePage="overview">
+  <jsp:attribute name="styles">
     <style>
       h1 { margin:0 0 1rem; }
       .alert.info { background:#fff5d6; border:1px solid #f0e0a8; color:#3a3320; display:flex; align-items:center; gap:0.6rem; padding:0.7rem 1rem; border-radius:12px; }
@@ -28,70 +19,8 @@
       .assist-btn { all:unset; cursor:pointer; font-size:0.6rem; font-weight:600; padding:0.5rem 1rem; border-radius:999px; background:#e9e9e9; }
       @media (max-width:720px){ .quick-actions{ grid-template-columns:repeat(2,1fr); } .report-card{ grid-template-columns:36px 1fr; } .assist-btn{ justify-self:start; } }
     </style>
-  </head>
-  <body>
-    <div class="layout">
-      <aside class="sidebar" aria-label="Primary">
-        <div class="brand"><img class="logo-img" src="${pageContext.request.contextPath}/static/assets/img/logo.svg" alt="ResQnet Logo" width="120" height="32" /><span class="brand-name sr-only">ResQnet</span></div>
-        <nav class="nav">
-          <button class="nav-item active" data-section="overview"><span class="icon" data-lucide="home"></span><span>Overview</span></button>
-          <button class="nav-item" data-section="forecast"><span class="icon" data-lucide="line-chart"></span><span>Forecast Dashboard</span></button>
-          <button class="nav-item" data-section="safe-locations"><span class="icon" data-lucide="map-pin"></span><span>Safe Locations</span></button>
-          <button class="nav-item" data-section="make-donation"><span class="icon" data-lucide="hand-coins"></span><span>Make a Donation</span></button>
-          <button class="nav-item" data-section="request-donation"><span class="icon" data-lucide="package-plus"></span><span>Request a Donation</span></button>
-          <button class="nav-item" data-section="report-disaster"><span class="icon" data-lucide="alert-octagon"></span><span>Report a Disaster</span></button>
-          <button class="nav-item" data-section="forum"><span class="icon" data-lucide="message-circle"></span><span>Forum</span></button>
-          <button class="nav-item" data-section="profile-settings"><span class="icon" data-lucide="user"></span><span>Profile Settings</span></button>
-        </nav>
-        <div class="sidebar-footer">
-          <form method="post" action="${pageContext.request.contextPath}/logout" style="margin:0;">
-            <button type="submit" class="logout" aria-label="Logout">↩ Logout</button>
-          </form>
-        </div>
-      </aside>
-      <header class="topbar">
-        <div class="breadcrumb">Volunteer Dashboard / <span>Overview</span></div>
-        <div class="topbar-right">
-          <div class="hotline" role="button" tabindex="0" aria-label="Hotline 117"><span class="hotline-icon" data-lucide="phone"></span>Hotline: <strong>117</strong></div>
-          <div class="user-avatar" aria-label="User Menu" role="button"><img src="https://via.placeholder.com/40x40.png?text=U" alt="User Avatar" /></div>
-          <button class="menu-toggle" aria-label="Open Menu"><span data-lucide="menu"></span></button>
-        </div>
-      </header>
-      <main class="content" id="mainContent" tabindex="-1">
-        <section class="welcome">
-          <h1>Welcome ${sessionScope.authUser.email}!</h1>
-          <div class="alert info">
-            <span class="alert-icon" data-lucide="alert-triangle"></span>
-            <p>Heavy Rainfall Warning in Gampaha District – Next 48 Hours</p>
-          </div>
-        </section>
-        <section class="quick">
-          <div class="quick-actions">
-            <button class="action-card" data-goto="make-donation.html"><div class="action-icon"><i data-lucide="gift"></i></div><span>Make a Donation</span></button>
-            <button class="action-card" data-goto="request-donation.html"><div class="action-icon"><i data-lucide="package-plus"></i></div><span>Request a Donation</span></button>
-            <button class="action-card" data-goto="report-disaster.html"><div class="action-icon"><i data-lucide="alert-octagon"></i></div><span>Report a Disaster</span></button>
-            <button class="action-card" data-goto="safe-locations-gn.html"><div class="action-icon"><i data-lucide="map-pin"></i></div><span>Safe Locations</span></button>
-          </div>
-        </section>
-        <section aria-labelledby="verifiedHeading">
-          <h2 id="verifiedHeading" class="section-title">Verified Disaster Reports</h2>
-          <div class="report-list" id="reportList"></div>
-        </section>
-      </main>
-    </div>
-
-    <template id="report-card-tmpl">
-      <div class="report-card">
-        <div class="report-icon"><i data-lucide="flag"></i></div>
-        <div class="report-meta">
-          <div class="report-title"></div>
-          <div class="report-desc" style="color:#555"></div>
-          <div class="report-by" style="color:#777"></div>
-        </div>
-        <button class="assist-btn">I will assist</button>
-      </div>
-    </template>
-
+  </jsp:attribute>
+  <jsp:attribute name="scripts">
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         if(window.lucide) lucide.createIcons();
@@ -104,5 +33,38 @@
         reports.forEach(r=>{ const node=tmpl.content.firstElementChild.cloneNode(true); node.querySelector('.report-title').textContent=r.title; node.querySelector('.report-desc').textContent=r.desc; node.querySelector('.report-by').textContent=r.by; const assist=node.querySelector('.assist-btn'); assist.addEventListener('click',()=>{ assist.textContent='Assisting'; assist.style.background='#ffe28a'; console.log('Volunteer assisting:', r.title); }); wrap.appendChild(node); });
       });
     </script>
-  </body>
-</html>
+  </jsp:attribute>
+  <jsp:body>
+    <section class="welcome">
+      <h1>Welcome ${sessionScope.authUser.email}!</h1>
+      <div class="alert info">
+        <span class="alert-icon" data-lucide="alert-triangle"></span>
+        <p>Heavy Rainfall Warning in Gampaha District – Next 48 Hours</p>
+      </div>
+    </section>
+    <section class="quick">
+      <div class="quick-actions">
+        <button class="action-card" data-goto="make-donation.html"><div class="action-icon"><i data-lucide="gift"></i></div><span>Make a Donation</span></button>
+        <button class="action-card" data-goto="request-donation.html"><div class="action-icon"><i data-lucide="package-plus"></i></div><span>Request a Donation</span></button>
+        <button class="action-card" data-goto="report-disaster.html"><div class="action-icon"><i data-lucide="alert-octagon"></i></div><span>Report a Disaster</span></button>
+        <button class="action-card" data-goto="safe-locations-gn.html"><div class="action-icon"><i data-lucide="map-pin"></i></div><span>Safe Locations</span></button>
+      </div>
+    </section>
+    <section aria-labelledby="verifiedHeading">
+      <h2 id="verifiedHeading" class="section-title">Verified Disaster Reports</h2>
+      <div class="report-list" id="reportList"></div>
+    </section>
+
+    <template id="report-card-tmpl">
+      <div class="report-card">
+        <div class="report-icon"><i data-lucide="flag"></i></div>
+        <div class="report-meta">
+          <div class="report-title"></div>
+          <div class="report-desc" style="color:#555"></div>
+          <div class="report-by" style="color:#777"></div>
+        </div>
+        <button class="assist-btn">I will assist</button>
+      </div>
+    </template>
+  </jsp:body>
+</layout:volunteer-dashboard>
