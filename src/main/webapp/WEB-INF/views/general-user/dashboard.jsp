@@ -98,8 +98,6 @@
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         if(window.lucide) lucide.createIcons();
-        const actions=document.querySelectorAll('[data-goto]');
-        actions.forEach(btn=>btn.addEventListener('click',()=>{ window.location.href=btn.getAttribute('data-goto'); }));
         const list=[
           { name:'Central Park', coords:'40.7128° N, 74.0060° W' },
           { name:'Griffith Observatory', coords:'34.0522° N, 118.2437° W' },

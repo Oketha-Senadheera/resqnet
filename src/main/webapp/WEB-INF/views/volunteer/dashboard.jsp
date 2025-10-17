@@ -95,8 +95,6 @@
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         if(window.lucide) lucide.createIcons();
-        const actions=document.querySelectorAll('[data-goto]');
-        actions.forEach(btn=>btn.addEventListener('click',()=>{ window.location.href=btn.getAttribute('data-goto'); }));
         const reports=[
           { title:'Flooding in Residential Area', desc:'Urgent need for rescue in the flooded area near Main Street.', by:'Reported by: Sarah Miller' },
           { title:'Landslide Near Community Center', desc:'Landslide blocking access to the community center. Volunteers needed for debris removal.', by:'Reported by: David Chen' },
