@@ -3,14 +3,14 @@
 <%
     User authUser = (User) session.getAttribute("authUser");
     String email = authUser != null ? authUser.getEmail() : "";
-    String username = authUser != null ? authUser.getUsername() : "Volunteer";
+    String username = authUser != null ? authUser.getUsername() : "User";
 %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>ResQnet - Volunteer Overview</title>
+    <title>ResQnet - General Public Overview</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/core.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/dashboard.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,20 +19,22 @@
     <script src="https://unpkg.com/lucide@latest" defer></script>
     <style>
       h1 { margin:0 0 1rem; }
+      .welcome { margin-bottom:1.2rem; }
       .alert.info { background:#fff5d6; border:1px solid #f0e0a8; color:#3a3320; display:flex; align-items:center; gap:0.6rem; padding:0.7rem 1rem; border-radius:12px; }
       .alert .alert-icon { width:18px; height:18px; }
       .quick-actions { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin:1rem 0 1.5rem; }
       .action-card { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.6rem; padding:1.2rem; border:1px solid var(--color-border); border-radius:12px; background:#f6f6f6; cursor:pointer; }
       .action-card .action-icon i { width:24px; height:24px; }
-      .section-title { margin:1.25rem 0 0.75rem; font-size:0.95rem; }
-      .report-list { display:flex; flex-direction:column; gap:0.9rem; }
-      .report-card { display:grid; grid-template-columns:48px 1fr auto; gap:0.9rem; border:1px solid var(--color-border); border-radius:12px; background:#f6f6f6; padding:0.9rem; align-items:center; }
-      .report-icon { width:36px; height:36px; border-radius:8px; border:1px solid var(--color-border); background:#eee; display:flex; align-items:center; justify-content:center; color:#666; }
-      .report-meta { display:flex; flex-direction:column; gap:0.25rem; font-size:0.7rem; }
-      .report-title { font-weight:700; }
-      .assist-btn { all:unset; cursor:pointer; font-size:0.6rem; font-weight:600; padding:0.5rem 1rem; border-radius:999px; background:#e9e9e9; }
+      .safe-section { display:grid; grid-template-columns:1fr 1.2fr; gap:1rem; align-items:start; }
+      .safe-list { display:flex; flex-direction:column; gap:0.6rem; }
+      .safe-item { background:#f6f6f6; border:1px solid var(--color-border); border-radius:12px; padding:0.8rem 1rem; }
+      .safe-item .name { font-weight:600; margin-bottom:0.15rem; }
+      .map-shell { position:relative; border:1px solid var(--color-border); border-radius:12px; overflow:hidden; min-height:340px; background:#eaeaea; }
+      .map-toolbar { position:absolute; right:0.75rem; top:0.75rem; background:#fff; border:1px solid var(--color-border); border-radius:999px; padding:0.25rem; display:flex; gap:0.25rem; }
+      .map-search { position:absolute; left:0.75rem; top:0.75rem; background:#fff; border:1px solid var(--color-border); border-radius:999px; padding:0.35rem 0.6rem; display:flex; align-items:center; gap:0.4rem; }
+      .map-iframe-holder { width:100%; height:100%; }
       .user-email { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
-      @media (max-width:720px){ .quick-actions{ grid-template-columns:repeat(2,1fr); } .report-card{ grid-template-columns:36px 1fr; } .assist-btn{ justify-self:start; } }
+      @media (max-width:980px){ .safe-section { grid-template-columns:1fr; } }
     </style>
   </head>
   <body>
@@ -42,17 +44,17 @@
         <nav class="nav">
           <button class="nav-item active" data-section="overview"><span class="icon" data-lucide="home"></span><span>Overview</span></button>
           <button class="nav-item" data-section="forecast"><span class="icon" data-lucide="line-chart"></span><span>Forecast Dashboard</span></button>
-          <button class="nav-item" data-section="safe-locations"><span class="icon" data-lucide="map-pin"></span><span>Safe Locations</span></button>
           <button class="nav-item" data-section="make-donation"><span class="icon" data-lucide="hand-coins"></span><span>Make a Donation</span></button>
           <button class="nav-item" data-section="request-donation"><span class="icon" data-lucide="package-plus"></span><span>Request a Donation</span></button>
           <button class="nav-item" data-section="report-disaster"><span class="icon" data-lucide="alert-octagon"></span><span>Report a Disaster</span></button>
+          <button class="nav-item" data-section="be-volunteer"><span class="icon" data-lucide="user-plus"></span><span>Be a Volunteer</span></button>
           <button class="nav-item" data-section="forum"><span class="icon" data-lucide="message-circle"></span><span>Forum</span></button>
           <button class="nav-item" data-section="profile-settings"><span class="icon" data-lucide="user"></span><span>Profile Settings</span></button>
         </nav>
         <div class="sidebar-footer"><button class="logout" aria-label="Logout" onclick="window.location.href='${pageContext.request.contextPath}/logout'">↩ Logout</button></div>
       </aside>
       <header class="topbar">
-        <div class="breadcrumb">Volunteer Dashboard / <span>Overview</span></div>
+        <div class="breadcrumb">General Public Dashboard / <span>Overview</span></div>
         <div class="topbar-right">
           <div class="hotline" role="button" tabindex="0" aria-label="Hotline 117"><span class="hotline-icon" data-lucide="phone"></span>Hotline: <strong>117</strong></div>
           <div class="user-avatar" aria-label="User Menu" role="button"><img src="https://via.placeholder.com/40x40.png?text=U" alt="User Avatar" /></div>
@@ -73,26 +75,28 @@
             <button class="action-card" data-goto="make-donation.html"><div class="action-icon"><i data-lucide="gift"></i></div><span>Make a Donation</span></button>
             <button class="action-card" data-goto="request-donation.html"><div class="action-icon"><i data-lucide="package-plus"></i></div><span>Request a Donation</span></button>
             <button class="action-card" data-goto="report-disaster.html"><div class="action-icon"><i data-lucide="alert-octagon"></i></div><span>Report a Disaster</span></button>
-            <button class="action-card" data-goto="safe-locations-gn.html"><div class="action-icon"><i data-lucide="map-pin"></i></div><span>Safe Locations</span></button>
+            <button class="action-card" data-goto="be-volunteer.html"><div class="action-icon"><i data-lucide="user-plus"></i></div><span>Be a Volunteer</span></button>
           </div>
         </section>
-        <section aria-labelledby="verifiedHeading">
-          <h2 id="verifiedHeading" class="section-title">Verified Disaster Reports</h2>
-          <div class="report-list" id="reportList"></div>
+        <section class="safe-section" aria-labelledby="safeHeading">
+          <div>
+            <h2 id="safeHeading" style="margin:0 0 0.8rem;">Safe Locations</h2>
+            <div class="safe-list" id="safeList"></div>
+          </div>
+          <div>
+            <div class="map-shell">
+              <!-- Keep the container; you can place an iframe here later -->
+              <div class="map-search"><i data-lucide="search" style="width:16px;height:16px;"></i><span style="font-size:0.7rem;color:#666;">Search</span></div>
+              <div class="map-toolbar"><button class="btn btn-icon" aria-label="Zoom In"><i data-lucide="plus"></i></button><button class="btn btn-icon" aria-label="Zoom Out"><i data-lucide="minus"></i></button></div>
+              <div class="map-iframe-holder" id="mapHolder"></div>
+            </div>
+          </div>
         </section>
       </main>
     </div>
 
-    <template id="report-card-tmpl">
-      <div class="report-card">
-        <div class="report-icon"><i data-lucide="flag"></i></div>
-        <div class="report-meta">
-          <div class="report-title"></div>
-          <div class="report-desc" style="color:#555"></div>
-          <div class="report-by" style="color:#777"></div>
-        </div>
-        <button class="assist-btn">I will assist</button>
-      </div>
+    <template id="safe-item-tmpl">
+      <div class="safe-item"><div class="name"></div><div class="coords"></div></div>
     </template>
 
     <script>
@@ -100,13 +104,14 @@
         if(window.lucide) lucide.createIcons();
         const actions=document.querySelectorAll('[data-goto]');
         actions.forEach(btn=>btn.addEventListener('click',()=>{ window.location.href=btn.getAttribute('data-goto'); }));
-        const reports=[
-          { title:'Flooding in Residential Area', desc:'Urgent need for rescue in the flooded area near Main Street.', by:'Reported by: Sarah Miller' },
-          { title:'Landslide Near Community Center', desc:'Landslide blocking access to the community center. Volunteers needed for debris removal.', by:'Reported by: David Chen' },
-          { title:'Landslide Near Community Center', desc:'Landslide blocking access to the community center. Volunteers needed for debris removal.', by:'Reported by: David Chen' }
+        const list=[
+          { name:'Central Park', coords:'40.7128° N, 74.0060° W' },
+          { name:'Griffith Observatory', coords:'34.0522° N, 118.2437° W' },
+          { name:'Eiffel Tower', coords:'48.8566° N, 2.3522° E' },
+          { name:'Golden Gate Park', coords:'37.7749° N, 122.4194° W' }
         ];
-        const wrap=document.getElementById('reportList'); const tmpl=document.getElementById('report-card-tmpl');
-        reports.forEach(r=>{ const node=tmpl.content.firstElementChild.cloneNode(true); node.querySelector('.report-title').textContent=r.title; node.querySelector('.report-desc').textContent=r.desc; node.querySelector('.report-by').textContent=r.by; const assist=node.querySelector('.assist-btn'); assist.addEventListener('click',()=>{ assist.textContent='Assisting'; assist.style.background='#ffe28a'; console.log('Volunteer assisting:', r.title); }); wrap.appendChild(node); });
+        const wrap=document.getElementById('safeList'); const tmpl=document.getElementById('safe-item-tmpl');
+        list.forEach(item=>{ const node=tmpl.content.firstElementChild.cloneNode(true); node.querySelector('.name').textContent=item.name; node.querySelector('.coords').textContent=item.coords; wrap.appendChild(node); });
       });
     </script>
   </body>
