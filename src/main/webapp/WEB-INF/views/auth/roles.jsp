@@ -1,24 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Choose Your Role – ResQnet</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/core.css" />
+<%@ taglib prefix="layout" tagdir="/WEB-INF/tags/layouts" %>
+<layout:auth title="Choose Your Role">
+  <jsp:attribute name="styles">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/roles.css" />
-    <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/static/assets/img/logo.svg" />
-    <script src="https://unpkg.com/lucide@latest" defer></script>
-  </head>
-  <body>
-    <main class="role-layout" id="mainContent" tabindex="-1">
+  </jsp:attribute>
+  <jsp:body>
+    <main class="role-layout">
       <header class="role-heading-wrap">
         <h1>Choose your role</h1>
         <p>Select the role that best describes you to get started.</p>
@@ -76,5 +64,5 @@
         }
       });
     </script>
-  </body>
-</html>
+  </jsp:body>
+</layout:auth>

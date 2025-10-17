@@ -1,16 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NGO Sign Up – ResQnet</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/core.css" />
-    <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/static/assets/img/logo.svg" />
+<%@ taglib prefix="layout" tagdir="/WEB-INF/tags/layouts" %>
+<layout:auth title="NGO Sign Up">
+  <jsp:attribute name="styles">
     <style>
       body { background:#fff; }
       .site-header { position:sticky; top:0; z-index:40; }
@@ -43,23 +35,9 @@
         gap: 1rem;
       }
     </style>
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="site-header__inner">
-        <a href="${pageContext.request.contextPath}/" class="brand-inline">
-          <img src="${pageContext.request.contextPath}/static/assets/img/logo.svg" alt="ResQnet Logo" />
-          <span>ResQnet</span>
-        </a>
-        <nav class="primary-nav" aria-label="Main"></nav>
-        <div class="auth-actions">
-          <a href="${pageContext.request.contextPath}/login" class="btn">Login</a>
-          <a href="${pageContext.request.contextPath}/signup" class="btn btn-primary">Sign Up</a>
-        </div>
-      </div>
-    </header>
-
-    <main class="main-wrapper" id="mainContent" tabindex="-1">
+  </jsp:attribute>
+  <jsp:body>
+    <div class="main-wrapper">
       <h1>Sign up your organization</h1>
       
       <c:if test="${not empty error}">
@@ -120,8 +98,7 @@
           <button type="submit" class="btn btn-primary">Sign Up</button>
         </div>
       </form>
-    </main>
-
+    </div>
     <script>
       const form = document.getElementById('orgPublicSignupForm');
       const pw = document.getElementById('password');
@@ -145,5 +122,5 @@
         }
       });
     </script>
-  </body>
-</html>
+  </jsp:body>
+</layout:auth>

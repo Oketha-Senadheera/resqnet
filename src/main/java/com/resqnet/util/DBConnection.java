@@ -27,6 +27,17 @@ public class DBConnection {
     }
 
     public static Connection getConnection() throws SQLException {
+        // Check if required properties are set
+        if (USER == null || USER.isEmpty()) {
+            throw new SQLException("Database user (DB_USER) is not configured. Please set environment variable or add to application.properties");
+        }
+        if (PASS == null) {
+            throw new SQLException("Database password (DB_PASS) is not configured. Please set environment variable or add to application.properties");
+        }
+        if (HOST == null || HOST.isEmpty()) {
+            throw new SQLException("Database host (DB_HOST) is not configured. Please set environment variable or add to application.properties");
+        }
+        
         Properties props = new Properties();
         props.setProperty("user", USER);
         props.setProperty("password", PASS);

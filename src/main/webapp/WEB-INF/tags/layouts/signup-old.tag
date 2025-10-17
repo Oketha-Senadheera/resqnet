@@ -1,4 +1,4 @@
-<%@ tag description="Authentication page layout with header" pageEncoding="UTF-8" %>
+<%@ tag description="Signup page layout with header" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ attribute name="title" required="true" %>
 <%@ attribute name="scripts" fragment="true" required="false" %>
@@ -24,7 +24,7 @@
     <div class="site-header__inner">
       <a href="${pageContext.request.contextPath}/" class="brand-inline">
         <img src="${pageContext.request.contextPath}/static/assets/img/logo.svg" alt="ResQnet Logo" />
-        
+        <span>ResQnet</span>
       </a>
       <nav class="primary-nav" aria-label="Main"></nav>
       <div class="auth-actions">
