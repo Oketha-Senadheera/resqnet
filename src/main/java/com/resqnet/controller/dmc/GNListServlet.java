@@ -1,4 +1,4 @@
-package com.resqnet.controller.admin;
+package com.resqnet.controller.dmc;
 
 import com.resqnet.model.GramaNiladhari;
 import com.resqnet.model.GramaNiladhariWithUser;
@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/admin/gn-registry")
+@WebServlet("/dmc/gn-registry")
 public class GNListServlet extends HttpServlet {
     private final GramaNiladhariDAO gnDAO = new GramaNiladhariDAO();
     private final UserDAO userDAO = new UserDAO();
@@ -50,6 +50,6 @@ public class GNListServlet extends HttpServlet {
         }
 
         req.setAttribute("gnList", gnWithUserList);
-        req.getRequestDispatcher("/WEB-INF/views/admin/gn/list.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/dmc/gn/list.jsp").forward(req, resp);
     }
 }

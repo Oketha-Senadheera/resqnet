@@ -1,4 +1,4 @@
-package com.resqnet.controller.admin;
+package com.resqnet.controller.dmc;
 
 import com.resqnet.model.GramaNiladhari;
 import com.resqnet.model.GramaNiladhariWithUser;
@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Optional;
 
-@WebServlet("/admin/gn-registry/edit")
+@WebServlet("/dmc/gn-registry/edit")
 public class GNEditServlet extends HttpServlet {
     private final UserDAO userDAO = new UserDAO();
     private final GramaNiladhariDAO gnDAO = new GramaNiladhariDAO();
@@ -38,7 +38,7 @@ public class GNEditServlet extends HttpServlet {
 
         String userIdParam = req.getParameter("id");
         if (userIdParam == null) {
-            resp.sendRedirect(req.getContextPath() + "/admin/gn-registry");
+            resp.sendRedirect(req.getContextPath() + "/dmc/gn-registry");
             return;
         }
 
@@ -48,17 +48,17 @@ public class GNEditServlet extends HttpServlet {
             Optional<User> userOpt = userDAO.findById(userId);
 
             if (!gnOpt.isPresent() || !userOpt.isPresent()) {
-                resp.sendRedirect(req.getContextPath() + "/admin/gn-registry?error=notfound");
+                resp.sendRedirect(req.getContextPath() + "/dmc/gn-registry?error=notfound");
                 return;
             }
 
             GramaNiladhariWithUser gnWithUser = new GramaNiladhariWithUser(userOpt.get(), gnOpt.get());
             req.setAttribute("gnData", gnWithUser);
             req.setAttribute("editMode", true);
-            req.getRequestDispatcher("/WEB-INF/views/admin/gn/form.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/dmc/gn/form.jsp").forward(req, resp);
 
         } catch (NumberFormatException e) {
-            resp.sendRedirect(req.getContextPath() + "/admin/gn-registry?error=invalid");
+            resp.sendRedirect(req.getContextPath() + "/dmc/gn-registry?error=invalid");
         }
     }
 
@@ -79,7 +79,7 @@ public class GNEditServlet extends HttpServlet {
 
         String userIdParam = req.getParameter("userId");
         if (userIdParam == null) {
-            resp.sendRedirect(req.getContextPath() + "/admin/gn-registry");
+            resp.sendRedirect(req.getContextPath() + "/dmc/gn-registry");
             return;
         }
 
@@ -109,7 +109,7 @@ public class GNEditServlet extends HttpServlet {
                     req.setAttribute("gnData", new GramaNiladhariWithUser(userOpt.get(), gnOpt.get()));
                     req.setAttribute("editMode", true);
                 }
-                req.getRequestDispatcher("/WEB-INF/views/admin/gn/form.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/views/dmc/gn/form.jsp").forward(req, resp);
                 return;
             }
 
@@ -129,11 +129,11 @@ public class GNEditServlet extends HttpServlet {
             // and would require additional validation
 
             // Redirect to list page with success message
-            resp.sendRedirect(req.getContextPath() + "/admin/gn-registry?success=updated");
+            resp.sendRedirect(req.getContextPath() + "/dmc/gn-registry?success=updated");
 
         } catch (Exception e) {
             e.printStackTrace();
-            resp.sendRedirect(req.getContextPath() + "/admin/gn-registry?error=update");
+            resp.sendRedirect(req.getContextPath() + "/dmc/gn-registry?error=update");
         }
     }
 }

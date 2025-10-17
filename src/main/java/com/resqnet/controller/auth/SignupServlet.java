@@ -1,4 +1,4 @@
-package com.resqnet.controller;
+package com.resqnet.controller.auth;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

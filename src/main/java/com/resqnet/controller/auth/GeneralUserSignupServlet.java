@@ -1,4 +1,4 @@
-package com.resqnet.controller;
+package com.resqnet.controller.auth;
 
 import com.resqnet.model.GeneralUser;
 import com.resqnet.model.Role;
