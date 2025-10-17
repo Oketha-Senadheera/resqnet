@@ -51,7 +51,7 @@
     </script>
   </jsp:attribute>
   <jsp:body>
-    <h1>Registered Grama Niladharis</h1>
+    
 
     <c:if test="${param.success == 'added'}">
       <div class="alert alert-success">Grama Niladhari successfully added!</div>
@@ -70,7 +70,7 @@
     </c:if>
 
     <div class="top-actions">
-      <div></div>
+      <h1>Registered Grama Niladharis</h1>
       <a href="${pageContext.request.contextPath}/dmc/gn-registry/add" class="add-btn">Add new GN</a>
     </div>
 
