@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <script src="https://unpkg.com/lucide@latest" defer></script>
+  <script src="https://unpkg.com/lucide@latest" defer onload="window.lucide && window.lucide.createIcons()"></script>
     <c:if test="${not empty styles}">
       <jsp:invoke fragment="styles" />
     </c:if>
@@ -66,14 +66,26 @@
     </div>
 
     <script>
-      if (window.lucide) lucide.createIcons();
+      (function() {
+        function initLucide() {
+          if (window.lucide && typeof window.lucide.createIcons === 'function') {
+            window.lucide.createIcons();
+          }
+        }
 
-      document.querySelectorAll('.nav-item').forEach(item => {
-        item.addEventListener('click', function() {
-          document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
-          this.classList.add('active');
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initLucide);
+        } else {
+          initLucide();
+        }
+
+        document.querySelectorAll('.nav-item').forEach(item => {
+          item.addEventListener('click', function() {
+            document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+            this.classList.add('active');
+          });
         });
-      });
+      })();
     </script>
 
     <c:if test="${not empty scripts}">
