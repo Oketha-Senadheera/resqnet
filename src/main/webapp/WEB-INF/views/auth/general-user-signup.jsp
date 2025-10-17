@@ -1,20 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>General User Sign Up – ResQnet</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/core.css" />
-    <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/static/assets/img/logo.svg" />
-    <script src="https://unpkg.com/lucide@latest" defer></script>
+<%@ taglib prefix="layout" tagdir="/WEB-INF/tags/layouts" %>
+<layout:auth title="General User Sign Up">
+  <jsp:attribute name="styles">
     <style>
       .signup-container {
         max-width: 1080px;
@@ -63,22 +51,9 @@
         font-size: var(--font-size-sm);
       }
     </style>
-  </head>
-  <body>
-    <header class="site-header" role="banner">
-      <div class="site-header__inner">
-        <a href="${pageContext.request.contextPath}/" class="brand-inline">
-          <img src="${pageContext.request.contextPath}/static/assets/img/logo.svg" alt="ResQnet logo" />
-          <span>ResQnet</span>
-        </a>
-        <nav class="primary-nav" aria-label="Primary navigation"></nav>
-        <div class="header-actions">
-          <a href="${pageContext.request.contextPath}/login" class="btn btn-primary">Login</a>
-        </div>
-      </div>
-    </header>
-
-    <main class="signup-container" id="mainContent" tabindex="-1">
+  </jsp:attribute>
+  <jsp:body>
+    <div class="signup-container">
       <h1 class="signup-heading">General User Sign Up</h1>
       <p class="signup-subheading">
         Create your account to access disaster response resources
@@ -254,8 +229,7 @@
           </button>
         </div>
       </form>
-    </main>
-
+    </div>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         if (window.lucide) window.lucide.createIcons();
@@ -274,5 +248,5 @@
         });
       });
     </script>
-  </body>
-</html>
+  </jsp:body>
+</layout:auth>
