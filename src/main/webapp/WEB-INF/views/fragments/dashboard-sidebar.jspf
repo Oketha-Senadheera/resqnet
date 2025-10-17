@@ -1,0 +1,27 @@
+<%-- 
+  Dashboard Sidebar Fragment
+  Reusable sidebar navigation for all dashboard pages
+  
+  Required parameters (set before including):
+  - navItems: Array of navigation items with structure:
+    [{section: "overview", icon: "home", label: "Overview"}, ...]
+--%>
+<aside class="sidebar" aria-label="Primary">
+  <div class="brand">
+    <img class="logo-img" src="${pageContext.request.contextPath}/static/assets/img/logo.svg" alt="ResQnet Logo" width="120" height="32" />
+    <span class="brand-name sr-only">ResQnet</span>
+  </div>
+  <nav class="nav">
+    <c:forEach var="item" items="${navItems}">
+      <button class="nav-item ${item.active ? 'active' : ''}" data-section="${item.section}">
+        <span class="icon" data-lucide="${item.icon}"></span>
+        <span>${item.label}</span>
+      </button>
+    </c:forEach>
+  </nav>
+  <div class="sidebar-footer">
+    <form method="post" action="${pageContext.request.contextPath}/logout" style="margin:0;">
+      <button type="submit" class="logout" aria-label="Logout">↩ Logout</button>
+    </form>
+  </div>
+</aside>

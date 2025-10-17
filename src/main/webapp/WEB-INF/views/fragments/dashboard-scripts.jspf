@@ -1,0 +1,18 @@
+<%-- 
+  Dashboard Scripts Fragment
+  Common JavaScript initialization for all dashboard pages
+--%>
+<script>
+  // Initialize Lucide icons
+  if (window.lucide) {
+    lucide.createIcons();
+  }
+  
+  // Handle navigation item clicks
+  document.querySelectorAll('.nav-item').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>

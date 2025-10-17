@@ -1,17 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ResQnet NGO Dashboard</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/core.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/dashboard.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <script src="https://unpkg.com/lucide@latest" defer></script>
+<%-- Set page-specific parameters --%>
+<c:set var="pageTitle" value="ResQnet NGO Dashboard" />
+<c:set var="breadcrumbPrefix" value="NGO Dashboard" />
+<c:set var="breadcrumbCurrent" value="Overview" />
+
+<%-- Include common dashboard head --%>
+<%@ include file="../fragments/dashboard-head.jspf" %>
     <style>
       .dashboard-section h2 { margin:0 0 1rem; font-size:1rem; }
       .quick-actions-ngo { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem; }
@@ -36,6 +29,7 @@
   </head>
   <body>
     <div class="layout">
+      <%-- Sidebar Navigation --%>
       <aside class="sidebar" aria-label="Primary">
         <div class="brand">
           <img class="logo-img" src="${pageContext.request.contextPath}/static/assets/img/logo.svg" alt="ResQnet Logo" width="120" height="32" />
@@ -58,14 +52,8 @@
         </div>
       </aside>
 
-      <header class="topbar">
-        <div class="breadcrumb">NGO Dashboard / <span>Overview</span></div>
-        <div class="topbar-right">
-          <div class="hotline" role="button" tabindex="0" aria-label="Hotline 117"><span class="hotline-icon" data-lucide="phone"></span>Hotline: <strong>117</strong></div>
-          <div class="user-avatar" aria-label="User Menu" role="button"><img src="https://via.placeholder.com/40x40.png?text=U" alt="User Avatar" /></div>
-          <button class="menu-toggle" aria-label="Open Menu"><span data-lucide="menu"></span></button>
-        </div>
-      </header>
+      <%-- Include common dashboard topbar --%>
+      <%@ include file="../fragments/dashboard-topbar.jspf" %>
 
       <main class="content" id="mainContent" tabindex="-1">
         <section class="welcome">
@@ -130,9 +118,12 @@
       </div>
     </template>
 
+    <%-- Include common dashboard scripts --%>
+    <%@ include file="../fragments/dashboard-scripts.jspf" %>
+    
+    <%-- Page-specific scripts --%>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-        if (window.lucide) lucide.createIcons();
         const requests = [
           { id:1, location:'GN Division: 123 - Central', date:'2024-01-15', items:['Rice 10kg','Canned fish 15 units','Rice 10kg'], status:'fulfilled' },
           { id:2, location:'GN Division: 123 - Central', date:'2024-01-15', items:['Rice 10kg','Canned fish 10 units','Rice 10kg'], status:'fulfilled' },

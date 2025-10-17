@@ -1,17 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>ResQnet - Volunteer Overview</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/core.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/dashboard.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <script src="https://unpkg.com/lucide@latest" defer></script>
+<%-- Set page-specific parameters --%>
+<c:set var="pageTitle" value="ResQnet - Volunteer Overview" />
+<c:set var="breadcrumbPrefix" value="Volunteer Dashboard" />
+<c:set var="breadcrumbCurrent" value="Overview" />
+
+<%-- Include common dashboard head --%>
+<%@ include file="../fragments/dashboard-head.jspf" %>
     <style>
       h1 { margin:0 0 1rem; }
       .alert.info { background:#fff5d6; border:1px solid #f0e0a8; color:#3a3320; display:flex; align-items:center; gap:0.6rem; padding:0.7rem 1rem; border-radius:12px; }
@@ -31,8 +24,12 @@
   </head>
   <body>
     <div class="layout">
+      <%-- Sidebar Navigation --%>
       <aside class="sidebar" aria-label="Primary">
-        <div class="brand"><img class="logo-img" src="${pageContext.request.contextPath}/static/assets/img/logo.svg" alt="ResQnet Logo" width="120" height="32" /><span class="brand-name sr-only">ResQnet</span></div>
+        <div class="brand">
+          <img class="logo-img" src="${pageContext.request.contextPath}/static/assets/img/logo.svg" alt="ResQnet Logo" width="120" height="32" />
+          <span class="brand-name sr-only">ResQnet</span>
+        </div>
         <nav class="nav">
           <button class="nav-item active" data-section="overview"><span class="icon" data-lucide="home"></span><span>Overview</span></button>
           <button class="nav-item" data-section="forecast"><span class="icon" data-lucide="line-chart"></span><span>Forecast Dashboard</span></button>
@@ -49,14 +46,9 @@
           </form>
         </div>
       </aside>
-      <header class="topbar">
-        <div class="breadcrumb">Volunteer Dashboard / <span>Overview</span></div>
-        <div class="topbar-right">
-          <div class="hotline" role="button" tabindex="0" aria-label="Hotline 117"><span class="hotline-icon" data-lucide="phone"></span>Hotline: <strong>117</strong></div>
-          <div class="user-avatar" aria-label="User Menu" role="button"><img src="https://via.placeholder.com/40x40.png?text=U" alt="User Avatar" /></div>
-          <button class="menu-toggle" aria-label="Open Menu"><span data-lucide="menu"></span></button>
-        </div>
-      </header>
+      
+      <%-- Include common dashboard topbar --%>
+      <%@ include file="../fragments/dashboard-topbar.jspf" %>
       <main class="content" id="mainContent" tabindex="-1">
         <section class="welcome">
           <h1>Welcome ${sessionScope.authUser.email}!</h1>
@@ -92,9 +84,12 @@
       </div>
     </template>
 
+    <%-- Include common dashboard scripts --%>
+    <%@ include file="../fragments/dashboard-scripts.jspf" %>
+    
+    <%-- Page-specific scripts --%>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-        if(window.lucide) lucide.createIcons();
         const reports=[
           { title:'Flooding in Residential Area', desc:'Urgent need for rescue in the flooded area near Main Street.', by:'Reported by: Sarah Miller' },
           { title:'Landslide Near Community Center', desc:'Landslide blocking access to the community center. Volunteers needed for debris removal.', by:'Reported by: David Chen' },

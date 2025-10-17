@@ -1,0 +1,26 @@
+<%-- 
+  Dashboard Topbar Fragment
+  Reusable topbar for all dashboard pages
+  
+  Required parameters (set before including):
+  - breadcrumbPrefix: String - The prefix for breadcrumb (e.g., "Volunteer Dashboard")
+  - breadcrumbCurrent: String - Current page in breadcrumb (default: "Overview")
+--%>
+<header class="topbar">
+  <div class="breadcrumb">
+    <c:out value="${breadcrumbPrefix}" default="Dashboard" /> / 
+    <span><c:out value="${breadcrumbCurrent}" default="Overview" /></span>
+  </div>
+  <div class="topbar-right">
+    <div class="hotline" role="button" tabindex="0" aria-label="Hotline 117">
+      <span class="hotline-icon" data-lucide="phone"></span>
+      Hotline: <strong>117</strong>
+    </div>
+    <div class="user-avatar" aria-label="User Menu" role="button">
+      <img src="https://via.placeholder.com/40x40.png?text=U" alt="User Avatar" />
+    </div>
+    <button class="menu-toggle" aria-label="Open Menu">
+      <span data-lucide="menu"></span>
+    </button>
+  </div>
+</header>

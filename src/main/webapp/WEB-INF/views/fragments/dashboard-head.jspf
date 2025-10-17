@@ -1,0 +1,21 @@
+<%-- 
+  Dashboard Head Fragment
+  Common HTML head section for all dashboard pages
+  
+  Required parameters (set before including):
+  - pageTitle: String - The title of the page
+--%>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><c:out value="${pageTitle}" default="ResQnet Dashboard" /></title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/core.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/dashboard.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script src="https://unpkg.com/lucide@latest" defer></script>

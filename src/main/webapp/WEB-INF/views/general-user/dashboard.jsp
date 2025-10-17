@@ -1,17 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>ResQnet - General Public Overview</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/core.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/dashboard.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <script src="https://unpkg.com/lucide@latest" defer></script>
+<%-- Set page-specific parameters --%>
+<c:set var="pageTitle" value="ResQnet - General Public Overview" />
+<c:set var="breadcrumbPrefix" value="General Public Dashboard" />
+<c:set var="breadcrumbCurrent" value="Overview" />
+
+<%-- Include common dashboard head --%>
+<%@ include file="../fragments/dashboard-head.jspf" %>
     <style>
       h1 { margin:0 0 1rem; }
       .welcome { margin-bottom:1.2rem; }
@@ -33,8 +26,12 @@
   </head>
   <body>
     <div class="layout">
+      <%-- Sidebar Navigation --%>
       <aside class="sidebar" aria-label="Primary">
-        <div class="brand"><img class="logo-img" src="${pageContext.request.contextPath}/static/assets/img/logo.svg" alt="ResQnet Logo" width="120" height="32" /><span class="brand-name sr-only">ResQnet</span></div>
+        <div class="brand">
+          <img class="logo-img" src="${pageContext.request.contextPath}/static/assets/img/logo.svg" alt="ResQnet Logo" width="120" height="32" />
+          <span class="brand-name sr-only">ResQnet</span>
+        </div>
         <nav class="nav">
           <button class="nav-item active" data-section="overview"><span class="icon" data-lucide="home"></span><span>Overview</span></button>
           <button class="nav-item" data-section="forecast"><span class="icon" data-lucide="line-chart"></span><span>Forecast Dashboard</span></button>
@@ -51,14 +48,9 @@
           </form>
         </div>
       </aside>
-      <header class="topbar">
-        <div class="breadcrumb">General Public Dashboard / <span>Overview</span></div>
-        <div class="topbar-right">
-          <div class="hotline" role="button" tabindex="0" aria-label="Hotline 117"><span class="hotline-icon" data-lucide="phone"></span>Hotline: <strong>117</strong></div>
-          <div class="user-avatar" aria-label="User Menu" role="button"><img src="https://via.placeholder.com/40x40.png?text=U" alt="User Avatar" /></div>
-          <button class="menu-toggle" aria-label="Open Menu"><span data-lucide="menu"></span></button>
-        </div>
-      </header>
+      
+      <%-- Include common dashboard topbar --%>
+      <%@ include file="../fragments/dashboard-topbar.jspf" %>
       <main class="content" id="mainContent" tabindex="-1">
         <section class="welcome">
           <h1>Welcome ${sessionScope.authUser.email}!</h1>
@@ -95,9 +87,12 @@
       <div class="safe-item"><div class="name"></div><div class="coords"></div></div>
     </template>
 
+    <%-- Include common dashboard scripts --%>
+    <%@ include file="../fragments/dashboard-scripts.jspf" %>
+    
+    <%-- Page-specific scripts --%>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-        if(window.lucide) lucide.createIcons();
         const list=[
           { name:'Central Park', coords:'40.7128° N, 74.0060° W' },
           { name:'Griffith Observatory', coords:'34.0522° N, 118.2437° W' },
