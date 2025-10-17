@@ -31,7 +31,7 @@
         </div>
         <nav class="nav">
           <c:forEach items="${navItems}" var="item">
-            <a class="nav-item ${item.active ? 'active' : ''}" href="${pageContext.request.contextPath}/${item.section}" data-section="${item.section}">
+            <a class="nav-item ${item.active ? 'active' : ''}" href="${pageContext.request.contextPath}/${item.link}" data-section="${item.section}">
               <span class="icon" data-lucide="${item.icon}"></span>
               <span>${item.label}</span>
             </a>

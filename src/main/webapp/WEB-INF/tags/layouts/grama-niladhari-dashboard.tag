@@ -18,6 +18,7 @@
   item.put("section", "overview");
   item.put("icon", "home");
   item.put("label", "Overview");
+  item.put("link", "gn/overview");
   item.put("active", "overview".equals(activePageVal));
   navItems.add(item);
 
@@ -25,6 +26,7 @@
   item.put("section", "forecast");
   item.put("icon", "line-chart");
   item.put("label", "Forecast Dashboard");
+  item.put("link", "gn/forecast");
   item.put("active", "forecast".equals(activePageVal));
   navItems.add(item);
 
@@ -32,6 +34,7 @@
   item.put("section", "donation-requests");
   item.put("icon", "gift");
   item.put("label", "Donation Requests");
+  item.put("link", "gn/donation-requests");
   item.put("active", "donation-requests".equals(activePageVal));
   navItems.add(item);
 
@@ -39,6 +42,7 @@
   item.put("section", "disaster-reports");
   item.put("icon", "alert-triangle");
   item.put("label", "Disaster Reports");
+  item.put("link", "gn/disaster-reports");
   item.put("active", "disaster-reports".equals(activePageVal));
   navItems.add(item);
 
@@ -46,6 +50,7 @@
   item.put("section", "safe-locations");
   item.put("icon", "map-pin");
   item.put("label", "Safe Locations");
+  item.put("link", "gn/safe-locations");
   item.put("active", "safe-locations".equals(activePageVal));
   navItems.add(item);
 
@@ -53,6 +58,7 @@
   item.put("section", "forum");
   item.put("icon", "message-circle");
   item.put("label", "Forum");
+  item.put("link", "gn/forum");
   item.put("active", "forum".equals(activePageVal));
   navItems.add(item);
 
@@ -60,6 +66,7 @@
   item.put("section", "profile-settings");
   item.put("icon", "user");
   item.put("label", "Profile Settings");
+  item.put("link", "gn/profile-settings");
   item.put("active", "profile-settings".equals(activePageVal));
   navItems.add(item);
 

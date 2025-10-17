@@ -18,6 +18,7 @@
   item.put("section", "overview");
   item.put("icon", "home");
   item.put("label", "Overview");
+  item.put("link", "ngo/overview");
   item.put("active", "overview".equals(activePageVal));
   navItems.add(item);
 
@@ -25,6 +26,7 @@
   item.put("section", "forecast");
   item.put("icon", "line-chart");
   item.put("label", "Forecast Dashboard");
+  item.put("link", "ngo/forecast");
   item.put("active", "forecast".equals(activePageVal));
   navItems.add(item);
 
@@ -32,6 +34,7 @@
   item.put("section", "safe-locations");
   item.put("icon", "map-pin");
   item.put("label", "Safe Locations");
+  item.put("link", "ngo/safe-locations");
   item.put("active", "safe-locations".equals(activePageVal));
   navItems.add(item);
 
@@ -39,6 +42,7 @@
   item.put("section", "donation-requests");
   item.put("icon", "gift");
   item.put("label", "Donation Requests");
+  item.put("link", "ngo/donation-requests");
   item.put("active", "donation-requests".equals(activePageVal));
   navItems.add(item);
 
@@ -46,6 +50,7 @@
   item.put("section", "manage-inventory");
   item.put("icon", "boxes");
   item.put("label", "Manage Inventory");
+  item.put("link", "ngo/manage-inventory");
   item.put("active", "manage-inventory".equals(activePageVal));
   navItems.add(item);
 
@@ -53,6 +58,7 @@
   item.put("section", "manage-collection");
   item.put("icon", "map");
   item.put("label", "Manage Collection Points");
+  item.put("link", "ngo/manage-collection");
   item.put("active", "manage-collection".equals(activePageVal));
   navItems.add(item);
 
@@ -60,6 +66,7 @@
   item.put("section", "forum");
   item.put("icon", "message-circle");
   item.put("label", "Forum");
+  item.put("link", "ngo/forum");
   item.put("active", "forum".equals(activePageVal));
   navItems.add(item);
 
@@ -67,6 +74,7 @@
   item.put("section", "profile-settings");
   item.put("icon", "user");
   item.put("label", "Profile Settings");
+  item.put("link", "ngo/profile-settings");
   item.put("active", "profile-settings".equals(activePageVal));
   navItems.add(item);
 

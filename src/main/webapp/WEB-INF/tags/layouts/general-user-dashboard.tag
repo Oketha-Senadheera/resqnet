@@ -18,6 +18,7 @@
   item.put("section", "overview");
   item.put("icon", "home");
   item.put("label", "Overview");
+  item.put("link", "general/overview");
   item.put("active", Boolean.valueOf("overview".equals(ap)));
   navItems.add(item);
 
@@ -25,6 +26,7 @@
   item.put("section", "forecast");
   item.put("icon", "line-chart");
   item.put("label", "Forecast Dashboard");
+  item.put("link", "general/forecast");
   item.put("active", Boolean.valueOf("forecast".equals(ap)));
   navItems.add(item);
 
@@ -32,6 +34,7 @@
   item.put("section", "make-donation");
   item.put("icon", "hand-coins");
   item.put("label", "Make a Donation");
+  item.put("link", "general/make-donation");
   item.put("active", Boolean.valueOf("make-donation".equals(ap)));
   navItems.add(item);
 
@@ -39,6 +42,7 @@
   item.put("section", "request-donation");
   item.put("icon", "package-plus");
   item.put("label", "Request a Donation");
+  item.put("link", "general/request-donation");
   item.put("active", Boolean.valueOf("request-donation".equals(ap)));
   navItems.add(item);
 
@@ -46,6 +50,7 @@
   item.put("section", "report-disaster");
   item.put("icon", "alert-octagon");
   item.put("label", "Report a Disaster");
+  item.put("link", "general/report-disaster");
   item.put("active", Boolean.valueOf("report-disaster".equals(ap)));
   navItems.add(item);
 
@@ -53,6 +58,7 @@
   item.put("section", "be-volunteer");
   item.put("icon", "user-plus");
   item.put("label", "Be a Volunteer");
+  item.put("link", "general/be-volunteer");
   item.put("active", Boolean.valueOf("be-volunteer".equals(ap)));
   navItems.add(item);
 
@@ -60,6 +66,7 @@
   item.put("section", "forum");
   item.put("icon", "message-circle");
   item.put("label", "Forum");
+  item.put("link", "general/forum");
   item.put("active", Boolean.valueOf("forum".equals(ap)));
   navItems.add(item);
 
@@ -67,6 +74,7 @@
   item.put("section", "profile-settings");
   item.put("icon", "user");
   item.put("label", "Profile Settings");
+  item.put("link", "general/profile-settings");
   item.put("active", Boolean.valueOf("profile-settings".equals(ap)));
   navItems.add(item);
 

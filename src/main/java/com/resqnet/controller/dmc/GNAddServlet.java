@@ -38,7 +38,7 @@ public class GNAddServlet extends HttpServlet {
             return;
         }
 
-        req.getRequestDispatcher("/WEB-INF/views/admin/gn/form.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/dmc/gn/form.jsp").forward(req, resp);
     }
 
     @Override

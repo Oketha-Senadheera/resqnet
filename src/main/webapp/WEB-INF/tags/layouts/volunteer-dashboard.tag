@@ -18,6 +18,7 @@
   item.put("section", "overview");
   item.put("icon", "home");
   item.put("label", "Overview");
+  item.put("link", "volunteer/overview");
   item.put("active", "overview".equals(activePageVal));
   navItems.add(item);
 
@@ -25,6 +26,7 @@
   item.put("section", "forecast");
   item.put("icon", "line-chart");
   item.put("label", "Forecast Dashboard");
+  item.put("link", "volunteer/forecast");
   item.put("active", "forecast".equals(activePageVal));
   navItems.add(item);
 
@@ -32,6 +34,7 @@
   item.put("section", "safe-locations");
   item.put("icon", "map-pin");
   item.put("label", "Safe Locations");
+  item.put("link", "volunteer/safe-locations");
   item.put("active", "safe-locations".equals(activePageVal));
   navItems.add(item);
 
@@ -39,6 +42,7 @@
   item.put("section", "make-donation");
   item.put("icon", "hand-coins");
   item.put("label", "Make a Donation");
+  item.put("link", "volunteer/make-donation");
   item.put("active", "make-donation".equals(activePageVal));
   navItems.add(item);
 
@@ -46,6 +50,7 @@
   item.put("section", "request-donation");
   item.put("icon", "package-plus");
   item.put("label", "Request a Donation");
+  item.put("link", "volunteer/request-donation");
   item.put("active", "request-donation".equals(activePageVal));
   navItems.add(item);
 
@@ -53,6 +58,7 @@
   item.put("section", "report-disaster");
   item.put("icon", "alert-octagon");
   item.put("label", "Report a Disaster");
+  item.put("link", "volunteer/report-disaster");
   item.put("active", "report-disaster".equals(activePageVal));
   navItems.add(item);
 
@@ -60,6 +66,7 @@
   item.put("section", "forum");
   item.put("icon", "message-circle");
   item.put("label", "Forum");
+  item.put("link", "volunteer/forum");
   item.put("active", "forum".equals(activePageVal));
   navItems.add(item);
 
@@ -67,6 +74,7 @@
   item.put("section", "profile-settings");
   item.put("icon", "user");
   item.put("label", "Profile Settings");
+  item.put("link", "volunteer/profile-settings");
   item.put("active", "profile-settings".equals(activePageVal));
   navItems.add(item);
 

@@ -40,13 +40,13 @@ src/main/java/com/resqnet/controller/
 
 The routing pattern has been changed from `dashboard/{role}` to `{role}/dashboard`:
 
-| Old URL | New URL | Role |
-|---------|---------|------|
-| `/dashboard/dmc` | `/dmc/dashboard` | DMC (Admin) |
-| `/dashboard/volunteer` | `/volunteer/dashboard` | Volunteer |
-| `/dashboard/general` | `/general/dashboard` | General User |
-| `/dashboard/ngo` | `/ngo/dashboard` | NGO |
-| `/dashboard/gn` | `/gn/dashboard` | Grama Niladhari |
+| Old URL                | New URL                | Role            |
+| ---------------------- | ---------------------- | --------------- |
+| `/dashboard/dmc`       | `/dmc/dashboard`       | DMC (Admin)     |
+| `/dashboard/volunteer` | `/volunteer/dashboard` | Volunteer       |
+| `/dashboard/general`   | `/general/dashboard`   | General User    |
+| `/dashboard/ngo`       | `/ngo/dashboard`       | NGO             |
+| `/dashboard/gn`        | `/gn/dashboard`        | Grama Niladhari |
 
 **Note:** Old URLs are still supported and will redirect to new URLs for backward compatibility.
 
@@ -54,12 +54,12 @@ The routing pattern has been changed from `dashboard/{role}` to `{role}/dashboar
 
 All admin URLs have been renamed to use "dmc" (Disaster Management Center):
 
-| Old URL | New URL |
-|---------|---------|
-| `/admin/gn-registry` | `/dmc/gn-registry` |
-| `/admin/gn-registry/add` | `/dmc/gn-registry/add` |
-| `/admin/gn-registry/edit` | `/dmc/gn-registry/edit` |
-| `/admin/gn-registry/delete` | `/dmc/gn-registry/delete` |
+| Old URL                   | New URL                   |
+| ------------------------- | ------------------------- |
+| `/dmc/gn-registry`        | `/dmc/gn-registry`        |
+| `/dmc/gn-registry/add`    | `/dmc/gn-registry/add`    |
+| `/dmc/gn-registry/edit`   | `/dmc/gn-registry/edit`   |
+| `/dmc/gn-registry/delete` | `/dmc/gn-registry/delete` |
 
 ### Authentication URLs (Unchanged)
 

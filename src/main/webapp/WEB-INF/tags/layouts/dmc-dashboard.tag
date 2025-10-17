@@ -18,6 +18,7 @@
   item.put("section", "overview");
   item.put("icon", "home");
   item.put("label", "Overview");
+  item.put("link", "dmc/overview");
   item.put("active", "overview".equals(activePageVal));
   navItems.add(item);
 
@@ -25,6 +26,7 @@
   item.put("section", "forecast");
   item.put("icon", "line-chart");
   item.put("label", "Forecast Dashboard");
+  item.put("link", "dmc/forecast");
   item.put("active", "forecast".equals(activePageVal));
   navItems.add(item);
 
@@ -32,6 +34,7 @@
   item.put("section", "disaster-reports");
   item.put("icon", "file-text");
   item.put("label", "Disaster Reports");
+  item.put("link", "dmc/disaster-reports");
   item.put("active", "disaster-reports".equals(activePageVal));
   navItems.add(item);
 
@@ -39,6 +42,7 @@
   item.put("section", "volunteer-apps");
   item.put("icon", "users");
   item.put("label", "Volunteer Applications");
+  item.put("link", "dmc/volunteer-apps");
   item.put("active", "volunteer-apps".equals(activePageVal));
   navItems.add(item);
 
@@ -46,6 +50,7 @@
   item.put("section", "delivery-confirmations");
   item.put("icon", "check-square");
   item.put("label", "Delivery Confirmations");
+  item.put("link", "dmc/delivery-confirmations");
   item.put("active", "delivery-confirmations".equals(activePageVal));
   navItems.add(item);
 
@@ -53,6 +58,7 @@
   item.put("section", "safe-locations");
   item.put("icon", "map-pin");
   item.put("label", "Safe Locations");
+  item.put("link", "dmc/safe-locations");
   item.put("active", "safe-locations".equals(activePageVal));
   navItems.add(item);
 
@@ -60,6 +66,7 @@
   item.put("section", "gn-registry");
   item.put("icon", "list");
   item.put("label", "GN Registry");
+  item.put("link", "dmc/gn-registry");
   item.put("active", "gn-registry".equals(activePageVal));
   navItems.add(item);
 
@@ -67,6 +74,7 @@
   item.put("section", "forum");
   item.put("icon", "message-circle");
   item.put("label", "Forum");
+  item.put("link", "dmc/forum");
   item.put("active", "forum".equals(activePageVal));
   navItems.add(item);
 
@@ -74,6 +82,7 @@
   item.put("section", "profile-settings");
   item.put("icon", "user");
   item.put("label", "Profile Settings");
+  item.put("link", "dmc/profile-settings");
   item.put("active", "profile-settings".equals(activePageVal));
   navItems.add(item);
 
