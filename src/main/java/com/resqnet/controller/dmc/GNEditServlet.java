@@ -13,6 +13,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import java.io.IOException;
 import java.util.Optional;
 
@@ -93,13 +95,12 @@ public class GNEditServlet extends HttpServlet {
             String serviceNumber = req.getParameter("serviceNumber");
             String contactNumber = req.getParameter("contactNumber");
             String address = req.getParameter("address");
-            String email = req.getParameter("email");
+            String newPassword = req.getParameter("newPassword");
 
-            // Validate required fields
+            // Validate required fields (email is not included as it's disabled in edit mode)
             if (divisionName == null || divisionName.trim().isEmpty() ||
                 fullName == null || fullName.trim().isEmpty() ||
-                contactNumber == null || contactNumber.trim().isEmpty() ||
-                email == null || email.trim().isEmpty()) {
+                contactNumber == null || contactNumber.trim().isEmpty()) {
                 req.setAttribute("error", "Required fields are missing");
                 
                 // Re-fetch data for display
@@ -125,8 +126,11 @@ public class GNEditServlet extends HttpServlet {
 
             gnDAO.update(gn);
 
-            // Note: We're not updating email/username as those are in users table
-            // and would require additional validation
+            // Update password if provided
+            if (newPassword != null && !newPassword.trim().isEmpty()) {
+                String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
+                userDAO.updatePassword(userId, hashedPassword);
+            }
 
             // Redirect to list page with success message
             resp.sendRedirect(req.getContextPath() + "/dmc/gn-registry?success=updated");
