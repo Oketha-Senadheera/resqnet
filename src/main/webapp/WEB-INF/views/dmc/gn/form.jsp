@@ -45,6 +45,17 @@
             passwordInput.type = 'text';
           });
         }
+
+        const generateNewBtn = document.getElementById('generateNewBtn');
+        const newPasswordInput = document.getElementById('newPassword');
+        
+        if (generateNewBtn && newPasswordInput) {
+          generateNewBtn.addEventListener('click', () => {
+            const generated = Math.random().toString(36).slice(2, 10) + Math.random().toString(36).slice(2, 10);
+            newPasswordInput.value = generated;
+            newPasswordInput.type = 'text';
+          });
+        }
       });
     </script>
   </jsp:attribute>
@@ -128,6 +139,19 @@
                    style="flex:1;" required />
             <button type="button" class="btn btn-secondary" id="generateBtn">Generate</button>
           </div>
+        </div>
+      </c:if>
+
+      <c:if test="${isEdit}">
+        <div class="form-field">
+          <label for="newPassword">New Password (Optional)</label>
+          <div class="input-group">
+            <input class="input" id="newPassword" name="newPassword" type="password" 
+                   placeholder="Enter new password to change" autocomplete="new-password" 
+                   style="flex:1;" />
+            <button type="button" class="btn btn-secondary" id="generateNewBtn">Generate</button>
+          </div>
+          <small style="color:#666; font-size:0.75rem;">Leave blank to keep current password</small>
         </div>
       </c:if>
 
