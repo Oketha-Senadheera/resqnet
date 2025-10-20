@@ -97,3 +97,16 @@ CREATE TABLE IF NOT EXISTS password_reset_tokens (
     KEY idx_prt_user_expires (user_id, expires_at),
     CONSTRAINT fk_password_reset_user FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE IF NOT EXISTS collection_points (
+    collection_point_id INT AUTO_INCREMENT PRIMARY KEY,
+    ngo_id INT NOT NULL,
+    name VARCHAR(150) NOT NULL,
+    location_landmark VARCHAR(150),
+    full_address VARCHAR(255) NOT NULL,
+    contact_person VARCHAR(100),
+    contact_number VARCHAR(20),
+    CONSTRAINT fk_collection_point_ngo FOREIGN KEY (ngo_id)
+        REFERENCES ngos (user_id)
+        ON DELETE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
