@@ -60,7 +60,7 @@ public class DonationRequestEditServlet extends HttpServlet {
             req.setAttribute("requestItems", itemDAO.findByRequestId(requestId));
             req.setAttribute("donationItems", catalogDAO.findAll());
             
-            req.getRequestDispatcher("/WEB-INF/views/grama-niladhari/donation-request-edit.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/grama-niladhari/donation-requests-edit.jsp").forward(req, resp);
             
         } catch (Exception e) {
             e.printStackTrace();
