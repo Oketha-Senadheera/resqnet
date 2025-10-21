@@ -1,6 +1,5 @@
 package com.resqnet.controller.gn;
 
-import com.resqnet.model.DonationRequest;
 import com.resqnet.model.Role;
 import com.resqnet.model.User;
 import com.resqnet.model.dao.DonationRequestDAO;
@@ -13,7 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.sql.Timestamp;
+import com.resqnet.model.DonationRequest;
 import java.util.Optional;
 
 @WebServlet("/gn/donation-requests/verify")
@@ -47,19 +46,13 @@ public class DonationRequestVerifyServlet extends HttpServlet {
 
             int requestId = Integer.parseInt(requestIdStr);
             Optional<DonationRequest> optRequest = requestDAO.findById(requestId);
-            
             if (!optRequest.isPresent()) {
                 resp.sendRedirect(req.getContextPath() + "/gn/donation-requests?error=notfound");
                 return;
             }
 
-            DonationRequest request = optRequest.get();
-            request.setGnId(user.getId());
-            request.setStatus("Approved");
-            request.setVerifiedAt(new Timestamp(System.currentTimeMillis()));
-            request.setApprovedAt(new Timestamp(System.currentTimeMillis()));
-            
-            requestDAO.update(request);
+            // Approve the request (any GN can do this)
+            requestDAO.approve(requestId);
 
             resp.sendRedirect(req.getContextPath() + "/gn/donation-requests?success=verified");
 

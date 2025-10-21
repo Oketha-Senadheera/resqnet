@@ -9,12 +9,10 @@ public class DonationRequestWithItems {
     private String userName;
     private String userContact;
     private String reliefCenterName;
-    private Integer gnId;
     private String gnName;
     private String status;
     private String specialNotes;
     private Timestamp submittedAt;
-    private Timestamp verifiedAt;
     private Timestamp approvedAt;
     private List<DonationRequestItemDetail> items;
 
@@ -61,14 +59,6 @@ public class DonationRequestWithItems {
         this.reliefCenterName = reliefCenterName;
     }
 
-    public Integer getGnId() {
-        return gnId;
-    }
-
-    public void setGnId(Integer gnId) {
-        this.gnId = gnId;
-    }
-
     public String getGnName() {
         return gnName;
     }
@@ -101,13 +91,6 @@ public class DonationRequestWithItems {
         this.submittedAt = submittedAt;
     }
 
-    public Timestamp getVerifiedAt() {
-        return verifiedAt;
-    }
-
-    public void setVerifiedAt(Timestamp verifiedAt) {
-        this.verifiedAt = verifiedAt;
-    }
 
     public Timestamp getApprovedAt() {
         return approvedAt;
