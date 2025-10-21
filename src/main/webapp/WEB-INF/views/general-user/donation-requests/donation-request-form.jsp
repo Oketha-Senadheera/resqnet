@@ -33,15 +33,20 @@
         const row = document.createElement('div');
         row.className = 'item-row';
         row.id = 'item-row-' + itemCount;
+        
+        const catalogSelect = document.querySelector('select[name="itemName[]"]').cloneNode(true);
+        catalogSelect.value = '';
+        
         row.innerHTML = `
           <div class="form-group">
-            <input type="text" name="itemName[]" class="form-input" placeholder="Enter item name (e.g., Rice, Medicine, Blankets)" required>
           </div>
           <div class="form-group">
             <input type="number" name="quantity[]" class="form-input" value="1" min="1" required>
           </div>
           <button type="button" class="btn-remove" onclick="removeItemRow(${itemCount})">Remove</button>
         `;
+        
+        row.querySelector('.form-group').appendChild(catalogSelect);
         container.appendChild(row);
       }
       
@@ -88,8 +93,12 @@
             <div class="item-row" id="item-row-1">
               <div class="form-group">
                 <label class="form-label">Item Name *</label>
-                <input type="text" name="itemName[]" class="form-input" 
-                       placeholder="Enter item name (e.g., Rice, Medicine, Blankets)" required>
+                <select name="itemName[]" class="form-select" required>
+                  <option value="">-- Select an item --</option>
+                  <c:forEach var="item" items="${catalogItems}">
+                    <option value="${item.itemName}">${item.itemName} (${item.category})</option>
+                  </c:forEach>
+                </select>
               </div>
               <div class="form-group">
                 <label class="form-label">Quantity *</label>

@@ -148,3 +148,32 @@ CREATE TABLE IF NOT EXISTS donation_request_items (
         REFERENCES donation_items_catalog (item_id)
         ON DELETE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+-- Insert sample donation items into catalog
+INSERT INTO donation_items_catalog (item_name, category) VALUES
+    ('Rice', 'Food'),
+    ('Wheat Flour', 'Food'),
+    ('Canned Food', 'Food'),
+    ('Dried Fish', 'Food'),
+    ('Dhal', 'Food'),
+    ('Sugar', 'Food'),
+    ('Salt', 'Food'),
+    ('Cooking Oil', 'Food'),
+    ('Bottled Water', 'Food'),
+    ('Baby Food', 'Food'),
+    ('Paracetamol', 'Medicine'),
+    ('Antibiotics', 'Medicine'),
+    ('First Aid Kits', 'Medicine'),
+    ('Bandages', 'Medicine'),
+    ('Antiseptic', 'Medicine'),
+    ('Pain Relievers', 'Medicine'),
+    ('Fever Medication', 'Medicine'),
+    ('Cough Syrup', 'Medicine'),
+    ('Tents', 'Shelter'),
+    ('Blankets', 'Shelter'),
+    ('Sleeping Bags', 'Shelter'),
+    ('Tarpaulins', 'Shelter'),
+    ('Mosquito Nets', 'Shelter'),
+    ('Pillows', 'Shelter'),
+    ('Mattresses', 'Shelter')
+ON DUPLICATE KEY UPDATE item_name = VALUES(item_name);

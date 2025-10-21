@@ -39,11 +39,11 @@
   navItems.add(item);
 
   item = new java.util.HashMap<>();
-  item.put("section", "request-donation");
+  item.put("section", "donation-requests");
   item.put("icon", "package-plus");
   item.put("label", "Request a Donation");
-  item.put("link", "general/request-donation");
-  item.put("active", Boolean.valueOf("request-donation".equals(ap)));
+  item.put("link", "general/donation-requests/form");
+  item.put("active", Boolean.valueOf("donation-requests".equals(ap)));
   navItems.add(item);
 
   item = new java.util.HashMap<>();
