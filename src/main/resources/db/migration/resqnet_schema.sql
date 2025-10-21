@@ -127,9 +127,8 @@ CREATE TABLE IF NOT EXISTS donation_items_catalog (
 CREATE TABLE IF NOT EXISTS donation_requests (
     request_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,                         -- requester (from general_user)
-    relief_center_name VARCHAR(150) NOT NULL,
-    gn_id INT,                                    -- verifying GN officer (from grama_niladhari)
-    status ENUM('Pending', 'Verified', 'Approved', 'Rejected') DEFAULT 'Pending',
+    relief_center_name VARCHAR(150) NOT NULL,                                    -- verifying GN officer (from grama_niladhari)
+    status ENUM('Pending', 'Approved') DEFAULT 'Pending',
     special_notes TEXT,
     submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     verified_at TIMESTAMP NULL,
