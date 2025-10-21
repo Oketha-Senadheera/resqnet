@@ -44,7 +44,7 @@ public class DonationRequestsServlet extends HttpServlet {
         List<DonationRequest> approvedRequests = new ArrayList<>();
 
         for (DonationRequest request : allRequests) {
-            if ("Approved".equals(request.getStatus()) || "Verified".equals(request.getStatus())) {
+            if ("Approved".equals(request.getStatus())) {
                 approvedRequests.add(request);
             } else if ("Pending".equals(request.getStatus())) {
                 pendingRequests.add(request);

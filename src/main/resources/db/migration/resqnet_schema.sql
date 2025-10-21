@@ -111,9 +111,7 @@ CREATE TABLE IF NOT EXISTS collection_points (
         ON DELETE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
--- =========================================================
--- Donation Items Catalog (static master list)
--- =========================================================
+
 CREATE TABLE IF NOT EXISTS donation_items_catalog (
     item_id INT AUTO_INCREMENT PRIMARY KEY,
     item_name VARCHAR(100) NOT NULL,
@@ -121,30 +119,21 @@ CREATE TABLE IF NOT EXISTS donation_items_catalog (
     UNIQUE KEY uq_item_name (item_name)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
--- =========================================================
--- Donation Requests (submitted by general users)
--- =========================================================
+
 CREATE TABLE IF NOT EXISTS donation_requests (
     request_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL, -- requester (from general_user)
-    relief_center_name VARCHAR(150) NOT NULL,
-    gn_id INT, -- verifying GN officer (from grama_niladhari)
-    status ENUM('Pending', 'Verified', 'Approved', 'Rejected') DEFAULT 'Pending',
+    user_id INT NOT NULL,
+    relief_center_name VARCHAR(150) NOT NULL, 
+    status ENUM('Pending', 'Approved') DEFAULT 'Pending',
     special_notes TEXT,
     submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    verified_at TIMESTAMP NULL,
     approved_at TIMESTAMP NULL,
     CONSTRAINT fk_donation_request_user FOREIGN KEY (user_id)
         REFERENCES general_user (user_id)
-        ON DELETE CASCADE,
-    CONSTRAINT fk_donation_request_gn FOREIGN KEY (gn_id)
-        REFERENCES grama_niladhari (user_id)
-        ON DELETE SET NULL
+        ON DELETE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
--- =========================================================
--- Donation Request Items (one request can have many items)
--- =========================================================
+
 CREATE TABLE IF NOT EXISTS donation_request_items (
     request_item_id INT AUTO_INCREMENT PRIMARY KEY,
     request_id INT NOT NULL,
