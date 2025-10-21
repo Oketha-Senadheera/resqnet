@@ -50,7 +50,7 @@
   item.put("section", "report-disaster");
   item.put("icon", "alert-octagon");
   item.put("label", "Report a Disaster");
-  item.put("link", "general/report-disaster");
+  item.put("link", "general/disaster-reports/form");
   item.put("active", Boolean.valueOf("report-disaster".equals(ap)));
   navItems.add(item);
 

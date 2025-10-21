@@ -156,3 +156,40 @@ CREATE TABLE IF NOT EXISTS donation_request_items (
         REFERENCES donation_items_catalog (item_id)
         ON DELETE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+-- =========================================================
+-- Disaster Reports (submitted by general users)
+-- =========================================================
+CREATE TABLE IF NOT EXISTS disaster_reports (
+    report_id INT AUTO_INCREMENT PRIMARY KEY,
+
+    -- Reporter details
+    user_id INT NOT NULL,                                 -- reporter (from general_user)
+    reporter_name VARCHAR(100) NOT NULL,
+    contact_number VARCHAR(20) NOT NULL,
+
+    -- Disaster details
+    disaster_type ENUM('Flood', 'Landslide', 'Fire', 'Earthquake', 'Tsunami', 'Other') NOT NULL,
+    other_disaster_type VARCHAR(100) DEFAULT NULL,         -- used only when disaster_type = 'Other'
+    disaster_datetime DATETIME NOT NULL,
+    location VARCHAR(255) NOT NULL,
+
+    -- Optional supporting proof
+    proof_image_path VARCHAR(255) DEFAULT NULL,            -- local path to uploaded image
+
+    -- Confirmation & status
+    confirmation BOOLEAN NOT NULL DEFAULT TRUE,            -- must be ticked for submission
+    status ENUM('Pending', 'Approved', 'Rejected') DEFAULT 'Pending',
+
+    -- Additional description
+    description TEXT DEFAULT NULL,
+
+    -- System timestamps
+    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    verified_at TIMESTAMP NULL,
+
+    -- Foreign key
+    CONSTRAINT fk_disaster_report_user FOREIGN KEY (user_id)
+        REFERENCES general_user (user_id)
+        ON DELETE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4;
