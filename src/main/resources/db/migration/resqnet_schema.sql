@@ -110,3 +110,36 @@ CREATE TABLE IF NOT EXISTS collection_points (
         REFERENCES ngos (user_id)
         ON DELETE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE IF NOT EXISTS donation_items_catalog (
+    item_id INT AUTO_INCREMENT PRIMARY KEY,
+    item_name VARCHAR(100) NOT NULL,
+    category ENUM('Medicine', 'Food', 'Shelter') NOT NULL,
+    UNIQUE KEY uq_item_name (item_name)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE IF NOT EXISTS donation_requests (
+    request_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    relief_center_name VARCHAR(150) NOT NULL,
+    status ENUM('Pending', 'Approved') DEFAULT 'Pending',
+    special_notes TEXT,
+    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    approved_at TIMESTAMP NULL,
+    CONSTRAINT fk_donation_request_user FOREIGN KEY (user_id)
+        REFERENCES general_user (user_id)
+        ON DELETE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE IF NOT EXISTS donation_request_items (
+    request_item_id INT AUTO_INCREMENT PRIMARY KEY,
+    request_id INT NOT NULL,
+    item_id INT NOT NULL,
+    quantity INT DEFAULT 1 CHECK (quantity > 0),
+    CONSTRAINT fk_donation_items_request FOREIGN KEY (request_id)
+        REFERENCES donation_requests (request_id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_donation_items_catalog FOREIGN KEY (item_id)
+        REFERENCES donation_items_catalog (item_id)
+        ON DELETE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
