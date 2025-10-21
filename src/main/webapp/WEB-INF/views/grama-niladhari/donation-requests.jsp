@@ -84,6 +84,12 @@
       </div>
     </c:if>
     
+    <c:if test="${param.success == 'updated'}">
+      <div class="alert alert-success">
+        Donation request has been updated successfully!
+      </div>
+    </c:if>
+    
     <c:if test="${param.success == 'rejected'}">
       <div class="alert alert-success">
         Donation request has been rejected and removed.
@@ -154,6 +160,9 @@
                         <button type="button" class="btn btn-approve" onclick="confirmApprove(${request.requestId})">
                           Approve
                         </button>
+                        <a href="${pageContext.request.contextPath}/gn/donation-requests/edit?request_id=${request.requestId}" class="btn btn-edit">
+                          Edit
+                        </a>
                         <button type="button" class="btn btn-reject" onclick="confirmReject(${request.requestId})">
                           Reject
                         </button>
