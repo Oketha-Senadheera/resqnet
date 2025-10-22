@@ -47,6 +47,14 @@
   navItems.add(item);
 
   item = new java.util.HashMap<>();
+  item.put("section", "donations");
+  item.put("icon", "package-check");
+  item.put("label", "Donations");
+  item.put("link", "ngo/donations");
+  item.put("active", "donations".equals(activePageVal));
+  navItems.add(item);
+
+  item = new java.util.HashMap<>();
   item.put("section", "manage-inventory");
   item.put("icon", "boxes");
   item.put("label", "Manage Inventory");

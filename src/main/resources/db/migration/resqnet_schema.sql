@@ -167,3 +167,100 @@ CREATE TABLE IF NOT EXISTS disaster_reports (
         REFERENCES general_user (user_id)
         ON DELETE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+-- Donations table: stores donation submissions from general users
+CREATE TABLE IF NOT EXISTS donations (
+    donation_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,                                 -- from general_user
+    collection_point_id INT NOT NULL,                     -- from collection_points
+
+    name VARCHAR(150) NOT NULL,                           -- autofilled from general_user
+    contact_number VARCHAR(20) NOT NULL,                  -- autofilled
+    email VARCHAR(150) NOT NULL,                          -- autofilled
+    address VARCHAR(255) NOT NULL,                        -- concatenated (house_no + street + city + district)
+
+    collection_date DATE NOT NULL,
+    time_slot ENUM('9am–12pm', '12pm–4pm', '6pm–9pm') NOT NULL,
+
+    special_notes TEXT DEFAULT NULL,
+    confirmation BOOLEAN NOT NULL DEFAULT TRUE,            -- must be ticked before submitting
+    status ENUM('Pending', 'Received', 'Cancelled', 'Delivered') DEFAULT 'Pending',
+
+    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    received_at TIMESTAMP NULL,
+    cancelled_at TIMESTAMP NULL,
+    delivered_at TIMESTAMP NULL,
+
+    CONSTRAINT fk_donations_user FOREIGN KEY (user_id)
+        REFERENCES general_user (user_id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_donations_collection_point FOREIGN KEY (collection_point_id)
+        REFERENCES collection_points (collection_point_id)
+        ON DELETE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+-- Donation Items table: stores items in each donation
+CREATE TABLE IF NOT EXISTS donation_items (
+    donation_item_id INT AUTO_INCREMENT PRIMARY KEY,
+    donation_id INT NOT NULL,
+    item_id INT NOT NULL,                                 -- from donation_items_catalog
+    quantity INT NOT NULL CHECK (quantity > 0),
+
+    CONSTRAINT fk_donation_items_donation FOREIGN KEY (donation_id)
+        REFERENCES donations (donation_id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_donation_items_catalog_item FOREIGN KEY (item_id)
+        REFERENCES donation_items_catalog (item_id)
+        ON DELETE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+-- Inventory table: maintains the NGO's stock of received items
+CREATE TABLE IF NOT EXISTS inventory (
+    inventory_id INT AUTO_INCREMENT PRIMARY KEY,
+    ngo_id INT NOT NULL,                                  -- from ngos
+    collection_point_id INT NOT NULL,                     -- from collection_points
+    item_id INT NOT NULL,                                 -- from donation_items_catalog
+    quantity INT DEFAULT 0 CHECK (quantity >= 0),
+
+    status ENUM('In Stock', 'Low on Stock', 'Out of Stock') GENERATED ALWAYS AS (
+        CASE
+            WHEN quantity = 0 THEN 'Out of Stock'
+            WHEN quantity < 20 THEN 'Low on Stock'
+            ELSE 'In Stock'
+        END
+    ) STORED,
+
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_inventory_ngo FOREIGN KEY (ngo_id)
+        REFERENCES ngos (user_id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_inventory_collection_point FOREIGN KEY (collection_point_id)
+        REFERENCES collection_points (collection_point_id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_inventory_item FOREIGN KEY (item_id)
+        REFERENCES donation_items_catalog (item_id)
+        ON DELETE CASCADE,
+    UNIQUE KEY uq_inventory_ngo_cp_item (ngo_id, collection_point_id, item_id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+-- Donation to Inventory Log (for traceability)
+CREATE TABLE IF NOT EXISTS donation_inventory_log (
+    log_id INT AUTO_INCREMENT PRIMARY KEY,
+    donation_id INT NOT NULL,
+    item_id INT NOT NULL,
+    collection_point_id INT NOT NULL,
+    quantity INT NOT NULL CHECK (quantity > 0),
+    action ENUM('Received', 'Updated') NOT NULL,
+    logged_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_log_donation FOREIGN KEY (donation_id)
+        REFERENCES donations (donation_id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_log_item FOREIGN KEY (item_id)
+        REFERENCES donation_items_catalog (item_id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_log_collection FOREIGN KEY (collection_point_id)
+        REFERENCES collection_points (collection_point_id)
+        ON DELETE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
