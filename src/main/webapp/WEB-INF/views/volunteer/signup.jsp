@@ -63,19 +63,19 @@
   </jsp:attribute>
   <jsp:body>
     <div class="signup-container">
-      <h1 class="signup-heading">Volunteer Registration</h1>
+      <h1 class="signup-heading">${not empty generalUser ? 'Upgrade to Volunteer' : 'Volunteer Registration'}</h1>
       
       <c:if test="${not empty error}">
         <div class="error-message">${error}</div>
       </c:if>
       
-      <form id="volunteerForm" method="post" action="${pageContext.request.contextPath}/signup/volunteer" novalidate>
+      <form id="volunteerForm" method="post" action="${not empty generalUser ? pageContext.request.contextPath.concat('/general/be-volunteer') : pageContext.request.contextPath.concat('/signup/volunteer')}" novalidate>
         <div class="form-layout">
           <div class="col-left">
             <h2 class="section-title">Personal Information</h2>
             <div class="form-field">
               <label for="name">Full Name *</label>
-              <input class="input" type="text" id="name" name="name" placeholder="Enter your full name" required />
+              <input class="input" type="text" id="name" name="name" placeholder="Enter your full name" value="${not empty generalUser ? generalUser.name : ''}" required />
             </div>
             <div class="two-col-inline">
               <div class="form-field">
@@ -94,37 +94,37 @@
             </div>
             <div class="form-field">
               <label for="contactNumber">Contact Number</label>
-              <input class="input" type="tel" id="contactNumber" name="contactNumber" placeholder="Enter your contact number" />
+              <input class="input" type="tel" id="contactNumber" name="contactNumber" placeholder="Enter your contact number" value="${not empty generalUser ? generalUser.contactNumber : ''}" />
             </div>
             
             <h2 class="section-title">Address</h2>
             <div class="form-field">
               <label for="houseNo">House No</label>
-              <input class="input" type="text" id="houseNo" name="houseNo" placeholder="House number" />
+              <input class="input" type="text" id="houseNo" name="houseNo" placeholder="House number" value="${not empty generalUser ? generalUser.houseNo : ''}" />
             </div>
             <div class="form-field">
               <label for="street">Street</label>
-              <input class="input" type="text" id="street" name="street" placeholder="Street name" />
+              <input class="input" type="text" id="street" name="street" placeholder="Street name" value="${not empty generalUser ? generalUser.street : ''}" />
             </div>
             <div class="form-field">
               <label for="city">City</label>
-              <input class="input" type="text" id="city" name="city" placeholder="City" />
+              <input class="input" type="text" id="city" name="city" placeholder="City" value="${not empty generalUser ? generalUser.city : ''}" />
             </div>
             <div class="form-field">
               <label for="district">District</label>
               <select class="input" id="district" name="district">
                 <option value="">Select district</option>
-                <option value="Colombo">Colombo</option>
-                <option value="Gampaha">Gampaha</option>
-                <option value="Kalutara">Kalutara</option>
-                <option value="Kandy">Kandy</option>
-                <option value="Galle">Galle</option>
-                <option value="Matara">Matara</option>
+                <option value="Colombo" ${not empty generalUser && generalUser.district == 'Colombo' ? 'selected' : ''}>Colombo</option>
+                <option value="Gampaha" ${not empty generalUser && generalUser.district == 'Gampaha' ? 'selected' : ''}>Gampaha</option>
+                <option value="Kalutara" ${not empty generalUser && generalUser.district == 'Kalutara' ? 'selected' : ''}>Kalutara</option>
+                <option value="Kandy" ${not empty generalUser && generalUser.district == 'Kandy' ? 'selected' : ''}>Kandy</option>
+                <option value="Galle" ${not empty generalUser && generalUser.district == 'Galle' ? 'selected' : ''}>Galle</option>
+                <option value="Matara" ${not empty generalUser && generalUser.district == 'Matara' ? 'selected' : ''}>Matara</option>
               </select>
             </div>
             <div class="form-field">
               <label for="gnDivision">Grama Niladhari Division</label>
-              <input class="input" type="text" id="gnDivision" name="gnDivision" placeholder="GN Division" />
+              <input class="input" type="text" id="gnDivision" name="gnDivision" placeholder="GN Division" value="${not empty generalUser ? generalUser.gnDivision : ''}" />
             </div>
           </div>
 
@@ -151,6 +151,7 @@
               <label><input type="checkbox" name="skills" value="Disaster Management Training" /> Disaster Management Training</label>
             </div>
             
+            <c:if test="${empty generalUser}">
             <h2 class="section-title">Account Details</h2>
             <div class="form-field">
               <label for="username">Username *</label>
@@ -168,12 +169,13 @@
               <label for="confirmPassword">Confirm Password *</label>
               <input class="input" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password" required />
             </div>
+            </c:if>
           </div>
         </div>
 
         <div class="form-actions">
-          <a href="${pageContext.request.contextPath}/signup" class="btn">Back</a>
-          <button type="submit" class="btn btn-primary">Register</button>
+          <a href="${not empty generalUser ? pageContext.request.contextPath.concat('/general/dashboard') : pageContext.request.contextPath.concat('/signup')}" class="btn">Back</a>
+          <button type="submit" class="btn btn-primary">${not empty generalUser ? 'Upgrade to Volunteer' : 'Register'}</button>
         </div>
       </form>
     </div>
@@ -186,7 +188,8 @@
         const confirmPassword = document.getElementById('confirmPassword');
 
         form.addEventListener('submit', (e) => {
-          if (password.value !== confirmPassword.value) {
+          // Only validate password if the fields exist (new signup, not upgrade)
+          if (password && confirmPassword && password.value !== confirmPassword.value) {
             e.preventDefault();
             alert('Passwords do not match!');
             confirmPassword.focus();
