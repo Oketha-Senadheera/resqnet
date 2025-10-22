@@ -17,6 +17,7 @@ import java.util.Map;
 @WebServlet(urlPatterns = {
     // General User
     "/demo/community",
+    "/general/profile",
     
 })
 public class DemoServlet extends HttpServlet {
@@ -26,6 +27,7 @@ public class DemoServlet extends HttpServlet {
     static {
         // Community routes
         ROUTE_MAP.put("/demo/community", "/WEB-INF/views/demo/community.jsp");
+        ROUTE_MAP.put("/general/profile", "/WEB-INF/views/general-user/demo/profile-settings.jsp");
 
     }
     
