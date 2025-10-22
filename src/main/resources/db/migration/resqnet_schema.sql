@@ -123,15 +123,14 @@ CREATE TABLE IF NOT EXISTS donation_items_catalog (
 CREATE TABLE IF NOT EXISTS donation_requests (
     request_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,                        
-    relief_center_name VARCHAR(150) NOT NULL,                                    -- verifying GN officer (from grama_niladhari)
+    relief_center_name VARCHAR(150) NOT NULL,
     status ENUM('Pending', 'Approved') DEFAULT 'Pending',
     special_notes TEXT,
     submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    verified_at TIMESTAMP NULL,
     approved_at TIMESTAMP NULL,
     CONSTRAINT fk_donation_request_user FOREIGN KEY (user_id)
         REFERENCES general_user (user_id)
-        ON DELETE CASCADE,
+        ON DELETE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
 
