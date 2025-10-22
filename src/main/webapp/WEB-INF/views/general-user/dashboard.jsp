@@ -39,7 +39,7 @@
   </jsp:attribute>
   <jsp:body>
     <section class="welcome">
-      <h1>Welcome ${sessionScope.authUser.email}!</h1>
+  <h1>Welcome ${not empty displayName ? displayName : sessionScope.authUser.email}!</h1>
       <div class="alert info">
         <span class="alert-icon" data-lucide="alert-triangle"></span>
         <p>Heavy Rainfall Warning in Gampaha District – Next 48 Hours</p>
@@ -49,7 +49,7 @@
           <div class="quick-actions">
             <button class="action-card" data-goto="make-donation.html"><div class="action-icon"><i data-lucide="gift"></i></div><span>Make a Donation</span></button>
             <button class="action-card" onclick="window.location.href='${pageContext.request.contextPath}/general/donation-requests/form'"><div class="action-icon"><i data-lucide="package-plus"></i></div><span>Request a Donation</span></button>
-            <button class="action-card" data-goto="report-disaster.html"><div class="action-icon"><i data-lucide="alert-octagon"></i></div><span>Report a Disaster</span></button>
+            <button class="action-card" onclick="window.location.href='${pageContext.request.contextPath}/general/disaster-reports/form'"><div class="action-icon"><i data-lucide="alert-octagon"></i></div><span>Report a Disaster</span></button>
             <button class="action-card" data-goto="be-volunteer.html"><div class="action-icon"><i data-lucide="user-plus"></i></div><span>Be a Volunteer</span></button>
           </div>
         </section>

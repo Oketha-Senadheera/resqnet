@@ -2,6 +2,7 @@ package com.resqnet.controller.ngo;
 
 import com.resqnet.model.Role;
 import com.resqnet.model.User;
+import com.resqnet.model.dao.NGODAO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -24,13 +25,19 @@ public class DashboardServlet extends HttpServlet {
             return;
         }
 
-        User user = (User) session.getAttribute("authUser");
+    User user = (User) session.getAttribute("authUser");
         
         // Check if user has NGO role
         if (user.getRole() != Role.NGO) {
             resp.sendError(HttpServletResponse.SC_FORBIDDEN, "Access denied");
             return;
         }
+
+        // Load display name (organization name)
+        try {
+            new NGODAO().findByUserId(user.getId())
+                .ifPresent(ngo -> req.setAttribute("displayName", ngo.getOrganizationName()));
+        } catch (Exception ignored) { }
 
         req.getRequestDispatcher("/WEB-INF/views/ngo/dashboard.jsp").forward(req, resp);
     }

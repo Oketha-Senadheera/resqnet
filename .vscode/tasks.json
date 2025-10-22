@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "maven-compile",
+			"type": "shell",
+			"command": "mvn -q -e -DskipTests package",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$maven"
+			]
+		}
+	]
+}

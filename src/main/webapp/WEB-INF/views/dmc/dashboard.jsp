@@ -71,7 +71,7 @@
     </script>
   </jsp:attribute>
   <jsp:body>
-    <h1 class="page-title">Welcome ${sessionScope.authUser.email}!</h1>
+  <h1 class="page-title">Welcome ${not empty displayName ? displayName : sessionScope.authUser.email}!</h1>
 
         <section class="stats-grid" aria-label="Key Metrics">
           <article class="stat-card" aria-label="Disaster Reports"><div class="label">Disaster Reports</div><div class="value">12</div></article>

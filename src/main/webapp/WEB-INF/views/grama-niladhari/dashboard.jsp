@@ -171,7 +171,7 @@
   </jsp:attribute>
   <jsp:body>
     <section class="welcome">
-      <h1>Welcome ${sessionScope.authUser.email}!</h1>
+  <h1>Welcome ${not empty displayName ? displayName : sessionScope.authUser.email}!</h1>
     </section>
 
         <section class="stats-grid" aria-label="Dashboard Statistics">

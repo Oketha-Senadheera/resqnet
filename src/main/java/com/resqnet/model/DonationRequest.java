@@ -6,11 +6,9 @@ public class DonationRequest {
     private Integer requestId;
     private Integer userId;
     private String reliefCenterName;
-    private Integer gnId;
     private String status;  // Pending, Verified, Approved, Rejected
     private String specialNotes;
     private Timestamp submittedAt;
-    private Timestamp verifiedAt;
     private Timestamp approvedAt;
 
     public DonationRequest() {
@@ -40,13 +38,6 @@ public class DonationRequest {
         this.reliefCenterName = reliefCenterName;
     }
 
-    public Integer getGnId() {
-        return gnId;
-    }
-
-    public void setGnId(Integer gnId) {
-        this.gnId = gnId;
-    }
 
     public String getStatus() {
         return status;
@@ -72,13 +63,6 @@ public class DonationRequest {
         this.submittedAt = submittedAt;
     }
 
-    public Timestamp getVerifiedAt() {
-        return verifiedAt;
-    }
-
-    public void setVerifiedAt(Timestamp verifiedAt) {
-        this.verifiedAt = verifiedAt;
-    }
 
     public Timestamp getApprovedAt() {
         return approvedAt;

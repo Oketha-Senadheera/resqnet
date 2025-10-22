@@ -1,8 +1,9 @@
-package com.resqnet.controller.volunteer;
+package com.resqnet.controller.general;
 
+import com.resqnet.model.Donation;
 import com.resqnet.model.Role;
 import com.resqnet.model.User;
-import com.resqnet.model.dao.VolunteerDAO;
+import com.resqnet.model.dao.DonationDAO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,9 +12,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet("/volunteer/dashboard")
-public class DashboardServlet extends HttpServlet {
+@WebServlet("/general/donations/list")
+public class DonationsListServlet extends HttpServlet {
+
+    private final DonationDAO donationDAO = new DonationDAO();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,20 +29,18 @@ public class DashboardServlet extends HttpServlet {
             return;
         }
 
-    User user = (User) session.getAttribute("authUser");
+        User user = (User) session.getAttribute("authUser");
         
-        // Check if user has VOLUNTEER role
-        if (user.getRole() != Role.VOLUNTEER) {
+        // Check if user has GENERAL role
+        if (user.getRole() != Role.GENERAL) {
             resp.sendError(HttpServletResponse.SC_FORBIDDEN, "Access denied");
             return;
         }
 
-        // Load display name
-        try {
-            new VolunteerDAO().findByUserId(user.getId())
-                .ifPresent(v -> req.setAttribute("displayName", v.getName()));
-        } catch (Exception ignored) { }
+        // Get all donations for this user
+        List<Donation> donations = donationDAO.findByUserId(user.getId());
+        req.setAttribute("donations", donations);
 
-        req.getRequestDispatcher("/WEB-INF/views/volunteer/dashboard.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/general-user/donations/list.jsp").forward(req, resp);
     }
 }

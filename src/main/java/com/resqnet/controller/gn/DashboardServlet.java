@@ -2,6 +2,7 @@ package com.resqnet.controller.gn;
 
 import com.resqnet.model.Role;
 import com.resqnet.model.User;
+import com.resqnet.model.dao.GramaNiladhariDAO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -24,13 +25,19 @@ public class DashboardServlet extends HttpServlet {
             return;
         }
 
-        User user = (User) session.getAttribute("authUser");
+    User user = (User) session.getAttribute("authUser");
         
         // Check if user has GRAMA_NILADHARI role
         if (user.getRole() != Role.GRAMA_NILADHARI) {
             resp.sendError(HttpServletResponse.SC_FORBIDDEN, "Access denied");
             return;
         }
+
+        // Load display name
+        try {
+            new GramaNiladhariDAO().findByUserId(user.getId())
+                .ifPresent(gn -> req.setAttribute("displayName", gn.getName()));
+        } catch (Exception ignored) { }
 
         req.getRequestDispatcher("/WEB-INF/views/grama-niladhari/dashboard.jsp").forward(req, resp);
     }

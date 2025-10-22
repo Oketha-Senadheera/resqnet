@@ -24,7 +24,7 @@ public class DashboardServlet extends HttpServlet {
             return;
         }
 
-        User user = (User) session.getAttribute("authUser");
+    User user = (User) session.getAttribute("authUser");
         
         // Check if user has DMC role
         if (user.getRole() != Role.DMC) {
@@ -32,6 +32,8 @@ public class DashboardServlet extends HttpServlet {
             return;
         }
 
+        // For DMC, we don't have a profile table; use username as display name
+        req.setAttribute("displayName", user.getUsername());
         req.getRequestDispatcher("/WEB-INF/views/dmc/dashboard.jsp").forward(req, resp);
     }
 }

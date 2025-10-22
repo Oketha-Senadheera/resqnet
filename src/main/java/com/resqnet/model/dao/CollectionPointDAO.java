@@ -97,6 +97,23 @@ public class CollectionPointDAO {
         return collectionPoints;
     }
 
+    public List<CollectionPoint> findAll() {
+        String sql = "SELECT collection_point_id, ngo_id, name, location_landmark, full_address, " +
+                     "contact_person, contact_number FROM collection_points ORDER BY name";
+        List<CollectionPoint> collectionPoints = new ArrayList<>();
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    collectionPoints.add(map(rs));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error fetching all collection points", e);
+        }
+        return collectionPoints;
+    }
+
     private CollectionPoint map(ResultSet rs) throws SQLException {
         CollectionPoint cp = new CollectionPoint();
         cp.setCollectionPointId(rs.getInt("collection_point_id"));

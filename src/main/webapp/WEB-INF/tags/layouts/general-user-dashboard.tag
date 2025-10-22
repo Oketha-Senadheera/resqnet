@@ -30,19 +30,12 @@
   item.put("active", Boolean.valueOf("forecast".equals(ap)));
   navItems.add(item);
 
-  item = new java.util.HashMap<>();
-  item.put("section", "make-donation");
-  item.put("icon", "hand-coins");
-  item.put("label", "Make a Donation");
-  item.put("link", "general/make-donation");
-  item.put("active", Boolean.valueOf("make-donation".equals(ap)));
-  navItems.add(item);
 
   item = new java.util.HashMap<>();
   item.put("section", "request-donation");
   item.put("icon", "package-plus");
-  item.put("label", "Request a Donation");
-  item.put("link", "general/donation-requests/list");
+  item.put("label", "Donations");
+  item.put("link", "general/donations/list");
   item.put("active", Boolean.valueOf("request-donation".equals(ap)));
   navItems.add(item);
 
@@ -50,7 +43,7 @@
   item.put("section", "report-disaster");
   item.put("icon", "alert-octagon");
   item.put("label", "Report a Disaster");
-  item.put("link", "general/report-disaster");
+  item.put("link", "general/disaster-reports/form");
   item.put("active", Boolean.valueOf("report-disaster".equals(ap)));
   navItems.add(item);
 

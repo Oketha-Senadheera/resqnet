@@ -71,7 +71,7 @@
   </jsp:attribute>
   <jsp:body>
     <section class="welcome">
-      <h1>Welcome ${sessionScope.authUser.email}!</h1>
+  <h1>Welcome ${not empty displayName ? displayName : sessionScope.authUser.email}!</h1>
       <div class="alert info" style="background:#fff9e6;border-color:#f5e3a3;">
         <span class="alert-icon" data-lucide="alert-triangle"></span>
         <p>Heavy Rainfall Warning in Gampaha District – Next 48 Hours</p>
