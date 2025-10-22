@@ -3,42 +3,11 @@
 <%@ taglib prefix="layout" tagdir="/WEB-INF/tags/layouts" %>
 <layout:auth title="NGO Sign Up">
   <jsp:attribute name="styles">
-    <style>
-      body { background:#fff; }
-      .site-header { position:sticky; top:0; z-index:40; }
-      .main-wrapper { max-width:1080px; margin:0 auto; padding:3.5rem clamp(1rem,3vw,2.5rem) 4rem; }
-      h1 { font-size:clamp(1.6rem,2.5vw,2rem); font-weight:600; margin:0 0 2rem; }
-      .org-form .grid {
-        display:grid;
-        grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-        gap:1.5rem;
-        margin-bottom:1.5rem;
-      }
-      .org-form .form-field.wide { grid-column:1/-1; }
-      .form-help { font-size:var(--font-size-xs); color:var(--color-text-subtle); margin-top:0.25rem; }
-      .error {
-        color:var(--color-danger);
-        font-size:var(--font-size-xs);
-        margin-top:0.25rem;
-        display:none;
-      }
-      .error-message {
-        color: var(--color-danger);
-        background: rgba(215, 48, 47, 0.1);
-        padding: 0.75rem 1rem;
-        border-radius: var(--radius-sm);
-        margin-bottom: 1.5rem;
-        font-size: var(--font-size-sm);
-      }
-      .form-actions {
-        display: flex;
-        gap: 1rem;
-      }
-    </style>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/auth-pages.css" />
   </jsp:attribute>
   <jsp:body>
-    <div class="main-wrapper">
-      <h1>Sign up your organization</h1>
+    <div class="signup-container">
+      <h1 class="signup-heading">Sign up your organization</h1>
       
       <c:if test="${not empty error}">
         <div class="error-message">${error}</div>

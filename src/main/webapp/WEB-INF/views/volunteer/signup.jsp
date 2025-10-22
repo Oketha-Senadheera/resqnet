@@ -3,63 +3,7 @@
 <%@ taglib prefix="layout" tagdir="/WEB-INF/tags/layouts" %>
 <layout:auth title="Volunteer Sign Up">
   <jsp:attribute name="styles">
-    <style>
-      .signup-container {
-        max-width: 1080px;
-        margin: 0 auto;
-        padding: 2rem clamp(1rem,3vw,2.5rem) 4rem;
-      }
-      .signup-heading {
-        margin: 0 0 1rem;
-        font-size: clamp(1.55rem, 2.3vw, 1.9rem);
-        font-weight: 600;
-      }
-      .form-layout {
-        display: grid;
-        gap: 2.5rem;
-        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-        margin-bottom: 2rem;
-      }
-      .section-title {
-        font-size: var(--font-size-sm);
-        font-weight: 600;
-        margin: 1.5rem 0 1rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-      .section-title:first-child {
-        margin-top: 0;
-      }
-      .two-col-inline {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-      }
-      .checkbox-group {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-      .checkbox-group label {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: var(--font-size-sm);
-      }
-      .form-actions {
-        margin-top: 1rem;
-        display: flex;
-        gap: 1rem;
-      }
-      .error-message {
-        color: var(--color-danger);
-        background: rgba(215, 48, 47, 0.1);
-        padding: 0.75rem 1rem;
-        border-radius: var(--radius-sm);
-        margin-bottom: 1.5rem;
-        font-size: var(--font-size-sm);
-      }
-    </style>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/auth-pages.css" />
   </jsp:attribute>
   <jsp:body>
     <div class="signup-container">

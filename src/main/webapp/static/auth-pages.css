@@ -1,0 +1,203 @@
+/* Shared auth page styles (builds on core.css) */
+
+/* Auth container layout */
+.auth-container {
+  max-width: 440px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+
+/* Auth headings */
+.auth-heading {
+  font-size: clamp(1.75rem, 3vw, 2rem);
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+  text-align: center;
+}
+
+.auth-subheading {
+  text-align: center;
+  color: var(--color-text-subtle);
+  font-size: var(--font-size-sm);
+  margin: 0 0 2rem;
+}
+
+/* Error messages */
+.error-message {
+  color: var(--color-danger);
+  background: rgba(215, 48, 47, 0.1);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.5rem;
+  font-size: var(--font-size-sm);
+  text-align: center;
+}
+
+.success-message {
+  color: #147a3c;
+  background: rgba(20, 122, 60, 0.1);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.5rem;
+  font-size: var(--font-size-sm);
+  text-align: center;
+}
+
+/* Auth metadata (forgot password, etc.) */
+.auth-meta {
+  text-align: right;
+  margin-top: -0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.auth-meta a {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-subtle);
+  text-decoration: none;
+}
+
+.auth-meta a:hover {
+  color: var(--color-accent);
+}
+
+/* Auth switch (sign up / login links) */
+.auth-switch {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-subtle);
+}
+
+.auth-switch a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
+}
+
+/* Legal footer (Terms, Privacy) */
+.auth-legal {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-subtle);
+}
+
+.auth-legal a {
+  color: var(--color-text-subtle);
+  text-decoration: none;
+}
+
+.auth-legal a:hover {
+  color: var(--color-text);
+}
+
+/* Signup pages specific styles */
+.signup-container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2rem clamp(1rem, 3vw, 2.5rem) 4rem;
+}
+
+.signup-heading {
+  margin: 0 0 1rem;
+  font-size: clamp(1.55rem, 2.3vw, 1.9rem);
+  font-weight: 600;
+}
+
+.signup-subheading {
+  margin: 0 0 2.5rem;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-subtle);
+}
+
+.form-sections {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  margin-bottom: 2rem;
+}
+
+.form-section h2,
+.section-title {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  margin: 0 0 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-section h2:not(:first-child),
+.section-title:not(:first-child) {
+  margin-top: 1.5rem;
+}
+
+.form-layout {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  margin-bottom: 2rem;
+}
+
+.form-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.form-actions .btn {
+  flex: 1;
+  min-width: 180px;
+}
+
+/* Two column inline layout for forms */
+.two-col-inline {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Checkbox groups */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--font-size-sm);
+}
+
+/* NGO signup specific grid */
+.org-form .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.org-form .form-field.wide {
+  grid-column: 1 / -1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .two-col-inline {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .form-actions .btn {
+    width: 100%;
+  }
+}

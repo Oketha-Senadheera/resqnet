@@ -3,11 +3,9 @@
 <%@ taglib prefix="layout" tagdir="/WEB-INF/tags/layouts" %>
 <layout:auth title="Reset Requested">
   <jsp:attribute name="styles">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/auth-pages.css" />
     <style>
       .auth-container {
-        max-width: 440px;
-        margin: 3rem auto;
-        padding: 0 1.5rem;
         text-align: center;
       }
       .success-icon {
@@ -25,50 +23,11 @@
         height: 32px;
         stroke: var(--color-accent);
       }
-      .auth-heading {
-        font-size: clamp(1.75rem, 3vw, 2rem);
-        font-weight: 600;
-        margin: 0 0 0.75rem;
-      }
       .auth-text {
         color: var(--color-text-subtle);
         font-size: var(--font-size-sm);
         margin: 0 0 1.5rem;
         line-height: 1.5;
-      }
-      .error-message {
-        color: var(--color-danger);
-        background: rgba(215, 48, 47, 0.1);
-        padding: 0.75rem 1rem;
-        border-radius: var(--radius-sm);
-        margin-bottom: 1.5rem;
-        font-size: var(--font-size-sm);
-      }
-      .auth-switch {
-        text-align: center;
-        margin-top: 2rem;
-        font-size: var(--font-size-sm);
-      }
-      .auth-switch a {
-        color: var(--color-accent);
-        text-decoration: none;
-        font-weight: 600;
-      }
-      .auth-switch a:hover {
-        text-decoration: underline;
-      }
-      .auth-legal {
-        text-align: center;
-        margin-top: 2rem;
-        font-size: var(--font-size-xs);
-        color: var(--color-text-subtle);
-      }
-      .auth-legal a {
-        color: var(--color-text-subtle);
-        text-decoration: none;
-      }
-      .auth-legal a:hover {
-        color: var(--color-text);
       }
     </style>
   </jsp:attribute>
