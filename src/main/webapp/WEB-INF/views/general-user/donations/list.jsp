@@ -2,10 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="layout" tagdir="/WEB-INF/tags/layouts" %>
-<layout:general-user-dashboard pageTitle="ResQnet - My Donations" activePage="make-donation">
+<layout:general-user-dashboard pageTitle="ResQnet - My Donations" activePage="request-donation">
   <jsp:attribute name="styles">
     <style>
       h1 { margin:0 0 1.5rem; }
+      .header-actions { display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; }
+      .header-actions h1 { margin:0; }
       .donations-list { display:flex; flex-direction:column; gap:1rem; }
       .donation-card { background:#f9f9f9; border:1px solid var(--color-border); border-radius:12px; padding:1.25rem; }
       .donation-header { display:flex; justify-content:space-between; align-items:start; margin-bottom:0.75rem; }
@@ -41,7 +43,12 @@
     </script>
   </jsp:attribute>
   <jsp:body>
-    <h1>My Donations</h1>
+    <div class="header-actions">
+      <h1>My Donations</h1>
+      <a href="${pageContext.request.contextPath}/general/make-donation" class="btn btn-primary">
+        Make a Donation
+      </a>
+    </div>
 
     <c:if test="${not empty sessionScope.successMessage}">
       <div class="alert success">${sessionScope.successMessage}</div>
