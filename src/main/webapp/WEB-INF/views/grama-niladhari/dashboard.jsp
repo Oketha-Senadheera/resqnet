@@ -4,42 +4,8 @@
 <layout:grama-niladhari-dashboard pageTitle="ResQnet - Grama Niladari Dashboard" activePage="overview">
   <jsp:attribute name="styles">
     <style>
-      .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.25rem;
-        margin-bottom: 2.5rem;
-      }
-      .stat-card {
-        background: #fff;
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius-lg);
-        padding: 1.5rem 1.25rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-      .stat-label {
-        font-size: 0.8rem;
-        color: #555;
-        font-weight: 500;
-      }
-      .stat-value {
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--color-text);
-      }
       .safe-locations-section {
-        background: #fff;
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius-lg);
-        padding: 1.5rem;
         margin-bottom: 2.5rem;
-      }
-      .safe-locations-section h2 {
-        margin: 0 0 1.25rem;
-        font-size: 1.15rem;
-        font-weight: 600;
       }
       .locations-container {
         display: grid;
@@ -64,6 +30,7 @@
         margin-bottom: 1rem;
         transition: background-color var(--transition);
         display: block;
+        font-family: var(--font-family-base);
       }
       .update-btn:hover {
         background: var(--color-accent-hover);
@@ -87,6 +54,31 @@
         background: var(--color-surface);
         border: 1px solid var(--color-border);
         border-radius: var(--radius-md);
+        min-height: 360px;
+        overflow: hidden;
+      }
+      .map-container iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        display: block;
+      }
+      @media (max-width: 980px) {
+        .locations-container {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </jsp:attribute>
+      }
+      .location-coords {
+        font-size: 0.75rem;
+        color: #666;
+      }
+      .map-container {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
         min-height: 350px;
         overflow: hidden;
         position: relative;
@@ -96,12 +88,6 @@
         height: 100%;
         border: 0;
         display: block;
-      }
-      .reports-section {
-        background: #fff;
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius-lg);
-        padding: 1.5rem;
       }
       .reports-section h2 {
         margin: 0 0 1.25rem;
@@ -153,9 +139,6 @@
         .locations-container {
           grid-template-columns: 1fr;
         }
-        .stats-grid {
-          grid-template-columns: 1fr;
-        }
       }
     </style>
   </jsp:attribute>
@@ -189,47 +172,47 @@
           </div>
         </section>
 
-        <section class="safe-locations-section" aria-label="Safe Locations">
-          <h2>Safe Locations</h2>
-          <div class="locations-container">
-            <div class="locations-list">
-              <button class="update-btn">Update Details</button>
-              
-              <div class="location-item">
-                <div class="location-name">Central Park</div>
-                <div class="location-coords">40.7128° N, 74.0060° W</div>
-              </div>
-              
-              <div class="location-item">
-                <div class="location-name">Griffith Observatory</div>
-                <div class="location-coords">34.1522° N, 118.2437° W</div>
-              </div>
-              
-              <div class="location-item">
-                <div class="location-name">Eifel Tower</div>
-                <div class="location-coords">48.8566° N, 2.3522° E</div>
-              </div>
-              
-              <div class="location-item">
-                <div class="location-name">Golden Gate Park</div>
-                <div class="location-coords">37.7749° N, 122.4194° W</div>
-              </div>
-            </div>
-            
-            <div class="map-container">
-              <iframe 
-                src="https://www.openstreetmap.org/export/embed.html?bbox=-74.0170%2C40.7000%2C-73.9950%2C40.7250&layer=mapnik&marker=40.7128%2C-74.0060" 
-                style="border: 0;" 
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
-              </iframe>
-            </div>
+    <section class="safe-locations-section section-card" aria-label="Safe Locations">
+      <h2>Safe Locations</h2>
+      <div class="locations-container">
+        <div class="locations-list">
+          <button class="update-btn">Update Details</button>
+          
+          <div class="location-item">
+            <div class="location-name">Central Park</div>
+            <div class="location-coords">40.7128° N, 74.0060° W</div>
           </div>
-        </section>
+          
+          <div class="location-item">
+            <div class="location-name">Griffith Observatory</div>
+            <div class="location-coords">34.1522° N, 118.2437° W</div>
+          </div>
+          
+          <div class="location-item">
+            <div class="location-name">Eifel Tower</div>
+            <div class="location-coords">48.8566° N, 2.3522° E</div>
+          </div>
+          
+          <div class="location-item">
+            <div class="location-name">Golden Gate Park</div>
+            <div class="location-coords">37.7749° N, 122.4194° W</div>
+          </div>
+        </div>
+        
+        <div class="map-container">
+          <iframe 
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-74.0170%2C40.7000%2C-73.9950%2C40.7250&layer=mapnik&marker=40.7128%2C-74.0060" 
+            style="border: 0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </section>
 
-        <section class="reports-section" aria-label="Real-time Disaster Reports">
-          <h2>Real-time Disaster Reports</h2>
+    <section class="section-card" aria-label="Real-time Disaster Reports">
+      <h2>Real-time Disaster Reports</h2>
           <table class="reports-table">
             <thead>
               <tr>

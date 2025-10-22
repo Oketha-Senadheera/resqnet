@@ -4,25 +4,114 @@
 <layout:ngo-dashboard pageTitle="ResQnet NGO Dashboard" activePage="overview">
   <jsp:attribute name="styles">
     <style>
-      .dashboard-section h2 { margin:0 0 1rem; font-size:1rem; }
-      .quick-actions-ngo { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem; }
-      .action-card.large { min-height:100px; }
-      .requests-list { display:flex; flex-direction:column; gap:0.9rem; margin:0; padding:0; list-style:none; }
-      .request-card { display:grid; grid-template-columns:1fr auto; gap:1rem; background:#f7f7f7; border:1px solid var(--color-border); border-radius:var(--radius-lg); padding:1rem 1.15rem; position:relative; }
-      .request-card.highlight { background:#fff9e3; }
-      .req-meta { display:flex; flex-direction:column; gap:0.4rem; font-size:0.65rem; }
-      .req-location { font-size:0.75rem; font-weight:600; display:flex; gap:0.35rem; align-items:center; }
-      .item-tags { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.35rem; }
-      .tag { background:#eee; border:1px solid #e3e3e3; padding:2px 8px; font-size:0.55rem; border-radius:999px; font-weight:500; letter-spacing:.25px; }
-      .status-btn { all:unset; background:#e4e4e4; color:#222; font-size:0.6rem; font-weight:600; padding:0.45rem 1.1rem; border-radius:999px; cursor:pointer; align-self:start; }
-      .status-btn.reserved { background:var(--color-accent); }
-      .collection-points { display:flex; flex-direction:column; gap:1rem; margin-top:1.25rem; }
-      .point-card { background:#f7f7f7; border:1px solid var(--color-border); border-radius:var(--radius-lg); padding:1rem 1.15rem; font-size:0.65rem; display:flex; flex-direction:column; gap:0.4rem; }
-      .point-card h3 { margin:0; font-size:0.8rem; }
-      .small-meta { display:flex; flex-direction:column; gap:0.15rem; }
-      .req-section { margin-top:2.5rem; }
-      .col-section { margin-top:2.5rem; }
-      @media (max-width:640px){ .request-card { grid-template-columns:1fr; } .status-btn { justify-self:start; } }
+      .dashboard-section h2 { 
+        margin: 0 0 1.25rem; 
+        font-size: 1.1rem; 
+        font-weight: 600;
+      }
+      .requests-list { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 0.9rem; 
+        margin: 0; 
+        padding: 0; 
+        list-style: none; 
+      }
+      .request-card { 
+        display: grid; 
+        grid-template-columns: 1fr auto; 
+        gap: 1rem; 
+        background: #f7f7f7; 
+        border: 1px solid var(--color-border); 
+        border-radius: var(--radius-lg); 
+        padding: 1rem 1.15rem; 
+        position: relative; 
+      }
+      .request-card.highlight { 
+        background: #fff9e3; 
+      }
+      .req-meta { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 0.4rem; 
+        font-size: 0.65rem; 
+      }
+      .req-location { 
+        font-size: 0.75rem; 
+        font-weight: 600; 
+        display: flex; 
+        gap: 0.35rem; 
+        align-items: center; 
+      }
+      .item-tags { 
+        display: flex; 
+        flex-wrap: wrap; 
+        gap: 0.4rem; 
+        margin-top: 0.35rem; 
+      }
+      .tag { 
+        background: #eee; 
+        border: 1px solid #e3e3e3; 
+        padding: 2px 8px; 
+        font-size: 0.55rem; 
+        border-radius: 999px; 
+        font-weight: 500; 
+        letter-spacing: .25px; 
+      }
+      .status-btn { 
+        all: unset; 
+        background: #e4e4e4; 
+        color: #222; 
+        font-size: 0.6rem; 
+        font-weight: 600; 
+        padding: 0.45rem 1.1rem; 
+        border-radius: 999px; 
+        cursor: pointer; 
+        align-self: start; 
+        font-family: var(--font-family-base);
+      }
+      .status-btn.reserved { 
+        background: var(--color-accent); 
+      }
+      .collection-points { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 1rem; 
+        margin-top: 1.25rem; 
+      }
+      .point-card { 
+        background: #f7f7f7; 
+        border: 1px solid var(--color-border); 
+        border-radius: var(--radius-lg); 
+        padding: 1rem 1.15rem; 
+        font-size: 0.65rem; 
+        display: flex; 
+        flex-direction: column; 
+        gap: 0.4rem; 
+      }
+      .point-card h3 { 
+        margin: 0; 
+        font-size: 0.8rem; 
+      }
+      .small-meta { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 0.15rem; 
+      }
+      .req-section { 
+        margin-top: 2.5rem; 
+      }
+      .col-section { 
+        margin-top: 2.5rem; 
+      }
+      @media (max-width: 640px) { 
+        .request-card { 
+          grid-template-columns: 1fr; 
+        } 
+        .status-btn { 
+          justify-self: start; 
+        } 
+      }
     </style>
   </jsp:attribute>
   <jsp:attribute name="scripts">
@@ -71,43 +160,43 @@
   </jsp:attribute>
   <jsp:body>
     <section class="welcome">
-  <h1>Welcome ${not empty displayName ? displayName : sessionScope.authUser.email}!</h1>
-      <div class="alert info" style="background:#fff9e6;border-color:#f5e3a3;">
+      <h1>Welcome ${not empty displayName ? displayName : sessionScope.authUser.email}!</h1>
+      <div class="alert info">
         <span class="alert-icon" data-lucide="alert-triangle"></span>
         <p>Heavy Rainfall Warning in Gampaha District – Next 48 Hours</p>
       </div>
     </section>
 
-        <section aria-label="Primary Actions">
-          <div class="quick-actions-ngo">
-            <button class="action-card large" data-section="donation-requests">
-              <div class="action-icon"><i data-lucide="gift"></i></div>
-              <span>Donation Requests</span>
-            </button>
-            <button class="action-card large" data-section="manage-inventory">
-              <div class="action-icon"><i data-lucide="boxes"></i></div>
-              <span>Manage Inventory</span>
-            </button>
-            <button class="action-card large" data-section="manage-collection">
-              <div class="action-icon"><i data-lucide="map"></i></div>
-              <span>Collection Points</span>
-            </button>
-            <button class="action-card large" data-section="safe-locations">
-              <div class="action-icon"><i data-lucide="map-pin"></i></div>
-              <span>Safe Locations</span>
-            </button>
-          </div>
-        </section>
+    <section aria-label="Primary Actions">
+      <div class="quick-actions-ngo">
+        <button class="action-card large" data-section="donation-requests">
+          <div class="action-icon"><i data-lucide="gift"></i></div>
+          <span>Donation Requests</span>
+        </button>
+        <button class="action-card large" data-section="manage-inventory">
+          <div class="action-icon"><i data-lucide="boxes"></i></div>
+          <span>Manage Inventory</span>
+        </button>
+        <button class="action-card large" data-section="manage-collection">
+          <div class="action-icon"><i data-lucide="map"></i></div>
+          <span>Collection Points</span>
+        </button>
+        <button class="action-card large" data-section="safe-locations">
+          <div class="action-icon"><i data-lucide="map-pin"></i></div>
+          <span>Safe Locations</span>
+        </button>
+      </div>
+    </section>
 
-        <section class="req-section" aria-labelledby="donationRequestsHeading">
-          <h2 id="donationRequestsHeading">Donation Requests</h2>
-          <ul class="requests-list" id="requestsList"></ul>
-        </section>
+    <section class="req-section" aria-labelledby="donationRequestsHeading">
+      <h2 id="donationRequestsHeading" class="dashboard-section">Donation Requests</h2>
+      <ul class="requests-list" id="requestsList"></ul>
+    </section>
 
-        <section class="col-section" aria-labelledby="collectionPointsHeading">
-          <h2 id="collectionPointsHeading">Collection Points</h2>
-          <div class="collection-points" id="collectionPoints"></div>
-        </section>
+    <section class="col-section" aria-labelledby="collectionPointsHeading">
+      <h2 id="collectionPointsHeading" class="dashboard-section">Collection Points</h2>
+      <div class="collection-points" id="collectionPoints"></div>
+    </section>
 
     <template id="request-card-template">
       <li class="request-card">

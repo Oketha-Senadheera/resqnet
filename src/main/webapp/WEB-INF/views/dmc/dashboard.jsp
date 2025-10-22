@@ -4,39 +4,65 @@
 <layout:dmc-dashboard pageTitle="ResQnet - DMC Overview" activePage="overview">
   <jsp:attribute name="styles">
     <style>
-      .page-title { margin: 0.25rem 0 1.5rem; font-size: 1.65rem; }
-      .stats-grid { display:grid; grid-template-columns:repeat(4, minmax(160px, 1fr)); gap:1.25rem; margin: 0 0 2.25rem; }
-      .stat-card { background:#fff; border:1px solid var(--color-border); border-radius:var(--radius-lg); padding:1.15rem 1.1rem; display:flex; flex-direction:column; gap:0.4rem; }
-      .stat-card .label { font-size:0.8rem; color:#555; font-weight:600; }
-      .stat-card .value { font-size:1.85rem; font-weight:700; }
-      .safe-card { background:#fff; border:1px solid var(--color-border); border-radius:var(--radius-lg); padding:1.25rem; }
-      .safe-card h2 { margin:0 0 1rem; font-size:1.1rem; }
-      .safe-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:1.25rem; }
-      .add-btn { all:unset; display:block; width:max-content; background:var(--color-accent); font-weight:700; padding:0.65rem 1.2rem; border-radius:999px; cursor:pointer; font-size:0.85rem; margin-bottom:0.8rem; }
-      .add-btn:hover { background: var(--color-accent-hover); }
-      .loc-list { display:flex; flex-direction:column; gap:0.6rem; }
-      .loc-item { background: var(--color-surface); border:1px solid var(--color-border); border-radius: var(--radius-md); padding:0.85rem 0.95rem; }
-      .loc-name { font-size:0.9rem; font-weight:600; margin-bottom:0.25rem; }
-      .loc-geo { font-size:0.72rem; color:#666; }
-      .map-wrap { background: var(--color-surface); border:1px solid var(--color-border); border-radius: var(--radius-md); min-height: 360px; overflow:hidden; }
-      .map-wrap iframe { width:100%; height:100%; border:0; display:block; }
-      .section-card { background:#fff; border:1px solid var(--color-border); border-radius:var(--radius-lg); padding:1.25rem; }
-      .section-card h2 { margin:0 0 1rem; font-size:1.1rem; }
-      .table { width:100%; border-collapse:collapse; font-size:0.8rem; }
-      .table thead th { text-align:left; padding:0.8rem 1rem; border-bottom:1px solid var(--color-border); background:var(--color-surface); font-size:0.75rem; color:#555; }
-      .table tbody td { padding:1rem; border-bottom:1px solid var(--color-border); }
-      .table tbody tr:last-child td { border-bottom:none; }
-      .table a { color:#4a90e2; text-decoration:none; }
-      .table a:hover { text-decoration:underline; }
-      .action-pills { display:flex; gap:0.5rem; }
-      .pill { all:unset; cursor:pointer; font-weight:700; font-size:0.7rem; padding:0.5rem 0.95rem; border-radius:999px; background:#ededed; color:#222; display:inline-flex; align-items:center; gap:0.35rem; }
-      .pill svg { width:14px; height:14px; }
-      .pill-danger { background:#e43c35; color:#fff; }
-      .pill-confirm { background:#e9e9e9; }
-      .status-pending { color:#a86b00; font-weight:600; }
-      .status-verified { color:#147a3c; font-weight:700; }
-      @media (max-width: 980px) { .stats-grid { grid-template-columns:repeat(2, 1fr); } .safe-grid { grid-template-columns:1fr; } }
-      @media (max-width: 560px) { .stats-grid { grid-template-columns:1fr; } }
+      .safe-grid { 
+        display: grid; 
+        grid-template-columns: 1fr 1.2fr; 
+        gap: 1.25rem; 
+      }
+      .add-btn { 
+        all: unset; 
+        display: block; 
+        width: max-content; 
+        background: var(--color-accent); 
+        font-weight: 700; 
+        padding: 0.65rem 1.2rem; 
+        border-radius: 999px; 
+        cursor: pointer; 
+        font-size: 0.85rem; 
+        margin-bottom: 0.8rem; 
+        font-family: var(--font-family-base);
+      }
+      .add-btn:hover { 
+        background: var(--color-accent-hover); 
+      }
+      .loc-list { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 0.6rem; 
+      }
+      .loc-item { 
+        background: var(--color-surface); 
+        border: 1px solid var(--color-border); 
+        border-radius: var(--radius-md); 
+        padding: 0.85rem 0.95rem; 
+      }
+      .loc-name { 
+        font-size: 0.9rem; 
+        font-weight: 600; 
+        margin-bottom: 0.25rem; 
+      }
+      .loc-geo { 
+        font-size: 0.72rem; 
+        color: #666; 
+      }
+      .map-wrap { 
+        background: var(--color-surface); 
+        border: 1px solid var(--color-border); 
+        border-radius: var(--radius-md); 
+        min-height: 360px; 
+        overflow: hidden; 
+      }
+      .map-wrap iframe { 
+        width: 100%; 
+        height: 100%; 
+        border: 0; 
+        display: block; 
+      }
+      @media (max-width: 980px) { 
+        .safe-grid { 
+          grid-template-columns: 1fr; 
+        } 
+      }
     </style>
   </jsp:attribute>
   <jsp:attribute name="scripts">
@@ -71,13 +97,26 @@
     </script>
   </jsp:attribute>
   <jsp:body>
-  <h1 class="page-title">Welcome ${not empty displayName ? displayName : sessionScope.authUser.email}!</h1>
+    <h1 class="page-title">Welcome ${not empty displayName ? displayName : sessionScope.authUser.email}!</h1>
 
-        <section class="stats-grid" aria-label="Key Metrics">
-          <article class="stat-card" aria-label="Disaster Reports"><div class="label">Disaster Reports</div><div class="value">12</div></article>
-          <article class="stat-card" aria-label="Volunteer Applications"><div class="label">Volunteer Applications</div><div class="value">45</div></article>
-          <article class="stat-card" aria-label="Deliveries to Confirm"><div class="label">Deliveries to Confirm</div><div class="value">8</div></article>
-          <article class="stat-card" aria-label="GNs Registered"><div class="label">GNs Registered</div><div class="value">230</div></article>
+    <section class="stats-grid" aria-label="Key Metrics">
+      <article class="stat-card" aria-label="Disaster Reports">
+        <div class="label">Disaster Reports</div>
+        <div class="value">12</div>
+      </article>
+      <article class="stat-card" aria-label="Volunteer Applications">
+        <div class="label">Volunteer Applications</div>
+        <div class="value">45</div>
+      </article>
+      <article class="stat-card" aria-label="Deliveries to Confirm">
+        <div class="label">Deliveries to Confirm</div>
+        <div class="value">8</div>
+      </article>
+      <article class="stat-card" aria-label="GNs Registered">
+        <div class="label">GNs Registered</div>
+        <div class="value">230</div>
+      </article>
+    </section>
         </section>
 
         <section class="safe-card" aria-label="Safe Locations">
