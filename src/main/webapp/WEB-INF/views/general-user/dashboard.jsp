@@ -50,7 +50,7 @@
             <button class="action-card" data-goto="make-donation.html"><div class="action-icon"><i data-lucide="gift"></i></div><span>Make a Donation</span></button>
             <button class="action-card" onclick="window.location.href='${pageContext.request.contextPath}/general/donation-requests/form'"><div class="action-icon"><i data-lucide="package-plus"></i></div><span>Request a Donation</span></button>
             <button class="action-card" onclick="window.location.href='${pageContext.request.contextPath}/general/disaster-reports/form'"><div class="action-icon"><i data-lucide="alert-octagon"></i></div><span>Report a Disaster</span></button>
-            <button class="action-card" data-goto="be-volunteer.html"><div class="action-icon"><i data-lucide="user-plus"></i></div><span>Be a Volunteer</span></button>
+            <button class="action-card" onclick="window.location.href='${pageContext.request.contextPath}/general/be-volunteer'"><div class="action-icon"><i data-lucide="user-plus"></i></div><span>Be a Volunteer</span></button>
           </div>
         </section>
         <section class="safe-section" aria-labelledby="safeHeading">

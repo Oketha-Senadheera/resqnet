@@ -45,6 +45,17 @@ public class GeneralUserDAO {
         return Optional.empty();
     }
 
+    public boolean delete(int userId) {
+        String sql = "DELETE FROM general_user WHERE user_id = ?";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, userId);
+            return ps.executeUpdate() == 1;
+        } catch (SQLException e) {
+            throw new RuntimeException("Error deleting general user", e);
+        }
+    }
+
     private GeneralUser map(ResultSet rs) throws SQLException {
         GeneralUser gu = new GeneralUser();
         gu.setUserId(rs.getInt("user_id"));

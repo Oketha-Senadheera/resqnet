@@ -130,6 +130,18 @@ public class UserDAO {
         }
     }
 
+    public boolean updateRole(int userId, com.resqnet.model.Role role) {
+        String sql = "UPDATE users SET role=? WHERE user_id=?";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, role.name().toLowerCase());
+            ps.setInt(2, userId);
+            return ps.executeUpdate() == 1;
+        } catch (SQLException e) {
+            throw new RuntimeException("Error updating user role", e);
+        }
+    }
+
     private User map(ResultSet rs) throws SQLException {
         return new User(
                 rs.getInt("user_id"),
