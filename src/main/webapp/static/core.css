@@ -216,6 +216,28 @@ label {
   cursor: not-allowed;
   transform: none;
 }
+.btn-icon {
+  padding: 8px;
+  width: 36px;
+  height: 36px;
+}
+.btn-icon svg {
+  width: 18px;
+  height: 18px;
+}
+.btn-secondary {
+  --btn-bg: #f1f1f1;
+  --btn-color: var(--color-text);
+  --btn-border: var(--color-border);
+}
+.btn-danger {
+  --btn-bg: var(--color-danger);
+  --btn-color: #fff;
+  --btn-border: var(--color-danger);
+}
+.btn-danger:hover {
+  --btn-bg: #b91c1c;
+}
 
 /* 6. Links */
 a {
@@ -260,7 +282,33 @@ a.underline-link:hover::after {
   padding: clamp(2rem, 6vh, 5rem) var(--space-4);
 }
 
-/* 8. Card / panel */
+/* 8. Alerts */
+.alert {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+  font-size: var(--font-size-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.alert.error {
+  background: rgba(215, 48, 47, 0.1);
+  border: 1px solid #fcc;
+  color: var(--color-danger);
+}
+.alert.success {
+  background: rgba(20, 122, 60, 0.1);
+  border: 1px solid #9ae6b4;
+  color: #147a3c;
+}
+.alert.warning {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid #fcd34d;
+  color: #a86b00;
+}
+
+/* 9. Card / panel */
 .panel {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -269,7 +317,7 @@ a.underline-link:hover::after {
   box-shadow: var(--shadow-sm);
 }
 
-/* 9. Headings */
+/* 10. Headings */
 .h1,
 h1 {
   font-size: clamp(1.65rem, 2.4vw, 2rem);
