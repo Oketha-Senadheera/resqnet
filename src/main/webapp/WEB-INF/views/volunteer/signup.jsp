@@ -75,7 +75,7 @@
             <h2 class="section-title">Personal Information</h2>
             <div class="form-field">
               <label for="name">Full Name *</label>
-              <input class="input" type="text" id="name" name="name" placeholder="Enter your full name" value="${generalUser.name}" required />
+              <input class="input" type="text" id="name" name="name" placeholder="Enter your full name" value="${not empty generalUser ? generalUser.name : ''}" required />
             </div>
             <div class="two-col-inline">
               <div class="form-field">
@@ -94,37 +94,37 @@
             </div>
             <div class="form-field">
               <label for="contactNumber">Contact Number</label>
-              <input class="input" type="tel" id="contactNumber" name="contactNumber" placeholder="Enter your contact number" value="${generalUser.contactNumber}" />
+              <input class="input" type="tel" id="contactNumber" name="contactNumber" placeholder="Enter your contact number" value="${not empty generalUser ? generalUser.contactNumber : ''}" />
             </div>
             
             <h2 class="section-title">Address</h2>
             <div class="form-field">
               <label for="houseNo">House No</label>
-              <input class="input" type="text" id="houseNo" name="houseNo" placeholder="House number" value="${generalUser.houseNo}" />
+              <input class="input" type="text" id="houseNo" name="houseNo" placeholder="House number" value="${not empty generalUser ? generalUser.houseNo : ''}" />
             </div>
             <div class="form-field">
               <label for="street">Street</label>
-              <input class="input" type="text" id="street" name="street" placeholder="Street name" value="${generalUser.street}" />
+              <input class="input" type="text" id="street" name="street" placeholder="Street name" value="${not empty generalUser ? generalUser.street : ''}" />
             </div>
             <div class="form-field">
               <label for="city">City</label>
-              <input class="input" type="text" id="city" name="city" placeholder="City" value="${generalUser.city}" />
+              <input class="input" type="text" id="city" name="city" placeholder="City" value="${not empty generalUser ? generalUser.city : ''}" />
             </div>
             <div class="form-field">
               <label for="district">District</label>
               <select class="input" id="district" name="district">
                 <option value="">Select district</option>
-                <option value="Colombo" ${generalUser.district == 'Colombo' ? 'selected' : ''}>Colombo</option>
-                <option value="Gampaha" ${generalUser.district == 'Gampaha' ? 'selected' : ''}>Gampaha</option>
-                <option value="Kalutara" ${generalUser.district == 'Kalutara' ? 'selected' : ''}>Kalutara</option>
-                <option value="Kandy" ${generalUser.district == 'Kandy' ? 'selected' : ''}>Kandy</option>
-                <option value="Galle" ${generalUser.district == 'Galle' ? 'selected' : ''}>Galle</option>
-                <option value="Matara" ${generalUser.district == 'Matara' ? 'selected' : ''}>Matara</option>
+                <option value="Colombo" ${not empty generalUser && generalUser.district == 'Colombo' ? 'selected' : ''}>Colombo</option>
+                <option value="Gampaha" ${not empty generalUser && generalUser.district == 'Gampaha' ? 'selected' : ''}>Gampaha</option>
+                <option value="Kalutara" ${not empty generalUser && generalUser.district == 'Kalutara' ? 'selected' : ''}>Kalutara</option>
+                <option value="Kandy" ${not empty generalUser && generalUser.district == 'Kandy' ? 'selected' : ''}>Kandy</option>
+                <option value="Galle" ${not empty generalUser && generalUser.district == 'Galle' ? 'selected' : ''}>Galle</option>
+                <option value="Matara" ${not empty generalUser && generalUser.district == 'Matara' ? 'selected' : ''}>Matara</option>
               </select>
             </div>
             <div class="form-field">
               <label for="gnDivision">Grama Niladhari Division</label>
-              <input class="input" type="text" id="gnDivision" name="gnDivision" placeholder="GN Division" value="${generalUser.gnDivision}" />
+              <input class="input" type="text" id="gnDivision" name="gnDivision" placeholder="GN Division" value="${not empty generalUser ? generalUser.gnDivision : ''}" />
             </div>
           </div>
 
