@@ -58,8 +58,7 @@ public class VolunteerUpgradeServlet extends HttpServlet {
             // Validate required fields
             if (name == null || name.trim().isEmpty()) {
                 req.setAttribute("error", "Name is required");
-                req.setAttribute("isUpgrade", true);
-                req.getRequestDispatcher("/WEB-INF/views/volunteer/signup.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/views/general-user/be-volunteer.jsp").forward(req, resp);
                 return;
             }
 
@@ -116,8 +115,7 @@ public class VolunteerUpgradeServlet extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/volunteer/dashboard");
         } catch (Exception e) {
             req.setAttribute("error", "An error occurred during upgrade: " + e.getMessage());
-            req.setAttribute("isUpgrade", true);
-            req.getRequestDispatcher("/WEB-INF/views/volunteer/signup.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/general-user/be-volunteer.jsp").forward(req, resp);
         }
     }
 }
