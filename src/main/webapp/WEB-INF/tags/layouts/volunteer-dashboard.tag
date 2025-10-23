@@ -39,17 +39,17 @@
   navItems.add(item);
 
   item = new java.util.HashMap<>();
-  item.put("section", "make-donation");
-  item.put("icon", "hand-coins");
-  item.put("label", "Make a Donation");
+  item.put("section", "donations");
+  item.put("icon", "gift");
+  item.put("label", "Donations");
   item.put("link", "volunteer/make-donation");
-  item.put("active", "make-donation".equals(activePageVal));
+  item.put("active", "donations".equals(activePageVal));
   navItems.add(item);
 
   item = new java.util.HashMap<>();
   item.put("section", "request-donation");
   item.put("icon", "package-plus");
-  item.put("label", "Request a Donation");
+  item.put("label", "Request Donation");
   item.put("link", "volunteer/request-donation");
   item.put("active", "request-donation".equals(activePageVal));
   navItems.add(item);
