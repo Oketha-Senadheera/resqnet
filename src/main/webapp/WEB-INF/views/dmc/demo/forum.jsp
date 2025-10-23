@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="layout" tagdir="/WEB-INF/tags/layouts" %>
-<layout:volunteer-dashboard pageTitle="ResQnet - General Public Overview" activePage="forum">
+<layout:dmc-dashboard pageTitle="ResQnet - General Public Overview" activePage="forum">
 
 <jsp:body>
 
@@ -106,7 +106,7 @@
 </jsp:body>
 
 
-</layout:volunteer-dashboard>
+</layout:dmc-dashboard>
 
 
 

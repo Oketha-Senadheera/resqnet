@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="layout" tagdir="/WEB-INF/tags/layouts" %>
-<layout:general-user-dashboard pageTitle="ResQnet - My Donation Requests" activePage="request-donation">
+<layout:volunteer-dashboard pageTitle="ResQnet - My Donation Requests" activePage="request-donation">
   <jsp:attribute name="styles">
     <style>
       h1 { margin:0 0 1rem; }
@@ -41,7 +41,7 @@
     
     <div class="actions-bar">
       <div></div>
-      <a href="${pageContext.request.contextPath}/general/donation-requests/form" class="btn-new">
+      <a href="${pageContext.request.contextPath}/volunteer/request-donation/form" class="btn-new">
         <i data-lucide="plus" style="width:16px;height:16px;"></i>
         New Request
       </a>
@@ -88,4 +88,4 @@
       </c:otherwise>
     </c:choose>
   </jsp:body>
-</layout:general-user-dashboard>
+</layout:volunteer-dashboard>
