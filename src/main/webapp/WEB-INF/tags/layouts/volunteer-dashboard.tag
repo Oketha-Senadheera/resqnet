@@ -26,7 +26,7 @@
   item.put("section", "forecast");
   item.put("icon", "line-chart");
   item.put("label", "Forecast Dashboard");
-  item.put("link", "volunteer/forecast");
+  item.put("link", "volunteer/forecastdashboard");
   item.put("active", "forecast".equals(activePageVal));
   navItems.add(item);
 

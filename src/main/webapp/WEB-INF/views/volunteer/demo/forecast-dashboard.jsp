@@ -100,46 +100,6 @@
       // Icons
       if (window.lucide) lucide.createIcons();
 
-      // Sidebar routing like other dashboard pages
-      document.querySelectorAll('.nav-item').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const s = btn.getAttribute('data-section');
-          switch (s) {
-            case 'overview':
-              location.href = 'dmc-overview.html';
-              break;
-            case 'forecast':
-              location.href = 'forecast-dashboard.html';
-              break;
-            case 'disaster-reports':
-              location.href = 'disaster-reports.html';
-              break;
-            case 'volunteer-apps':
-              location.href = 'volunteer-overview.html';
-              break;
-            case 'delivery-confirmations':
-              location.href = 'manage-collection-points-v2.html';
-              break;
-            case 'safe-locations':
-              location.href = 'safe-locations-gn.html';
-              break;
-            case 'gn-registry':
-              location.href = 'gn-registry.html';
-              break;
-            case 'forum':
-              location.href = 'forum-moderation-v2.html';
-              break;
-            case 'profile-settings':
-              location.href = 'profile-settings.html';
-              break;
-          }
-        });
-      });
-
-      // Logout
-      document.querySelector('.logout').addEventListener('click', () => {
-        if (confirm('Are you sure you want to logout?')) location.href = 'login.html';
-      });
 
       // Populate Station dropdown based on selected river (simple demo data)
       const riverToStations = {
