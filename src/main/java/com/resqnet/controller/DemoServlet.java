@@ -18,8 +18,11 @@ import java.util.Map;
     // General User
     "/demo/community",
     "/general/profile-settings",
+    "/general/forecastdashboard",
+
+
     "/volunteer/forecastdashboard",
-    "/general/forecastdashboard"
+    "/volunteer/donations"
     
 })
 public class DemoServlet extends HttpServlet {
@@ -32,7 +35,7 @@ public class DemoServlet extends HttpServlet {
         ROUTE_MAP.put("/general/profile-settings", "/WEB-INF/views/general-user/demo/profile-settings.jsp");
         ROUTE_MAP.put("/general/forecastdashboard", "/WEB-INF/views/general-user/demo/forecast-dashboard.jsp");
         ROUTE_MAP.put("/volunteer/forecastdashboard", "/WEB-INF/views/volunteer/demo/forecast-dashboard.jsp");
-
+        ROUTE_MAP.put("/volunteer/donations", "/WEB-INF/views/volunteer/donations/index.jsp");
     }
     
     @Override

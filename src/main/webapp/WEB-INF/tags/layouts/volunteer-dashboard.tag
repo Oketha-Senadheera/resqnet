@@ -42,7 +42,7 @@
   item.put("section", "donations");
   item.put("icon", "gift");
   item.put("label", "Donations");
-  item.put("link", "volunteer/make-donation");
+  item.put("link", "volunteer/donations");
   item.put("active", "donations".equals(activePageVal));
   navItems.add(item);
 
