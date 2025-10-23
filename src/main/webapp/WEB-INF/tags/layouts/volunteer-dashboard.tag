@@ -18,7 +18,7 @@
   item.put("section", "overview");
   item.put("icon", "home");
   item.put("label", "Overview");
-  item.put("link", "volunteer/overview");
+  item.put("link", "volunteer/dashboard");
   item.put("active", "overview".equals(activePageVal));
   navItems.add(item);
 
