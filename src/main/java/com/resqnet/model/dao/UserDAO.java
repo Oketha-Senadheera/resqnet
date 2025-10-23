@@ -73,9 +73,20 @@ public class UserDAO {
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Error creating user", e);
+            throw new RuntimeException("Error creating user: " + e.getMessage(), e);
         }
         return 0;
+    }
+
+    public boolean delete(int userId) {
+        String sql = "DELETE FROM users WHERE user_id=?";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, userId);
+            return ps.executeUpdate() == 1;
+        } catch (SQLException e) {
+            throw new RuntimeException("Error deleting user", e);
+        }
     }
 
     public boolean updatePassword(int userId, String newHash) {
