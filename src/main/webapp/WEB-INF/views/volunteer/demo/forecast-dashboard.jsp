@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="layout" tagdir="/WEB-INF/tags/layouts" %>
-<layout:general-user-dashboard pageTitle="ResQnet - General Public Overview" activePage="overview">
+<layout:volunteer-dashboard pageTitle="ResQnet - General Public Overview" activePage="forecast-dashboard">
 
 <jsp:body>
 
@@ -22,7 +22,6 @@
 <main class="content" id="mainContent" tabindex="-1">
         <h1 class="mt-0" style="margin:0 0 .5rem; font-size:1.75rem;">Forecast Dashboard</h1>
         <p class="subtitle">Stay informed with the latest rainfall and flood forecasts for your selected river and station.</p>
-
         <section class="filters" aria-label="Filters">
           <select class="input" id="riverSelect" aria-label="Select River">
             <option value="" selected disabled>Select River</option>
@@ -180,7 +179,7 @@
 
 </jsp:body>
 
-</layout:general-user-dashboard>
+</layout:volunteer-dashboard>
 
 
 
