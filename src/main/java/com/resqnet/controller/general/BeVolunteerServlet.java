@@ -45,13 +45,10 @@ public class BeVolunteerServlet extends HttpServlet {
                 req.setAttribute("generalUser", generalUser);
             }
             
-            // Set flag to indicate this is an upgrade, not a new signup
-            req.setAttribute("isUpgrade", true);
-            
-            req.getRequestDispatcher("/WEB-INF/views/volunteer/signup.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/general-user/be-volunteer.jsp").forward(req, resp);
         } catch (Exception e) {
             req.setAttribute("error", "Error loading user data: " + e.getMessage());
-            req.getRequestDispatcher("/WEB-INF/views/volunteer/signup.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/general-user/be-volunteer.jsp").forward(req, resp);
         }
     }
 }
