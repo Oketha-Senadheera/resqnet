@@ -39,26 +39,26 @@
   navItems.add(item);
 
   item = new java.util.HashMap<>();
-  item.put("section", "make-donation");
-  item.put("icon", "hand-coins");
-  item.put("label", "Make a Donation");
-  item.put("link", "volunteer/make-donation");
-  item.put("active", "make-donation".equals(activePageVal));
+  item.put("section", "request-donation");
+  item.put("icon", "package-plus");
+  item.put("label", "Donations");
+  item.put("link", "general/donations/list");
+  item.put("active", "request-donation".equals(activePageVal));
   navItems.add(item);
 
   item = new java.util.HashMap<>();
-  item.put("section", "request-donation");
+  item.put("section", "donation-request");
   item.put("icon", "package-plus");
-  item.put("label", "Request a Donation");
-  item.put("link", "volunteer/request-donation");
-  item.put("active", "request-donation".equals(activePageVal));
+  item.put("label", "Request Donations");
+  item.put("link", "general/donation-requests/form");
+  item.put("active", "donation-request".equals(activePageVal));
   navItems.add(item);
 
   item = new java.util.HashMap<>();
   item.put("section", "report-disaster");
   item.put("icon", "alert-octagon");
   item.put("label", "Report a Disaster");
-  item.put("link", "volunteer/report-disaster");
+  item.put("link", "general/disaster-reports/form");
   item.put("active", "report-disaster".equals(activePageVal));
   navItems.add(item);
 
