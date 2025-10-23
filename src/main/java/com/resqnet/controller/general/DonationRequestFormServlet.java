@@ -1,9 +1,11 @@
 package com.resqnet.controller.general;
 
 import com.resqnet.model.DonationItemsCatalog;
+import com.resqnet.model.GeneralUser;
 import com.resqnet.model.Role;
 import com.resqnet.model.User;
 import com.resqnet.model.dao.DonationItemsCatalogDAO;
+import com.resqnet.model.dao.GeneralUserDAO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,6 +20,7 @@ import java.util.List;
 @WebServlet("/general/donation-requests/form")
 public class DonationRequestFormServlet extends HttpServlet {
     private final DonationItemsCatalogDAO catalogDAO = new DonationItemsCatalogDAO();
+    private final GeneralUserDAO generalUserDAO = new GeneralUserDAO();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,6 +43,12 @@ public class DonationRequestFormServlet extends HttpServlet {
         // Fetch available donation items
         List<DonationItemsCatalog> donationItems = catalogDAO.findAll();
         req.setAttribute("donationItems", donationItems);
+
+        // Load user information for autofilling
+        try {
+            generalUserDAO.findByUserId(user.getId())
+                .ifPresent(gu -> req.setAttribute("userInfo", gu));
+        } catch (Exception ignored) { }
 
         req.getRequestDispatcher("/WEB-INF/views/general-user/donation-requests/form.jsp").forward(req, resp);
     }

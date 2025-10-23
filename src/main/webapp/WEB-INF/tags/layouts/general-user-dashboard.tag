@@ -32,10 +32,18 @@
 
 
   item = new java.util.HashMap<>();
-  item.put("section", "request-donation");
-  item.put("icon", "package-plus");
+  item.put("section", "donations");
+  item.put("icon", "gift");
   item.put("label", "Donations");
   item.put("link", "general/donations/list");
+  item.put("active", Boolean.valueOf("donations".equals(ap)));
+  navItems.add(item);
+
+  item = new java.util.HashMap<>();
+  item.put("section", "request-donation");
+  item.put("icon", "package-plus");
+  item.put("label", "Request Donation");
+  item.put("link", "general/donation-requests/list");
   item.put("active", Boolean.valueOf("request-donation".equals(ap)));
   navItems.add(item);
 
