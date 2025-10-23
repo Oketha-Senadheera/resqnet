@@ -44,9 +44,9 @@
     </section>
     <section class="quick">
       <div class="quick-actions">
-        <button class="action-card" data-goto="make-donation.html"><div class="action-icon"><i data-lucide="gift"></i></div><span>Make a Donation</span></button>
-        <button class="action-card" data-goto="request-donation.html"><div class="action-icon"><i data-lucide="package-plus"></i></div><span>Request a Donation</span></button>
-        <button class="action-card" data-goto="report-disaster.html"><div class="action-icon"><i data-lucide="alert-octagon"></i></div><span>Report a Disaster</span></button>
+        <button class="action-card" onclick="window.location.href='${pageContext.request.contextPath}/general/donations/list'"><div class="action-icon"><i data-lucide="gift"></i></div><span>Donations</span></button>
+        <button class="action-card" onclick="window.location.href='${pageContext.request.contextPath}/general/donation-requests/list'"><div class="action-icon"><i data-lucide="package-plus"></i></div><span>Request Donation</span></button>
+        <button class="action-card" onclick="window.location.href='${pageContext.request.contextPath}/general/disaster-reports/form'"><div class="action-icon"><i data-lucide="alert-octagon"></i></div><span>Report a Disaster</span></button>
         <button class="action-card" data-goto="safe-locations-gn.html"><div class="action-icon"><i data-lucide="map-pin"></i></div><span>Safe Locations</span></button>
       </div>
     </section>
