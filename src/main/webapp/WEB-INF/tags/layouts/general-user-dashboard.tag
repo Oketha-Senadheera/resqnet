@@ -18,7 +18,7 @@
   item.put("section", "overview");
   item.put("icon", "home");
   item.put("label", "Overview");
-  item.put("link", "general/overview");
+  item.put("link", "general/dashboard");
   item.put("active", Boolean.valueOf("overview".equals(ap)));
   navItems.add(item);
 
