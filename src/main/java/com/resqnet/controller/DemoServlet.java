@@ -22,7 +22,8 @@ import java.util.Map;
 
 
     "/volunteer/forecastdashboard",
-    "/volunteer/donations"
+    "/volunteer/donations",
+    "/volunteer/report-disaster",
     
 })
 public class DemoServlet extends HttpServlet {
@@ -36,6 +37,7 @@ public class DemoServlet extends HttpServlet {
         ROUTE_MAP.put("/general/forecastdashboard", "/WEB-INF/views/general-user/demo/forecast-dashboard.jsp");
         ROUTE_MAP.put("/volunteer/forecastdashboard", "/WEB-INF/views/volunteer/demo/forecast-dashboard.jsp");
         ROUTE_MAP.put("/volunteer/donations", "/WEB-INF/views/volunteer/donations/index.jsp");
+        ROUTE_MAP.put("/volunteer/report-disaster", "/WEB-INF/views/volunteer/disaster-reports/form.jsp");
     }
     
     @Override
