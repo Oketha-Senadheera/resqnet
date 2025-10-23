@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="layout" tagdir="/WEB-INF/tags/layouts" %>
-<layout:general-user-dashboard pageTitle="ResQnet - My Donations" activePage="request-donation">
+<layout:general-user-dashboard pageTitle="ResQnet - My Donations" activePage="donations">
   <jsp:attribute name="styles">
     <style>
       h1 { margin:0 0 1.5rem; }
