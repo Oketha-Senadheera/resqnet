@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="layout" tagdir="/WEB-INF/tags/layouts" %>
-<layout:general-user-dashboard pageTitle="ResQnet - Request Donation" activePage="request-donation">
+<layout:volunteer-dashboard pageTitle="ResQnet - Request Donation" activePage="request-donation">
   <jsp:attribute name="styles">
     <style>
       h1 { margin:0 0 1rem; }
@@ -117,4 +117,4 @@
       <button type="submit" class="btn-submit">Submit Request</button>
     </form>
   </jsp:body>
-</layout:general-user-dashboard>
+</layout:volunteer-dashboard>

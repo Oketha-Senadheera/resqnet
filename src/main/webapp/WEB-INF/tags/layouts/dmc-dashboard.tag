@@ -38,7 +38,7 @@
   item.put("active", "disaster-reports".equals(activePageVal));
   navItems.add(item);
 
-  item = new java.util.HashMap<>();
+  /*item = new java.util.HashMap<>();
   item.put("section", "volunteer-apps");
   item.put("icon", "users");
   item.put("label", "Volunteer Applications");
@@ -52,7 +52,7 @@
   item.put("label", "Delivery Confirmations");
   item.put("link", "dmc/delivery-confirmations");
   item.put("active", "delivery-confirmations".equals(activePageVal));
-  navItems.add(item);
+  navItems.add(item);*/
 
   item = new java.util.HashMap<>();
   item.put("section", "safe-locations");

@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="layout" tagdir="/WEB-INF/tags/layouts" %>
-<layout:general-user-dashboard pageTitle="ResQnet - General Public Overview" activePage="forecast">
+<layout:grama-niladhari-dashboard pageTitle="ResQnet - General Public Overview" activePage="forecast">
 
 <jsp:body>
 
@@ -180,7 +180,7 @@
 
 </jsp:body>
 
-</layout:general-user-dashboard>
+</layout:grama-niladhari-dashboard>
 
 
 
